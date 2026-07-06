@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>e-CVT MGU 价值认知汇报站</title>
+  <style>
+    :root {
+      --bg: #f4f5f3;
+      --paper: #ffffff;
+      --ink: #17211f;
+      --muted: #66736f;
+      --line: #d9dfdc;
+      --soft: #eef2f0;
+      --green: #1f7a55;
+      --green-soft: #dff0e7;
+      --blue: #285f91;
+      --blue-soft: #e2edf7;
+      --amber: #93630e;
+      --amber-soft: #f5ead0;
+      --red: #944034;
+      --red-soft: #f2ded9;
+      --shadow: 0 18px 42px rgba(24, 32, 29, .08);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.58;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 255, 255, .97);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      width: min(1240px, calc(100% - 32px));
+      min-height: 60px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand strong { display: block; font-size: 15px; line-height: 1.2; }
+    .brand span { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; }
+
+    .navlinks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    .navlinks a {
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 7px 9px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .navlinks a:hover { background: #edf1ef; text-decoration: none; }
+
+    main {
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 30px 0 72px;
+    }
+
+    section {
+      scroll-margin-top: 82px;
+      margin: 48px 0;
+    }
+
+    h1, h2, h3, h4 { letter-spacing: 0; }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 25px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .label.high { background: var(--green-soft); color: #1d6748; }
+    .label.mid { background: var(--blue-soft); color: #214f77; }
+    .label.low { background: var(--red-soft); color: #7a342c; }
+    .label.gap { background: var(--amber-soft); color: #734d0d; }
+    .label.neutral { background: #eef1f0; color: #41524c; }
+
+    .evidence {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    code {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #f1f4f3;
+      padding: 1px 4px;
+      color: #26332f;
+      font-family: Consolas, "Microsoft YaHei", monospace;
+      font-size: 12px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-side,
+    .panel,
+    .scene-card,
+    .sub-card,
+    .signal-card,
+    .risk-card,
+    details {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 24px rgba(24, 32, 29, .05);
+    }
+
+    .hero-main {
+      min-height: 500px;
+      padding: 36px;
+      display: grid;
+      align-content: center;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    h1 {
+      max-width: 920px;
+      margin: 0;
+      font-size: 50px;
+      line-height: 1.1;
+    }
+
+    .lead {
+      max-width: 900px;
+      margin: 18px 0 0;
+      color: #334640;
+      font-size: 18px;
+    }
+
+    .thesis-bar {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 38px 1fr 38px 1fr;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .thesis-step {
+      min-height: 120px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #f8fbf9;
+      padding: 14px;
+    }
+
+    .thesis-step strong {
+      display: block;
+      margin: 7px 0 5px;
+      font-size: 16px;
+      line-height: 1.28;
+    }
+
+    .thesis-step p,
+    .hero-side p,
+    .panel p,
+    .scene-card p,
+    .sub-card p,
+    .signal-card p,
+    .risk-card p {
+      margin: 0;
+      color: #3c4e49;
+      font-size: 14px;
+    }
+
+    .arrow {
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .hero-side {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .side-block {
+      border-left: 4px solid var(--blue);
+      background: #f8fbfd;
+      border-radius: 0 7px 7px 0;
+      padding: 12px;
+    }
+
+    .side-block h2 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .side-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    .side-list li {
+      color: #334640;
+      font-size: 14px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .88fr) minmax(280px, .42fr);
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.18;
+    }
+
+    .section-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .formula-panel {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .formula-item {
+      position: relative;
+      min-height: 160px;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--green);
+      border-radius: var(--radius);
+      background: var(--paper);
+      padding: 16px;
+    }
+
+    .formula-item h3 {
+      margin: 10px 0 8px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .formula-item p { color: #3c4e49; font-size: 14px; }
+
+    .formula-item.risk { border-top-color: var(--amber); }
+
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .scene-card {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+      min-height: 470px;
+    }
+
+    .scene-card.primary { box-shadow: var(--shadow); }
+
+    .scene-card h3 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.22;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .score {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #f8faf9;
+      padding: 8px;
+      display: grid;
+      gap: 5px;
+      min-height: 76px;
+    }
+
+    .score span:first-child {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .score strong {
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .scene-block {
+      border-left: 4px solid var(--blue);
+      background: #f8fbfd;
+      border-radius: 0 7px 7px 0;
+      padding: 11px 12px;
+    }
+
+    .scene-block strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    .secondary-scenes {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .secondary-head {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--blue);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: #f8fbfd;
+      padding: 14px 16px;
+    }
+
+    .secondary-head h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .secondary-head p {
+      margin: 0;
+      color: #3c4e49;
+      font-size: 14px;
+    }
+
+    .mini-scene {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcfb;
+      padding: 14px;
+    }
+
+    .mini-scene h3 { margin: 8px 0 6px; font-size: 16px; }
+    .mini-scene p { margin: 0; color: #3c4e49; font-size: 14px; }
+
+    .matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 10px 24px rgba(24, 32, 29, .04);
+    }
+
+    table {
+      width: 100%;
+      min-width: 940px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef3f1;
+      color: #26332f;
+      font-size: 12px;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    th:last-child, td:last-child { border-right: 0; }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .signal-card {
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      min-height: 230px;
+    }
+
+    .signal-card h3,
+    .risk-card h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .risk-card {
+      padding: 15px;
+      min-height: 172px;
+      box-shadow: none;
+    }
+
+    .risk-card h3 { font-size: 15px; margin: 8px 0 6px; }
+
+    details {
+      margin: 12px 0;
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 14px 16px;
+      font-weight: 900;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--muted); }
+    details[open] summary::after { content: "-"; }
+
+    .details-body {
+      border-top: 1px solid var(--line);
+      padding: 16px;
+      background: #fbfcfb;
+    }
+
+    .footer-note {
+      margin: 40px 0 0;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .section-note { text-align: left; }
+      .formula-panel,
+      .scene-grid,
+      .secondary-scenes,
+      .signal-grid,
+      .risk-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 10px 0;
+      }
+
+      .navlinks { justify-content: flex-start; }
+
+      main {
+        width: min(100% - 22px, 1240px);
+        padding-top: 16px;
+      }
+
+      .hero-main {
+        min-height: auto;
+        padding: 22px;
+      }
+
+      h1 { font-size: 32px; }
+      .lead { font-size: 16px; }
+
+      .thesis-bar,
+      .formula-panel,
+      .scene-grid,
+      .secondary-scenes,
+      .signal-grid,
+      .risk-grid,
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .arrow { display: none; }
+      .scene-card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="页面导航">
+      <div class="brand">
+        <strong>e-CVT MGU 价值认知汇报站</strong>
+        <span>价值公式 · 主场景 · 替代边界 · 2026-07-04</span>
+      </div>
+      <div class="navlinks">
+        <a href="#summary">核心判断</a>
+        <a href="#formula">价值公式</a>
+        <a href="#scenarios">主场景</a>
+        <a href="#substitutes">替代矩阵</a>
+        <a href="#signals">证据信号</a>
+        <a href="#risks">不能拍板</a>
+        <a href="#evidence">证据附录</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="summary" class="hero" aria-labelledby="hero-title">
+      <div class="hero-main">
+        <p class="eyebrow">一句话结论</p>
+        <h1 id="hero-title">e-CVT MGU 的价值，不在“自动变速”，而在同时解决其他方案拆不开的系统痛点。</h1>
+        <p class="lead">只有当外露传动、目标踏频、高载低速、后轮结构和整车控制同时成为问题时，中置集成 e-CVT 才可能比电子外变、花鼓 CVT/内变、有级 MGU 或普通中置电机更有 OEM 系统收益。</p>
+
+        <div class="thesis-bar" aria-label="价值判断链路">
+          <div class="thesis-step">
+            <span class="label high">痛点叠加</span>
+            <strong>不是单点功能</strong>
+            <p>单独自动换挡、单独低维护、单独高扭矩都已有替代方案。</p>
+          </div>
+          <div class="arrow">→</div>
+          <div class="thesis-step">
+            <span class="label mid">系统收益</span>
+            <strong>中置一体化</strong>
+            <p>把传动、踏频、后轮和整车控制收进一个系统。</p>
+          </div>
+          <div class="arrow">→</div>
+          <div class="thesis-step">
+            <span class="label gap">替代边界</span>
+            <strong>必须正面对比</strong>
+            <p>电子外变、hub CVT、有级 MGU 和普通中置都会吃掉一部分价值。</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="side-block">
+          <h2>本页只回答一件事</h2>
+          <p>什么使用场景下，e-CVT MGU 的价值不是“也能变速”，而是其他方案很难同时替代。</p>
+        </div>
+        <div class="side-block">
+          <h2>三类主场景</h2>
+          <ul class="side-list">
+            <li><strong>eMTB：</strong>痛点很强，验证门槛最高。</li>
+            <li><strong>Cargo / family：</strong>满载停启强痛点，hub/internal 替代也强。</li>
+            <li><strong>SUV / trekking：</strong>综合价值最好讲，但要证明比现有低维护方案更集成。</li>
+          </ul>
+        </div>
+        <div class="side-block">
+          <h2>证据边界</h2>
+          <p>Gobao 是当前最强官方 e-CVT MGU 证据；Avinox MG Concept 先按 e-CVT MGU 方向研究，但量产规格和内部实现未官方闭环。</p>
+          <div class="evidence">证据 <code>V003</code><code>V004</code><code>V027</code><code>V028</code><code>V029</code><code>F035</code></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="formula" aria-labelledby="formula-title">
+      <div class="section-head">
+        <h2 class="section-title" id="formula-title">价值公式：只有痛点叠加，e-CVT MGU 才可能成立</h2>
+        <p class="section-note">把“自动变速”降级为一个能力，把“系统收益”作为判断核心。</p>
+      </div>
+
+      <div class="formula-panel">
+        <article class="formula-item">
+          <span class="label high">1</span>
+          <h3>外露传动易损</h3>
+          <p>后拨、飞轮、链条暴露在泥沙、冲击、高扭矩和误用中。</p>
+          <div class="evidence"><code>V008</code><code>F034</code><code>F036</code></div>
+        </article>
+        <article class="formula-item">
+          <span class="label high">2</span>
+          <h3>用户不用操心换挡</h3>
+          <p>目标踏频和连续变比能降低新手、家庭用户和长距离骑行负担。</p>
+          <div class="evidence"><code>V004</code><code>V031</code><code>F026</code><code>F039</code></div>
+        </article>
+        <article class="formula-item">
+          <span class="label high">3</span>
+          <h3>高载 / 爬坡 / 停启</h3>
+          <p>满载起步、低速大扭矩和技术爬坡需要稳定、正确、可预测的变比。</p>
+          <div class="evidence"><code>V004</code><code>F026</code><code>F029</code></div>
+        </article>
+        <article class="formula-item">
+          <span class="label mid">4</span>
+          <h3>后轮结构收益</h3>
+          <p>相对 hub CVT/内变，中置集成可能保留后轮轻量和维护便利。</p>
+          <div class="evidence"><code>V009</code><code>V012</code><code>F041</code></div>
+        </article>
+        <article class="formula-item risk">
+          <span class="label gap">门槛</span>
+          <h3>效率、热、控制、售后</h3>
+          <p>这些不能靠公开资料拍板，必须后续验证。</p>
+          <div class="evidence"><code>F029</code><code>F035</code></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="scenarios" aria-labelledby="scenarios-title">
+      <div class="section-head">
+        <h2 class="section-title" id="scenarios-title">三类主场景：先看价值来源，再看替代压力</h2>
+        <p class="section-note">这里不做产品投放排序，只判断场景价值和可替代性。</p>
+      </div>
+
+      <div class="scene-grid">
+        <article class="scene-card primary">
+          <span class="label high">强痛点 / 高门槛</span>
+          <h3>High-end eMTB / gravity / technical climbing</h3>
+          <div class="score-grid">
+            <div class="score"><span>痛点强度</span><strong>很高</strong></div>
+            <div class="score"><span>替代难度</span><strong>中高</strong></div>
+            <div class="score"><span>验证门槛</span><strong>最高</strong></div>
+          </div>
+          <div class="scene-block">
+            <strong>为什么值得看</strong>
+            <p>后拨、飞轮、链条外露易损；全避震对后轮质量、悬架响应和轮组维护敏感；技术爬坡需要低速高扭矩下可预测控制。</p>
+          </div>
+          <div class="scene-block">
+            <strong>e-CVT MGU 可能更优</strong>
+            <p>去后拨/减少多片飞轮依赖，把复杂度放回中置，支持负载/静止变比，并用虚拟档或手动覆盖保留骑手控制。</p>
+          </div>
+          <div class="scene-block">
+            <strong>替代压力</strong>
+            <p>电子外变成熟且运动用户熟悉；有级 MGU 是强参照。e-CVT 必须证明重量、效率、NVH、冲击耐久和骑手信任。</p>
+          </div>
+          <div class="evidence">证据 <code>V003</code><code>V004</code><code>V008</code><code>V027</code><code>V028</code><code>V029</code><code>F031</code><code>F036</code></div>
+        </article>
+
+        <article class="scene-card primary">
+          <span class="label high">强痛点 / 强替代</span>
+          <h3>Cargo / family utility / heavy-load</h3>
+          <div class="score-grid">
+            <div class="score"><span>痛点强度</span><strong>很高</strong></div>
+            <div class="score"><span>替代难度</span><strong>中高</strong></div>
+            <div class="score"><span>验证门槛</span><strong>高</strong></div>
+          </div>
+          <div class="scene-block">
+            <strong>为什么值得看</strong>
+            <p>满载起步、坡道、频繁停启、家庭用户误换挡和低维护都是真痛点，用户更希望车辆像自动挡一样稳定。</p>
+          </div>
+          <div class="scene-block">
+            <strong>e-CVT MGU 可能更优</strong>
+            <p>自动给出合适变比，减少外露传动维护，并把诊断、保护和整车状态统一到中置系统。</p>
+          </div>
+          <div class="scene-block">
+            <strong>替代压力</strong>
+            <p>enviolo、Rohloff、3X3 等 hub/internal 路线已经很强。e-CVT 必须证明后轮维护、TCO、高载热和寿命优于这些路线。</p>
+          </div>
+          <div class="evidence">证据 <code>V004</code><code>V009</code><code>V010</code><code>V011</code><code>V012</code><code>F026</code><code>F041</code></div>
+        </article>
+
+        <article class="scene-card primary">
+          <span class="label high">综合价值</span>
+          <h3>高端 SUV / trekking / all-road commuter</h3>
+          <div class="score-grid">
+            <div class="score"><span>痛点强度</span><strong>高</strong></div>
+            <div class="score"><span>替代难度</span><strong>中高</strong></div>
+            <div class="score"><span>验证门槛</span><strong>中高</strong></div>
+          </div>
+          <div class="scene-block">
+            <strong>为什么值得看</strong>
+            <p>通勤、轻越野、长距离、坡道和载物混在一起，用户愿意为低维护、舒适、稳定和高级体验付费。</p>
+          </div>
+          <div class="scene-block">
+            <strong>e-CVT MGU 可能更优</strong>
+            <p>目标踏频、连续变比、封闭/皮带友好传动、后轮简化和中置质量集中，可以合成 premium integrated drive 体验。</p>
+          </div>
+          <div class="scene-block">
+            <strong>替代压力</strong>
+            <p>hub CVT/内变和有级 MGU 都能解决低维护。e-CVT 必须证明更自然、更集成，且效率、噪声、售后不输。</p>
+          </div>
+          <div class="evidence">证据 <code>V004</code><code>V009</code><code>V020</code><code>V022</code><code>V025</code><code>F026</code><code>F027</code><code>F041</code></div>
+        </article>
+      </div>
+
+      <div class="secondary-head">
+        <h3>补充/边界场景：用于说明“哪些场景不应和三类主场景混为一谈”</h3>
+        <p>上方三类主场景已经包含 <strong>High-end eMTB / gravity / technical climbing</strong>。下方的 <strong>Lightweight eMTB / eGravel</strong> 是轻量运动细分，核心诉求是轻、自然、低阻，与高端 eMTB 的后拨易损、簧下质量和技术爬坡痛点不是同一组判断。</p>
+      </div>
+
+      <div class="secondary-scenes" aria-label="次级场景">
+        <article class="mini-scene">
+          <span class="label mid">UX 强 / 替代强</span>
+          <h3>Premium urban</h3>
+          <p>目标踏频和省心体验成立，但 enviolo、Owuru、普通内变/花鼓 CVT 替代压力很强。</p>
+        </article>
+        <article class="mini-scene">
+          <span class="label mid">可靠性导向</span>
+          <h3>Touring / adventure</h3>
+          <p>低维护和长途可靠需求真实，但 Rohloff、Pinion gearbox、有级 MGU 的可靠性叙事很强。</p>
+        </article>
+        <article class="mini-scene">
+          <span class="label low">价值较弱</span>
+          <h3>Lightweight eMTB / eGravel</h3>
+          <p>轻、自然、低阻和运动控制优先，e-CVT MGU 的重量、体积和效率代价很难被覆盖。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="substitutes" aria-labelledby="substitutes-title">
+      <div class="section-head">
+        <h2 class="section-title" id="substitutes-title">替代矩阵：哪些价值已经有人能解决</h2>
+        <p class="section-note">e-CVT MGU 的价值必须从替代方案的边界里证明出来。</p>
+      </div>
+
+      <div class="matrix-wrap" role="region" aria-label="替代方案矩阵" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>替代路线</th>
+              <th>已经能解决</th>
+              <th>解决不了 / 可能留下的空间</th>
+              <th>替代压力最大的场景</th>
+              <th>证据</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>电子外变 + 中置电机</strong></td>
+              <td>自动/电子换挡、运动控制、用户熟悉、重量和开发风险更可控。</td>
+              <td>后拨、飞轮、链条仍外露；泥沙、冲击、摔车和维护痛点仍在。</td>
+              <td>eMTB、轻量运动、成本/重量敏感车型。</td>
+              <td><code>V005</code> <code>V007</code> <code>V008</code> <code>F042</code></td>
+            </tr>
+            <tr>
+              <td><strong>花鼓 CVT / 内变</strong></td>
+              <td>目标踏频、低维护、停启友好、封闭传动和宽范围的一部分问题。</td>
+              <td>激进 eMTB 的后轮质量、悬架响应、轮组维护和中置一体化诊断。</td>
+              <td>urban、cargo/family、SUV/trekking。</td>
+              <td><code>V009</code> <code>V010</code> <code>V011</code> <code>V012</code> <code>F041</code></td>
+            </tr>
+            <tr>
+              <td><strong>有级 gearbox MGU</strong></td>
+              <td>封闭传动、宽范围、低维护、后拨取消和高端装车叙事。</td>
+              <td>目标踏频/连续变比的自然体验；但 e-CVT 必须证明效率、噪声、售后不输。</td>
+              <td>touring、SUV/trekking、部分 eMTB。</td>
+              <td><code>V001</code> <code>V020</code> <code>V022</code> <code>V025</code></td>
+            </tr>
+            <tr>
+              <td><strong>普通高性能中置</strong></td>
+              <td>动力、重量、成本、供应链、用户认知和维修网络。</td>
+              <td>无法系统解决低维护、目标踏频和去后拨；后轮仍要围绕飞轮、后拨、链条和链线布置，后轮/后三角/后悬架设计自由度有限。</td>
+              <td>lightweight eMTB/eGravel、价格敏感车型、普通高性能车。</td>
+              <td><code>V002</code> <code>V006</code> <code>F015</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="signals" aria-labelledby="signals-title">
+      <div class="section-head">
+        <h2 class="section-title" id="signals-title">证据信号：按成熟度读，不按热度读</h2>
+        <p class="section-note">官方硬证据、媒体/展会信号、UX 启发和替代压力必须分层。</p>
+      </div>
+
+      <div class="signal-grid">
+        <article class="signal-card">
+          <span class="label high">官方硬证据</span>
+          <h3>Gobao X-system</h3>
+          <p>官方页面明确展示 motor + transmission single unit、automatic continuously variable transmission 和目标踏频，并给出 Urban & Trekking、MTB & Cargo 两组配置。</p>
+          <div class="evidence">证据 <code>V004</code><code>F026</code><code>F027</code></div>
+        </article>
+
+        <article class="signal-card">
+          <span class="label mid">媒体/展会强信号</span>
+          <h3>Avinox MG Concept</h3>
+          <p>先按 e-CVT MGU 方向研究。它的重要性在于可能改变高端 OEM 的心理锚点；但不能写成官方量产规格。</p>
+          <div class="evidence">证据 <code>V003</code><code>V027</code><code>V028</code><code>V029</code><code>F031</code><code>F035</code></div>
+        </article>
+
+        <article class="signal-card">
+          <span class="label mid">UX 启发</span>
+          <h3>Owuru / Decathlon</h3>
+          <p>证明“目标踏频 + 用户不用操心换挡”在城市车上有真实体验价值，但不能直接外推高功率 MGU 可靠性。</p>
+          <div class="evidence">证据 <code>V030</code><code>V031</code><code>F037</code><code>F039</code><code>F040</code></div>
+        </article>
+
+        <article class="signal-card">
+          <span class="label gap">替代压力</span>
+          <h3>Pinion / enviolo / Rohloff / Bosch / Shimano / SRAM</h3>
+          <p>它们证明自动换挡、低维护、宽范围、封闭传动和高端装车都有替代路径。</p>
+          <div class="evidence">证据 <code>V001</code><code>V005</code><code>V007</code><code>V008</code><code>V009</code><code>V010</code><code>V011</code></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="risks" aria-labelledby="risks-title">
+      <div class="section-head">
+        <h2 class="section-title" id="risks-title">为什么现在还不能拍板</h2>
+        <p class="section-note">这些是确认价值是否成立的证据缺口，不是商业落地清单。</p>
+      </div>
+
+      <div class="risk-grid">
+        <article class="risk-card">
+          <span class="label gap">效率</span>
+          <h3>连续变速是否吞续航？</h3>
+          <p>不同踏频、扭矩、坡度、车速下的效率 map 需要和外变、hub CVT、有级 MGU 对比。</p>
+        </article>
+        <article class="risk-card">
+          <span class="label gap">热</span>
+          <h3>高载低速能否持续？</h3>
+          <p>cargo 满载、eMTB 技术爬坡、长坡和高温环境下是否热衰减。</p>
+        </article>
+        <article class="risk-card">
+          <span class="label gap">控制</span>
+          <h3>骑手是否信任？</h3>
+          <p>自动踏频、虚拟档位、手动覆盖、站姿重踩和湿滑路面必须可预测。</p>
+        </article>
+        <article class="risk-card">
+          <span class="label gap">耐久</span>
+          <h3>冲击和污染能否扛住？</h3>
+          <p>泥沙、清洗、摔车、跳跃落地、载重冲击会考验密封、传感器、线束和执行器。</p>
+        </article>
+        <article class="risk-card">
+          <span class="label gap">售后</span>
+          <h3>维修边界是否可接受？</h3>
+          <p>如果从换链条/飞轮/后拨变成整机返修，必须证明诊断、模块更换和成本可控。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="evidence" aria-labelledby="evidence-title">
+      <div class="section-head">
+        <h2 class="section-title" id="evidence-title">证据附录：来源和边界</h2>
+        <p class="section-note">用于被追问来源时快速定位。O 为官方来源，B 为媒体/行业媒体/评测。</p>
+      </div>
+
+      <details>
+        <summary>证据等级说明</summary>
+        <div class="details-body">
+          <ul>
+            <li><strong>O 官方：</strong>可支撑产品事实，但仍要注意官方营销表述和缺失项。</li>
+            <li><strong>B 媒体：</strong>可支撑市场信号、体验观察和风险线索，不能直接当成官方规格。</li>
+            <li><strong>待验证：</strong>效率、热、寿命、内部机械实现、持续功率、售后策略等不能从公开材料直接推出。</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>关键来源索引</summary>
+        <div class="details-body">
+          <div class="matrix-wrap" role="region" aria-label="来源索引" tabindex="0">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>等级</th>
+                  <th>来源</th>
+                  <th>可支撑内容</th>
+                  <th>边界</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>V001</code></td><td>O</td><td>Pinion E-Drive MGU 官方页</td><td>有级 MGU 量产参照、9/12 档、568/600% 范围、低维护叙事。</td><td>不是 e-CVT；不可作为目标技术形态。</td></tr>
+                <tr><td><code>V002</code></td><td>O</td><td>Avinox M1/M2/M2S 官方页</td><td>Avinox 当前量产电机基准。</td><td>不能代表 MG Concept 规格。</td></tr>
+                <tr><td><code>V003</code></td><td>B</td><td>The Verge Avinox/Gobao 报道</td><td>Avinox MG Concept 与 Gobao X-series 的 Eurobike eCVT MGU 市场信号。</td><td>媒体来源，不是官方最终规格。</td></tr>
+                <tr><td><code>V004</code></td><td>O</td><td>Gobao X-system 官方页</td><td>motor + transmission single unit、automatic continuously variable transmission、120/150 Nm、400/500% 范围。</td><td>未在抽取文本中确认 X1/X1P 命名和量产客户。</td></tr>
+                <tr><td><code>V005</code></td><td>O</td><td>Bosch eShift 官方页</td><td>外部电子/自动换挡生态可作为准直接替代。</td><td>不是 MGU。</td></tr>
+                <tr><td><code>V007</code></td><td>O</td><td>Shimano AUTO SHIFT 官方页</td><td>自动换挡、传感器控制和手动覆盖能力。</td><td>不是 motor-internal gearbox。</td></tr>
+                <tr><td><code>V008</code></td><td>O</td><td>SRAM Eagle Powertrain 官方页</td><td>eMTB 电子外变与 Auto Shift 替代压力。</td><td>仍保留外部传动。</td></tr>
+                <tr><td><code>V009</code></td><td>O</td><td>enviolo 官方页</td><td>Automatic preferred cadence、enclosed low-upkeep、hub CVT 替代压力。</td><td>花鼓/gearbox 路线，不是中置 MGU。</td></tr>
+                <tr><td><code>V010</code> <code>V011</code></td><td>O</td><td>Rohloff E-14 / SPEEDHUB 官方页</td><td>电子内变、14 档、526% 范围、自动回起步档等强替代。</td><td>不是 e-CVT MGU。</td></tr>
+                <tr><td><code>V012</code></td><td>O</td><td>3X3 系统官方页</td><td>内变、停着换挡、重载换挡、链/带兼容路线。</td><td>缺少本轮抽取的完整扭矩/范围表。</td></tr>
+                <tr><td><code>V026</code></td><td>B</td><td>Transition Velo Gobao X1/X1P</td><td>X1/X1P 命名、120/150 Nm、热/寿命/效率风险提示。</td><td>媒体来源，命名和量产时间需官方确认。</td></tr>
+                <tr><td><code>V027</code> <code>V028</code> <code>V029</code></td><td>B</td><td>Avinox MG Concept 媒体/展会报道</td><td>e-CVT/连续变速方向、520% 范围、虚拟档、OEM prototype 信号。</td><td>不能写成官方量产规格。</td></tr>
+                <tr><td><code>V030</code> <code>V031</code></td><td>B</td><td>Owuru Ride / Decathlon LD 920 E 报道</td><td>连续变速、目标踏频、城市 UX 和高功率 prototype 线索。</td><td>不能直接外推高功率 MGU 量产可靠性。</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <p class="footer-note">本页面由 `research-mgu` 当前调研包整理而来，用途是帮助团队认清 e-CVT MGU 的场景价值和替代边界，不应作为官方规格文件或最终决策文件。</p>
+  </main>
+</body>
+</html>

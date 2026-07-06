@@ -1,0 +1,1752 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>e-CVT MGU 产品方向</title>
+  <style>
+    :root {
+      --bg: #f5f7f6;
+      --paper: #ffffff;
+      --ink: #16211f;
+      --muted: #65726e;
+      --line: #d8dfdc;
+      --soft: #eef3f1;
+      --teal: #12646a;
+      --teal-soft: #dcefed;
+      --blue: #315f94;
+      --blue-soft: #e3edf8;
+      --violet: #615d84;
+      --violet-soft: #e8e7f1;
+      --amber: #9a6620;
+      --amber-soft: #f2e8d6;
+      --green: #2d714f;
+      --green-soft: #dfeee6;
+      --red: #9d4c3e;
+      --red-soft: #f3e1de;
+      --shadow: 0 18px 46px rgba(20, 32, 29, .09);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.72), rgba(245,247,246,.98) 34rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.58;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(216, 223, 220, .9);
+      background: rgba(255, 255, 255, .95);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      width: min(1280px, calc(100% - 32px));
+      min-height: 62px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .navlinks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    .navlinks a {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: var(--ink);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .navlinks a:hover {
+      background: var(--soft);
+      text-decoration: none;
+    }
+
+    main {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 72px;
+    }
+
+    section {
+      scroll-margin-top: 86px;
+      margin: 44px 0;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      letter-spacing: 0;
+      line-height: 1.18;
+    }
+
+    p { margin: 0; }
+
+    .eyebrow {
+      margin-bottom: 10px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .decision-card,
+    .ring-stage,
+    .layer-detail,
+    .layer-card,
+    .scenario-card,
+    .solution-card,
+    .note-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 10px 26px rgba(20, 32, 29, .05);
+    }
+
+    .hero-copy {
+      min-height: 360px;
+      padding: 34px;
+      display: grid;
+      align-content: center;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      max-width: 820px;
+      font-size: 46px;
+    }
+
+    .lead {
+      max-width: 860px;
+      margin-top: 18px;
+      color: #31433f;
+      font-size: 18px;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 12px;
+    }
+
+    .decision-card {
+      padding: 18px;
+    }
+
+    .decision-card h3 {
+      font-size: 16px;
+    }
+
+    .decision-card p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .decision-card strong {
+      color: var(--ink);
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .section-title {
+      font-size: 30px;
+    }
+
+    .section-note {
+      max-width: 470px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .ring-layout {
+      display: grid;
+      grid-template-columns: minmax(360px, 500px) minmax(420px, 680px);
+      gap: 18px;
+      align-items: start;
+      justify-content: center;
+    }
+
+    .ring-stage {
+      min-height: 0;
+      padding: 22px;
+      display: grid;
+      align-content: start;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(255,255,255,.95) 0 20%, rgba(248,251,250,.82) 46%, rgba(239,245,243,.9) 100%);
+    }
+
+    .rings {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .ring-node {
+      cursor: pointer;
+      outline: none;
+    }
+
+    .ring-node circle {
+      transition: stroke .18s ease, opacity .18s ease, filter .18s ease;
+    }
+
+    .ring-node text {
+      pointer-events: none;
+      font-weight: 850;
+      letter-spacing: 0;
+      fill: #14211e;
+    }
+
+    .ring-node .muted-text {
+      fill: rgba(20, 33, 30, .68);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .ring-node .ring-number {
+      fill: rgba(255,255,255,.95);
+      font-size: 20px;
+      text-shadow: 0 2px 6px rgba(10, 20, 18, .28);
+    }
+
+    .ring-node .ring-center {
+      fill: #14211e;
+      font-size: 15px;
+      text-shadow: none;
+    }
+
+    .ring-node:hover circle,
+    .ring-node:focus-visible circle,
+    .ring-node.active circle {
+      filter: drop-shadow(0 6px 10px rgba(22, 33, 31, .22));
+      opacity: 1;
+    }
+
+    .ring-node:not(.active) circle {
+      opacity: .86;
+    }
+
+    .ring-node:focus-visible {
+      filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+    }
+
+    .ring-legend {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .legend-button {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(255,255,255,.82);
+      color: var(--ink);
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .legend-button:hover,
+    .legend-button:focus-visible,
+    .legend-button.active {
+      border-color: rgba(18, 100, 106, .45);
+      background: var(--teal-soft);
+      outline: none;
+    }
+
+    .legend-button span:first-child {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .legend-button span:last-child {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .layer-detail {
+      min-height: 0;
+      padding: 24px;
+      display: grid;
+      grid-template-rows: auto;
+      gap: 16px;
+      align-self: start;
+    }
+
+    .layer-kicker {
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .layer-detail h3 {
+      font-size: 28px;
+    }
+
+    .layer-summary {
+      color: #31433f;
+      font-size: 16px;
+    }
+
+    .point-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .point-list li {
+      position: relative;
+      border-left: 4px solid var(--teal);
+      border-radius: 6px;
+      background: #f7faf9;
+      padding: 10px 12px;
+      color: #263733;
+      font-size: 14px;
+    }
+
+    .evidence {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    code {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #f1f4f3;
+      padding: 1px 5px;
+      color: #26332f;
+      font-family: Consolas, "Microsoft YaHei", monospace;
+      font-size: 12px;
+    }
+
+    .evidence-chip {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #f1f4f3;
+      padding: 1px 5px;
+      color: #26332f;
+      font-family: Consolas, "Microsoft YaHei", monospace;
+      font-size: 12px;
+      line-height: 1.45;
+      cursor: pointer;
+    }
+
+    .evidence-chip:hover,
+    .evidence-chip:focus-visible,
+    .evidence-chip.active {
+      border-color: rgba(18, 100, 106, .48);
+      background: #e6f1ef;
+      outline: none;
+    }
+
+    .evidence-panel {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 60;
+      width: min(560px, calc(100% - 32px));
+      pointer-events: none;
+    }
+
+    .evidence-panel[hidden] {
+      display: none;
+    }
+
+    .evidence-drawer {
+      border: 1px solid rgba(18, 100, 106, .24);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.98);
+      box-shadow: 0 18px 54px rgba(20, 32, 29, .18);
+      padding: 18px;
+      pointer-events: auto;
+    }
+
+    .evidence-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .evidence-kicker {
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .evidence-title {
+      margin-top: 4px;
+      font-size: 18px;
+    }
+
+    .evidence-close {
+      min-width: 40px;
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--paper);
+      color: var(--ink);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .evidence-close:hover,
+    .evidence-close:focus-visible {
+      border-color: rgba(49, 95, 148, .5);
+      background: var(--blue-soft);
+      outline: none;
+    }
+
+    .evidence-meta {
+      display: grid;
+      grid-template-columns: 86px minmax(0, 1fr);
+      gap: 6px 10px;
+      margin: 14px 0;
+      color: #2c3b37;
+      font-size: 13px;
+    }
+
+    .evidence-meta dt {
+      color: var(--muted);
+      font-weight: 850;
+    }
+
+    .evidence-meta dd {
+      margin: 0;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .evidence-block {
+      border-left: 4px solid var(--teal);
+      border-radius: 6px;
+      background: #f7faf9;
+      padding: 10px 12px;
+    }
+
+    .evidence-block + .evidence-block {
+      margin-top: 10px;
+    }
+
+    .evidence-block h4 {
+      font-size: 13px;
+    }
+
+    .evidence-block p {
+      margin-top: 6px;
+      color: #344743;
+      font-size: 13px;
+    }
+
+    .evidence-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .evidence-link:hover,
+    .evidence-link:focus-visible {
+      border-color: rgba(49, 95, 148, .5);
+      background: var(--blue-soft);
+      text-decoration: none;
+      outline: none;
+    }
+
+    .pager {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .pager button,
+    .text-button {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 8px 13px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .pager button:hover,
+    .pager button:focus-visible,
+    .text-button:hover,
+    .text-button:focus-visible {
+      border-color: rgba(49, 95, 148, .5);
+      background: var(--blue-soft);
+      outline: none;
+    }
+
+    .layer-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .layer-card {
+      position: relative;
+      min-height: 250px;
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .layer-card::before {
+      content: attr(data-index);
+      position: absolute;
+      right: 12px;
+      bottom: -8px;
+      color: rgba(22, 33, 31, .08);
+      font-size: 78px;
+      line-height: .8;
+      font-weight: 950;
+    }
+
+    .layer-card h3 {
+      position: relative;
+      font-size: 18px;
+    }
+
+    .layer-card p {
+      position: relative;
+      margin-top: 10px;
+      color: #344743;
+      font-size: 14px;
+    }
+
+    .mini-list {
+      position: relative;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+    }
+
+    .mini-list li {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .scenario-card {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .scenario-card.primary {
+      border-top: 5px solid var(--teal);
+    }
+
+    .scenario-card.warning {
+      border-top: 5px solid var(--amber);
+    }
+
+    .scenario-card.balance {
+      border-top: 5px solid var(--green);
+    }
+
+    .tag {
+      width: fit-content;
+      min-height: 26px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .tag.teal { background: var(--teal-soft); color: var(--teal); }
+    .tag.blue { background: var(--blue-soft); color: var(--blue); }
+    .tag.amber { background: var(--amber-soft); color: var(--amber); }
+    .tag.green { background: var(--green-soft); color: var(--green); }
+    .tag.red { background: var(--red-soft); color: var(--red); }
+    .tag.violet { background: var(--violet-soft); color: var(--violet); }
+
+    .scenario-card h3 {
+      font-size: 20px;
+    }
+
+    .scenario-card p {
+      color: #344743;
+      font-size: 14px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #f8fbfa;
+      padding: 8px;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 14px;
+    }
+
+    .boundary-grid,
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .solution-card,
+    .note-panel {
+      padding: 16px;
+    }
+
+    .solution-card h3 {
+      font-size: 17px;
+    }
+
+    .solution-card p,
+    .note-panel p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .split-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .note-panel {
+      min-height: 160px;
+      display: grid;
+      align-content: start;
+      gap: 8px;
+    }
+
+    .note-panel h3 {
+      font-size: 18px;
+    }
+
+    .note-panel ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-note {
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 1180px) {
+      .hero,
+      .ring-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .ring-stage,
+      .layer-detail {
+        min-height: auto;
+      }
+
+      .layer-grid,
+      .scenario-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .boundary-grid,
+      .solution-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      .navlinks {
+        justify-content: flex-start;
+      }
+
+      main {
+        width: min(100% - 22px, 1280px);
+        padding-top: 22px;
+      }
+
+      section {
+        margin: 34px 0;
+      }
+
+      .hero-copy,
+      .ring-stage,
+      .layer-detail {
+        padding: 18px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .section-note {
+        text-align: left;
+      }
+
+      .layer-detail h3 {
+        font-size: 24px;
+      }
+
+      .layer-grid,
+      .scenario-grid,
+      .boundary-grid,
+      .solution-grid,
+      .split-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-row {
+        grid-template-columns: 1fr;
+      }
+
+      .legend-button {
+        grid-template-columns: 46px minmax(0, 1fr);
+      }
+
+      .evidence-panel {
+        right: 11px;
+        bottom: 11px;
+        width: calc(100% - 22px);
+      }
+
+      .evidence-meta {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="页面导航">
+      <div class="brand">
+        <strong>e-CVT MGU 产品方向</strong>
+        <span>v3 · 基于 2026-07-05 更新调研包重组</span>
+      </div>
+      <div class="navlinks">
+        <a href="#rings">年轮主线</a>
+        <a href="#layers">五层内容</a>
+        <a href="#solutions">已有方案</a>
+        <a href="#gaps">剩余问题</a>
+        <a href="#fit">适合场景</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">内部认知页 · 年轮版</p>
+        <h1 id="hero-title">e-CVT MGU 的机会，在于把分散痛点变成整车系统收益。</h1>
+        <p class="lead">这页不把 e-CVT 简化成“自动变速”。它从中心向外拆开五层判断：先定义它是什么，再看它能进哪些场景、现有方案具体怎么解决、这些方案还剩什么问题以及 e-CVT 如何补位，最后收束到真正适合验证的整车场景。</p>
+      </div>
+      <aside class="hero-side" aria-label="核心判断">
+        <article class="decision-card">
+          <h3>中心判断</h3>
+          <p><strong>e-CVT MGU 的价值不是单点能力，</strong>而是在一个中置单元里同时处理目标踏频、扭矩平滑、低维护传动、低速高扭矩、后轮结构和整车控制。</p>
+        </article>
+        <article class="decision-card">
+          <h3>替代边界</h3>
+          <p>电子外变、花鼓 CVT/内变、有级 gearbox MGU 和普通中置电机都能解决一部分问题；e-CVT 必须证明它能把剩余问题补成整车系统收益。</p>
+        </article>
+        <article class="decision-card">
+          <h3>场景收束</h3>
+          <p>High-end eMTB、Cargo/family 与高端 SUV/trekking 都是主场景，但各自的验证门槛和替代压力不同，不能只用单一排序理解。</p>
+        </article>
+      </aside>
+    </section>
+
+    <section id="rings" aria-labelledby="rings-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">从内向外读</p>
+          <h2 class="section-title" id="rings-title">五层年轮：定义、场景、替代、痛点、适配</h2>
+        </div>
+        <p class="section-note">年轮越往外，判断越接近产品选择：不是问 e-CVT 能不能用，而是问哪些场景值得为它承担复杂度。</p>
+      </div>
+
+      <div class="ring-layout">
+        <div class="ring-stage">
+          <svg class="rings" viewBox="0 0 520 520" role="img" aria-labelledby="ring-svg-title ring-svg-desc">
+            <title id="ring-svg-title">e-CVT MGU 五层年轮</title>
+            <desc id="ring-svg-desc">从中心到外圈依次是定义、可用场景、已有解决方案怎么解决、现有方案剩余问题与 e-CVT 补法、真正适合场景。</desc>
+            <circle cx="260" cy="260" r="246" fill="#fbfdfc" stroke="#d8dfdc" stroke-width="1"></circle>
+            <circle cx="260" cy="260" r="235" fill="none" stroke="rgba(22,33,31,.08)" stroke-width="1" stroke-dasharray="7 9"></circle>
+            <circle cx="260" cy="260" r="184" fill="none" stroke="rgba(22,33,31,.07)" stroke-width="1" stroke-dasharray="5 12"></circle>
+            <circle cx="260" cy="260" r="132" fill="none" stroke="rgba(22,33,31,.07)" stroke-width="1" stroke-dasharray="9 10"></circle>
+            <circle cx="260" cy="260" r="82" fill="none" stroke="rgba(22,33,31,.08)" stroke-width="1" stroke-dasharray="6 8"></circle>
+
+            <g class="ring-node" data-layer="4" role="button" tabindex="0" aria-label="第五层 真正适合场景">
+              <circle cx="260" cy="260" r="218" fill="none" stroke="#2d714f" stroke-width="52"></circle>
+              <text class="ring-number" x="260" y="48" text-anchor="middle">05</text>
+            </g>
+            <g class="ring-node" data-layer="3" role="button" tabindex="0" aria-label="第四层 剩余问题与 e-CVT 补法">
+              <circle cx="260" cy="260" r="166" fill="none" stroke="#9a6620" stroke-width="52"></circle>
+              <text class="ring-number" x="260" y="100" text-anchor="middle">04</text>
+            </g>
+            <g class="ring-node" data-layer="2" role="button" tabindex="0" aria-label="第三层 已有解决方案">
+              <circle cx="260" cy="260" r="114" fill="none" stroke="#615d84" stroke-width="52"></circle>
+              <text class="ring-number" x="260" y="153" text-anchor="middle">03</text>
+            </g>
+            <g class="ring-node" data-layer="1" role="button" tabindex="0" aria-label="第二层 e-CVT 可用场景">
+              <circle cx="260" cy="260" r="62" fill="none" stroke="#315f94" stroke-width="52"></circle>
+              <text class="ring-number" x="260" y="205" text-anchor="middle">02</text>
+            </g>
+            <g class="ring-node active" data-layer="0" role="button" tabindex="0" aria-label="第一层 e-CVT 是什么">
+              <circle cx="260" cy="260" r="36" fill="#dcefed" stroke="#12646a" stroke-width="4"></circle>
+              <text class="ring-center" x="260" y="256" text-anchor="middle">01</text>
+              <text class="ring-center" x="260" y="276" text-anchor="middle">定义</text>
+            </g>
+          </svg>
+
+          <div class="ring-legend" aria-label="五层目录">
+            <button class="legend-button active" type="button" data-layer="0"><span>Layer 01</span><span>e-CVT 是什么</span></button>
+            <button class="legend-button" type="button" data-layer="1"><span>Layer 02</span><span>e-CVT 可以用到哪些场景</span></button>
+            <button class="legend-button" type="button" data-layer="2"><span>Layer 03</span><span>已有方案具体怎么解决</span></button>
+            <button class="legend-button" type="button" data-layer="3"><span>Layer 04</span><span>剩余问题与 e-CVT 补法</span></button>
+            <button class="legend-button" type="button" data-layer="4"><span>Layer 05</span><span>真正适合 e-CVT 的场景</span></button>
+          </div>
+        </div>
+
+        <article class="layer-detail" aria-live="polite">
+          <p class="layer-kicker">Layer 01</p>
+          <h3>e-CVT 是什么</h3>
+          <p class="layer-summary">在本调研口径中，e-CVT MGU 指中置电机与连续变比机构集成为单一驱动单元，通过目标踏频、扭矩平滑、连续变比和虚拟档位降低用户换挡负担，并把单速链条/皮带外传动和整车系统功能纳入同一架构。</p>
+          <ul class="point-list">
+            <li>它不是“普通中置电机 + 自动换挡”的同义词，而是把电机、传动、控制和整车诊断放进同一系统边界。</li>
+            <li>Gobao X-system 是当前最强官方证据：页面支持 motor + transmission single unit、automatic continuously variable transmission、目标踏频和 connected service/security。</li>
+            <li>Avinox MG Concept 已升级为量产方向/准量产目标参照：Tech Details 图卡可用于内部对标，但最终 datasheet、内部机械实现和测试基准仍需闭环。</li>
+          </ul>
+          <div class="evidence">证据 <code>V004</code><code>V032</code><code>F026</code><code>F027</code><code>F043</code><code>F048</code></div>
+          <div class="pager">
+            <button type="button" data-prev>上一层</button>
+            <button type="button" data-next>下一层</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="layers" aria-labelledby="layers-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">完整内容</p>
+          <h2 class="section-title" id="layers-title">五层内容正文</h2>
+        </div>
+      </div>
+
+      <div class="layer-grid">
+        <article class="layer-card" data-index="01">
+          <h3>e-CVT 是什么</h3>
+          <p>中置电机与连续变比机构集成为单一驱动单元，通过目标踏频、扭矩平滑、连续变比和虚拟档位降低换挡负担，并把驱动、传动、控制和服务放进同一系统边界。</p>
+          <ul class="mini-list">
+            <li>不是单纯自动换挡。</li>
+            <li>不是只拼峰值扭矩。</li>
+            <li>核心是整车系统收益。</li>
+          </ul>
+        </article>
+
+        <article class="layer-card" data-index="02">
+          <h3>可以使用的场景</h3>
+          <p>e-CVT 可以进入 eMTB、eTrekking、eSUV、eCargo、eCity、eGravel、fleet utility 和低技能高端 mobility 等场景，但可用不等于适合。</p>
+          <ul class="mini-list">
+            <li>Avinox 图卡覆盖六个平台。</li>
+            <li>不是所有场景都值得做。</li>
+            <li>要看痛点是否叠加。</li>
+            <li>要看替代方案压力。</li>
+          </ul>
+        </article>
+
+        <article class="layer-card" data-index="03">
+          <h3>已有方案怎么解决</h3>
+          <p>电子外变、花鼓 CVT/内变、有级 gearbox MGU 和普通中置电机都已经用不同方式解决了自动换挡、低维护、宽范围、封闭传动或量产风险。</p>
+          <ul class="mini-list">
+            <li>Bosch/Shimano/SRAM：传感 + 电机卸力 + App/显示生态。</li>
+            <li>enviolo/Rohloff/3X3：封闭低维护 + 起步/静止/负载换挡。</li>
+            <li>Pinion：封闭 gearbox MGU + 宽范围 + 服务叙事。</li>
+          </ul>
+        </article>
+
+        <article class="layer-card" data-index="04">
+          <h3>剩余问题与补法</h3>
+          <p>第四层不再只列 e-CVT 优点，而是逐项回答：已有方案还留下什么问题，e-CVT 如何用中置集成、连续变比和系统功能补位。</p>
+          <ul class="mini-list">
+            <li>外变剩后拨风险，e-CVT 用单速外传动补。</li>
+            <li>hub 方案剩后轮复杂，e-CVT 把复杂度移到中置。</li>
+            <li>有级 MGU 剩踏频自然感，e-CVT 用连续变比补。</li>
+          </ul>
+        </article>
+
+        <article class="layer-card" data-index="05">
+          <h3>真正适合场景</h3>
+          <p>真正适合的场景不是“能装上 e-CVT”的场景，而是替代方案难以同时做到低维护、目标踏频、后端简化、低速高扭矩和整车系统收益的场景。</p>
+          <ul class="mini-list">
+            <li>eMTB：强痛点，高门槛。</li>
+            <li>Cargo/family：强痛点，强替代。</li>
+            <li>SUV/trekking：综合价值均衡。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+
+    <section id="solutions" aria-labelledby="solutions-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">第三层</p>
+          <h2 class="section-title" id="solutions-title">已有解决方案具体怎么解决问题</h2>
+        </div>
+        <p class="section-note">这一层只讲已有方案的解法，不急着评价 e-CVT。先承认别人已经解决了哪些问题，后面才知道 e-CVT 的真实空间。</p>
+      </div>
+
+      <div class="solution-grid">
+        <article class="solution-card">
+          <span class="tag blue">电子外变 + 中置</span>
+          <h3>Bosch / Shimano / SRAM 的解法</h3>
+          <p>通过 cadence、torque、speed 等传感数据、电机卸力、Auto Shift、Coast Shift、手动覆盖、App/显示生态，把“忘记换挡”和“换挡时机不稳”外部化解决。</p>
+          <div class="evidence"><code>V005</code><code>V007</code><code>V008</code><code>F013</code><code>F016</code><code>F018</code></div>
+        </article>
+        <article class="solution-card">
+          <span class="tag green">花鼓 CVT/内变 + 中置</span>
+          <h3>enviolo / Rohloff / 3X3 的解法</h3>
+          <p>用 preferred cadence、自动无级、起步档、静止/负载换挡、封闭低维护和链/带兼容，解决城市、trekking、cargo 的停启、省心和维护问题。</p>
+          <div class="evidence"><code>V009</code><code>V010</code><code>V011</code><code>V012</code><code>F020</code><code>F024</code></div>
+        </article>
+        <article class="solution-card">
+          <span class="tag violet">有级 gearbox MGU</span>
+          <h3>Pinion MGU / gearbox 的解法</h3>
+          <p>用封闭 gearbox、9/12 档、568%/600% 范围、Auto.Shift / Start.Select 和长维护周期叙事，把外露传动和宽范围低维护问题变成可量产方案。</p>
+          <div class="evidence"><code>V001</code><code>V020</code><code>V022</code><code>F001</code><code>F004</code></div>
+        </article>
+        <article class="solution-card">
+          <span class="tag amber">普通中置 + 机械传动</span>
+          <h3>成熟供应链的解法</h3>
+          <p>用成熟中置电机、传统外变或机械传动，解决成本、重量、维修网络、开发风险和用户熟悉度问题，是很多价格带和运动细分的稳妥选择。</p>
+          <div class="evidence"><code>V002</code><code>V006</code><code>F005</code><code>F015</code></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="gaps" aria-labelledby="gaps-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">第四层</p>
+          <h2 class="section-title" id="gaps-title">这些方案还剩什么问题，e-CVT 怎么补</h2>
+        </div>
+        <p class="section-note">这一层才进入 e-CVT：不是重复说“更高级”，而是把剩余问题和 e-CVT 的补法一一对应。</p>
+      </div>
+
+      <div class="solution-grid">
+        <article class="solution-card">
+          <span class="tag blue">电子外变的剩余问题</span>
+          <h3>后拨、飞轮、链条仍外露</h3>
+          <p>电子外变改善换挡时机和电机协同，但 eMTB 的泥沙、石击、摔车、跳跃落地和高扭矩磨损仍会打在后端传动件上。</p>
+          <p><strong>e-CVT 补法：</strong>内部变比 + 单速链条/皮带外传动，减少后端易损件，并形成非簧载质量降低和后轮/悬架自由度收益。</p>
+          <div class="evidence"><code>F018</code><code>F034</code><code>F044</code><code>F047</code></div>
+        </article>
+        <article class="solution-card">
+          <span class="tag green">hub CVT/内变的剩余问题</span>
+          <h3>复杂度和质量仍在后轮侧</h3>
+          <p>花鼓 CVT/内变能做低维护和自动踏频，但会带来后轮质量、轮组维修、诊断分散和激进 eMTB 骑感压力。</p>
+          <p><strong>e-CVT 补法：</strong>把复杂机构放回车架中部，让后轮更简单，利于悬架、轮组、货架、挡泥板、售后和整车诊断。</p>
+          <div class="evidence"><code>V009</code><code>F020</code><code>F041</code><code>F044</code></div>
+        </article>
+        <article class="solution-card">
+          <span class="tag violet">有级 MGU 的剩余问题</span>
+          <h3>有级换挡不等于目标踏频</h3>
+          <p>有级 MGU 已经把低维护和宽范围讲清楚，但连续自然感、扭矩平滑、噪声和运动控制体验仍需要比较。</p>
+          <p><strong>e-CVT 补法：</strong>连续变比、100%-520% 可配置虚拟档、目标踏频、恒定扭矩输出和 &lt;0.1 s 换挡窗口可作为准量产目标。</p>
+          <div class="evidence"><code>V001</code><code>V032</code><code>F004</code><code>F045</code><code>F046</code></div>
+        </article>
+        <article class="solution-card">
+          <span class="tag amber">普通中置的剩余问题</span>
+          <h3>不改变外部传动架构</h3>
+          <p>普通中置成熟、轻、便宜，但仍依赖外部传动，难以系统性解决低维护、误换挡、后端约束和整车功能统一。</p>
+          <p><strong>e-CVT 补法：</strong>把机械锁止、电动倒车助力、内置速度传感、connected service/security 放入中置系统，形成整车级功能组合。</p>
+          <div class="evidence"><code>V004</code><code>V032</code><code>F027</code><code>F047</code></div>
+        </article>
+      </div>
+    </section>
+    <section id="fit" aria-labelledby="fit-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">第五层收束</p>
+          <h2 class="section-title" id="fit-title">真正适合 e-CVT MGU 的场景</h2>
+        </div>
+        <p class="section-note">证据中立口径：不把验证难度写成价值低，也不把可用性写成不可替代性。</p>
+      </div>
+
+      <div class="scenario-grid">
+        <article class="scenario-card primary">
+          <span class="tag teal">强痛点 / 高门槛</span>
+          <h3>High-end eMTB / gravity / technical climbing</h3>
+          <p>eMTB 的后拨、飞轮、链条外露易损，泥沙、石击、摔车、跳跃落地和低速高扭矩会放大传动风险。e-CVT MGU 的潜力在于后端简化、非簧载质量降低、扭矩平滑、技术爬坡和旗舰差异化。</p>
+          <div class="metric-row">
+            <div class="metric"><span>痛点</span><strong>很强</strong></div>
+            <div class="metric"><span>战略价值</span><strong>很高</strong></div>
+            <div class="metric"><span>验证门槛</span><strong>最高</strong></div>
+          </div>
+          <div class="evidence">证据 <code>V004</code><code>V008</code><code>V032</code><code>F018</code><code>F026</code><code>F044</code><code>F045</code><code>F046</code></div>
+        </article>
+
+        <article class="scenario-card warning">
+          <span class="tag amber">强痛点 / 强替代</span>
+          <h3>Cargo / family utility / heavy-load</h3>
+          <p>满载起步、坡道、频繁停启、家庭用户误操作和低维护/全生命周期使用成本是强痛点。e-CVT 的机会在于让载货/载娃场景像自动挡车一样易用，但 hub CVT/内变是非常强的替代路线。</p>
+          <div class="metric-row">
+            <div class="metric"><span>痛点</span><strong>很强</strong></div>
+            <div class="metric"><span>替代压力</span><strong>强</strong></div>
+            <div class="metric"><span>必须证明</span><strong>热 / 寿命 / 使用成本</strong></div>
+          </div>
+          <div class="evidence">证据 <code>V004</code><code>V009</code><code>V010</code><code>V032</code><code>F020</code><code>F026</code><code>F045</code><code>F047</code></div>
+        </article>
+
+        <article class="scenario-card balance">
+          <span class="tag green">综合价值均衡</span>
+          <h3>高端 SUV / trekking / all-road commuter</h3>
+          <p>这个场景的痛点不一定最极端，但低维护、目标踏频、轻越野、载物、长距离混合路况和整车 connected/security 更容易组合成高端一体化驱动体验。</p>
+          <div class="metric-row">
+            <div class="metric"><span>痛点</span><strong>高</strong></div>
+            <div class="metric"><span>可解释性</span><strong>强</strong></div>
+            <div class="metric"><span>替代压力</span><strong>中高</strong></div>
+          </div>
+          <div class="evidence">证据 <code>V004</code><code>V009</code><code>V020</code><code>V022</code><code>V032</code><code>F026</code><code>F027</code><code>F046</code><code>F047</code></div>
+        </article>
+      </div>
+
+      <div class="boundary-grid" style="margin-top:14px">
+        <article class="solution-card">
+          <span class="tag blue">边界场景</span>
+          <h3>Premium urban commuter</h3>
+          <p>目标踏频和不用操心换挡的 UX 价值成立，但 enviolo/Owuru/hub route 的替代压力很大。</p>
+        </article>
+        <article class="solution-card">
+          <span class="tag violet">可靠性对照</span>
+          <h3>Touring / adventure</h3>
+          <p>长途低维护需求真实，但 Rohloff、Pinion 和 gearbox 路线的可靠性叙事强。</p>
+        </article>
+        <article class="solution-card">
+          <span class="tag red">不优先</span>
+          <h3>Lightweight eMTB / eGravel</h3>
+          <p>轻、自然、低阻和运动控制优先，e-CVT 的重量、效率和体积成本很难被价值覆盖。</p>
+        </article>
+        <article class="solution-card">
+          <span class="tag teal">待数据证明</span>
+          <h3>Fleet / delivery / shared utility</h3>
+          <p>潜在全生命周期使用成本场景，但必须量化维护频次、停工时间、远程诊断和模块更换效率。</p>
+        </article>
+      </div>
+    </section>
+
+
+
+    <p class="footer-note">e-CVT MGU 产品方向 v3 · 更新日期 2026-07-05 · 离线单文件</p>
+  </main>
+
+  <aside class="evidence-panel" data-evidence-panel hidden>
+    <article class="evidence-drawer" role="dialog" aria-modal="false" aria-labelledby="evidence-detail-title">
+      <div class="evidence-top">
+        <div>
+          <p class="evidence-kicker">证据详情</p>
+          <h3 class="evidence-title" id="evidence-detail-title">证据 ID</h3>
+        </div>
+        <button class="evidence-close" type="button" data-evidence-close>关闭</button>
+      </div>
+      <div data-evidence-body></div>
+    </article>
+  </aside>
+
+  <script>
+    const layers = [
+      {
+        kicker: "Layer 01",
+        title: "e-CVT 是什么",
+        summary: "在本调研口径中，e-CVT MGU 指中置电机与连续变比机构集成为单一驱动单元，通过目标踏频、扭矩平滑、连续变比和虚拟档位降低用户换挡负担，并把单速链条/皮带外传动和整车系统功能纳入同一架构。",
+        points: [
+          "它不是“普通中置电机 + 自动换挡”的同义词，而是把电机、传动、控制和整车诊断放进同一系统边界。",
+          "Gobao X-system 是当前最强官方证据：页面支持 motor + transmission single unit、automatic continuously variable transmission、目标踏频和 connected service/security。",
+          "Avinox MG Concept 已升级为量产方向/准量产目标参照：Tech Details 图卡可用于内部对标，但最终 datasheet、内部机械实现和测试基准仍需闭环。"
+        ],
+        evidence: ["V004", "V032", "F026", "F027", "F043", "F048"]
+      },
+      {
+        kicker: "Layer 02",
+        title: "e-CVT 可以用到哪些场景",
+        summary: "e-CVT MGU 理论上可以进入多种高端 e-bike 场景；Avinox Tech Details 明确覆盖 eMTB、eTrekking、eSUV、eGravel、eCity、eCargo，但可用不等于适合。",
+        points: [
+          "高端 eMTB：后拨/飞轮/链条外露、非簧载质量、扭矩平滑、负载换挡和技术爬坡是强痛点，但重量、效率、NVH 和骑手信任门槛最高。",
+          "Cargo / family：满载起步、坡道、频繁停启、低技能用户误操作、低维护/全生命周期使用成本、倒车助力和机械锁止是核心痛点。",
+          "高端 SUV / trekking：低维护、目标踏频、长距离混合路况、轻越野、载物、内置速度传感和整车系统集成可以形成综合价值。"
+        ],
+        evidence: ["V004", "V032", "F026", "F041", "F044", "F048"]
+      },
+      {
+        kicker: "Layer 03",
+        title: "已有方案具体怎么解决",
+        summary: "现有方案已经用不同方式解决了自动换挡、低维护、宽范围、封闭传动和量产风险。第三层只讲它们怎么解决问题，不急着评价 e-CVT。",
+        points: [
+          "电子外变 + 中置：Bosch、Shimano、SRAM 用传感、电机卸力、Auto Shift、Coast Shift、手动覆盖、App/显示生态解决换挡时机和运动用户熟悉度。",
+          "花鼓 CVT/内变 + 中置：enviolo、Rohloff、3X3 用 preferred cadence、自动无级、起步档、静止/负载换挡、封闭低维护解决停启、省心和维护问题。",
+          "有级 gearbox MGU 与普通中置：Pinion 用封闭 gearbox、宽范围和服务叙事解决外露传动；普通中置用成熟、轻、便宜和维修网络解决量产风险。"
+        ],
+        evidence: ["V001", "V005", "V007", "V008", "V009", "V010", "V012", "F041"]
+      },
+      {
+        kicker: "Layer 04",
+        title: "剩余问题与 e-CVT 补法",
+        summary: "第四层才进入 e-CVT：逐项回答已有方案还留下什么问题，e-CVT 如何用中置集成、连续变比、单速外传动和系统功能补位。",
+        points: [
+          "电子外变剩后拨/飞轮/链条外露风险；e-CVT 用内部变比 + 单速链条/皮带外传动减少后端易损件，并形成非簧载质量降低叙事。",
+          "hub CVT/内变剩后轮复杂、轮组维修和诊断分散；e-CVT 把复杂机构放回车架中部，提升后轮简化、悬架/货架布置和整车诊断收益。",
+          "有级 MGU 和普通中置仍有踏频自然感或整车功能不足；e-CVT 用连续变比、虚拟档、扭矩平滑、机械锁止、倒车助力和内置速度传感补位。"
+        ],
+        evidence: ["V032", "F018", "F020", "F026", "F027", "F044", "F047"]
+      },
+      {
+        kicker: "Layer 05",
+        title: "e-CVT 真正适合的场景",
+        summary: "真正适合的场景，是替代方案难以同时做到低维护、目标踏频、后端简化、低速高扭矩和整车系统收益的场景。",
+        points: [
+          "High-end eMTB 是强痛点、高战略价值、高验证门槛场景，Avinox 已补强非簧载质量、扭矩平滑、负载换挡和虚拟档位价值点。",
+          "Cargo / family 是强痛点场景，但 hub CVT/内变替代压力强，必须用高载热、寿命和全生命周期使用成本数据证明。",
+          "高端 SUV / trekking 是综合价值最均衡的场景，最容易把低维护、目标踏频和高端一体化驱动体验讲清楚。"
+        ],
+        evidence: ["V004", "V009", "V020", "V022", "V032", "F026", "F027", "F041", "F044", "F048"]
+      }
+    ];
+
+    const evidenceLibrary = {
+      V001: {
+        kind: "source",
+        title: "Pinion E-Drive Motor.Gearbox.Unit official page",
+        owner: "Pinion",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "Pinion E-Drive MGU E1.9/E1.12",
+        evidence: "Pinion 官方页支持电机与 gearbox 集成为一个 MGU，E1.9/E1.12 分别对应 9/12 档、568%/600% 范围，并给出 Auto.Shift、负载换挡和 10,000 km 维护间隔等官方叙事。",
+        boundary: "官方营销/规格页，不是独立测试；后轮扭矩和电机扭矩口径不能混用。",
+        url: "https://pinion.eu/en/e-drive/"
+      },
+      V002: {
+        kind: "source",
+        title: "Avinox Drive Unit official page",
+        owner: "DJI / Avinox",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "Avinox M2S/M2/M1 量产驱动单元",
+        evidence: "Avinox 官方页验证 M2S、M2、M1 量产驱动单元的重量、扭矩、峰值功率、IP66、ISIS 曲柄接口和最大助力比等基准信息。",
+        boundary: "该页不验证 MG Concept 的规格；只能作为 Avinox 当前量产驱动单元族的对标基准。",
+        url: "https://www.avinox-ebike.com/drive-unit?from=nav&site=avinox-ebike"
+      },
+      V004: {
+        kind: "source",
+        title: "Gobao X-System official page",
+        owner: "Gobao",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "Gobao X-system / eCVT MGU",
+        evidence: "Gobao 官方页验证 motor and transmission combined into one unit、automatic continuously variable transmission、自动/手动控制、Urban & Trekking 与 MTB & Cargo 两组规格块，以及电池和 connected/security 功能。",
+        boundary: "抽取文本没有明确 X1/X1P 命名；快充标题和详细充电表述在引用前需要再对齐。",
+        url: "https://gobao-ebike.com/x-system-new/"
+      },
+      V005: {
+        kind: "source",
+        title: "Bosch eShift official page",
+        owner: "Bosch eBike Systems",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "Bosch eShift partner shifting ecosystem",
+        evidence: "Bosch 官方页验证 eShift 是 eBike 电动换挡生态，覆盖手动与自动变体，并列出 Rohloff、Shimano、TRP、Classified、3X3、Gearsensor、enviolo 等伙伴系统。",
+        boundary: "不是 MGU；它证明外部电子/自动换挡生态可以成为替代路线。",
+        url: "https://www.bosch-ebike.com/en/products/eshift"
+      },
+      V006: {
+        kind: "source",
+        title: "Bosch Performance Line CX official page",
+        owner: "Bosch eBike Systems",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "Bosch Performance Line CX BDU384Y benchmark",
+        evidence: "Bosch 官方技术数据给出 CX BDU384Y 的 120 Nm、750 W、600% 支持、约 2.8 kg 等最大可用值，同时脚注说明标准供货值仍是 85 Nm 与 600 W。",
+        boundary: "这是普通高性能中置基准，不是换挡或 MGU 产品；默认值和升级值必须分开。",
+        url: "https://www.bosch-ebike.com/en/products/performance-line-cx"
+      },
+      V007: {
+        kind: "source",
+        title: "Shimano AUTO SHIFT technology page",
+        owner: "Shimano",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "Shimano AUTO SHIFT / Di2 automatic shifting",
+        evidence: "Shimano 官方页验证 AUTO SHIFT 使用 cadence、torque、speed 传感数据选择档位，并允许手动覆盖，覆盖 e-city/e-trekking 和 e-MTB 使用。",
+        boundary: "不是 motor-internal gearbox；具体兼容性仍需查最新产品信息和手册。",
+        url: "https://bike.shimano.com/en-NA/technologies/details/auto-shift.html"
+      },
+      V008: {
+        kind: "source",
+        title: "SRAM Eagle Powertrain official page",
+        owner: "SRAM",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "SRAM Eagle Powertrain ecosystem",
+        evidence: "SRAM 官方页验证 Eagle Powertrain 与 Eagle Transmission 深度集成，并支持 Auto Shift、Coast Shift、AXS Bridge Display、AXS Pod、AXS app、电池和增程器生态。",
+        boundary: "不是电机内部变速；抽取文本未覆盖完整驱动单元扭矩/重量。",
+        url: "https://www.sram.com/en/sram/mountain/collections/eagle-powertrain"
+      },
+      V009: {
+        kind: "source",
+        title: "Enviolo products official page",
+        owner: "enviolo",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "enviolo Automatic and CVP hubs",
+        evidence: "enviolo 官方页验证 Automatic 的 preferred cadence / preferred pace 自动无级体验、封闭低维护路线和 310%-400% 范围，并给出 Utility、Trekking、Extreme 等 hub/gearbox 的总质量和扭矩口径。",
+        boundary: "这是 hub/gearbox transmission route，不是 mid-drive MGU；工程限值需再查支持规格手册。",
+        url: "https://enviolo.com/products/"
+      },
+      V010: {
+        kind: "source",
+        title: "Rohloff E-14 official page",
+        owner: "Rohloff",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "Rohloff E-14 electronic shifting for SPEEDHUB",
+        evidence: "Rohloff 官方页验证 E-14 可与 Bosch、Panasonic FIT、Bafang/Brose 等系统协同，支持电机降扭换挡、三档连跳、起步档返回、App 设置/诊断和 Bosch Smart System 自动功能。",
+        boundary: "电子内变花鼓路线，不是 MGU；部分固件和 App 状态需要查当前资料。",
+        url: "https://www.rohloff.de/en/products/speedhub/e-14"
+      },
+      V011: {
+        kind: "source",
+        title: "Rohloff SPEEDHUB specifications page",
+        owner: "Rohloff",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "Rohloff SPEEDHUB technical benchmark",
+        evidence: "Rohloff 官方规格页验证 14 个真实档位、13.6% 档差、526% 范围、约 1700-1825 g、25 ml 油量和标准版本 130 Nm 最大输入扭矩/花鼓口径。",
+        boundary: "规格状态为 03/2021；供应商决策前需查最新手册。",
+        url: "https://www.rohloff.de/en/experience/technology-in-detail/specifications"
+      },
+      V012: {
+        kind: "source",
+        title: "3X3 system official page",
+        owner: "3X3",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources.csv",
+        scope: "3X3 NINE/SIX gear hub and Electric Shift ecosystem",
+        evidence: "3X3 官方页验证 gear hub 低维护、可静止或负载换挡、兼容链条/皮带、有无 e-drive 均可，并包含 NINE/SIX 和 Electric Shift 控制。",
+        boundary: "抽取页没有给出扭矩/速比表；可作为生态证据，不作为最终性能规格。",
+        url: "https://www.3x3.bike/en/system/"
+      },
+      V020: {
+        kind: "source",
+        title: "Simplon KAGU :ePinion High official product page",
+        owner: "Simplon",
+        quality: "O / official / text",
+        sourceFile: "01_evidence/verified_sources_v5_addendum.csv",
+        scope: "Simplon KAGU :ePinion High OEM bike example",
+        evidence: "Simplon 官方页验证 KAGU :ePinion High 是高端 SUV e-bike，采用 Pinion E1.12 MGU、12 速集成传动、Gates 皮带、FIT 系统、960 Wh 电池和 150 kg 系统重量。",
+        boundary: "官方产品页；本轮没有提取价格和市场表现。",
+        url: "https://www.simplon.com/en/Bikes/Trekking-Bikes/KAGU-ePinion-High_b_915075"
+      },
+      V022: {
+        kind: "source",
+        title: "ElektroRad/Radfahren test of Simplon Kagu :ePinion High",
+        owner: "Radfahren.de / ElektroRad",
+        quality: "B / media / text",
+        sourceFile: "01_evidence/verified_sources_v5_addendum.csv",
+        scope: "Professional test of Simplon Kagu :ePinion High with Pinion MGU",
+        evidence: "媒体测试描述该车为旗舰 SUV/touring e-bike，采用 Pinion MGU、960 Wh 电池和 Gates 皮带；评价换挡平顺、助力强、维护低、续航高，并提到自动模式在爬坡/下坡中换挡。",
+        boundary: "媒体试骑，不是实验室测量；属于单篇主观体验。",
+        url: "https://www.radfahren.de/test-technik/simplon-kagu-epinion-high-test/"
+      },
+      V028: {
+        kind: "source",
+        title: "Avinox stellt neuen MG Concept Motor vor",
+        owner: "Velobiz",
+        quality: "B / industry_media / text",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "Avinox MG Concept industry-media launch evidence",
+        evidence: "Velobiz 报道 Avinox 在 Eurobike 展示 MG Concept，并提到与 Canyon、Commencal、Forbidden、Mondraker、Megamo 合作；报道包含无后拨/多片飞轮、负载/静止换挡、自动/手动、低维护和多平台适配等主张。",
+        boundary: "行业媒体，可能基于发布材料，但不是 Avinox 最终官方 datasheet。",
+        url: "https://www.velobiz.de/news/avinox-stellt-neuen-mg-concept-motor-vor-veloQXJ0aWNsZS8zNDk2MQbiz"
+      },
+      V032: {
+        kind: "source",
+        title: "Avinox MG Concept Tech Details booth graphics",
+        owner: "BikeRumor / Avinox Eurobike booth",
+        quality: "B / booth_image_ocr / image/OCR",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "Avinox MG Concept product-definition booth graphics",
+        evidence: "六张 Tech Details 图卡支持扭矩平滑、非簧载质量降低 >1.1 kg、150 kg heavier riders、45 dB、静止/300 Nm 负载换挡、<0.1 s、100%-520% 连续变比、1-13 虚拟档、单速低维护外传动、机械锁止、倒车助力、内置速度传感、downhill charging 和六平台覆盖。",
+        boundary: "展台图卡/OCR，不是最终公开 datasheet；内部机制、测试基准、发布时间和认证仍需官方闭环。",
+        url: "https://bikerumor.com/avinox-mg-concept-combined-ebike-motor-and-gearbox-at-eurobike-2026/"
+      },
+      F001: {
+        kind: "finding",
+        title: "Pinion MGU 架构摘录",
+        sourceId: "V001",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/source_findings.csv",
+        scope: "Pinion E-Drive MGU official page",
+        evidence: "电机和 gearbox 集成在一个单元中，并采用电子换挡。",
+        boundary: "来源是 Pinion 官方页；用于证明有级 gearbox MGU 量产路线。"
+      },
+      F004: {
+        kind: "finding",
+        title: "Pinion MGU 服务叙事摘录",
+        sourceId: "V001",
+        quality: "confidence: medium",
+        sourceFile: "01_evidence/source_findings.csv",
+        scope: "官方页面；营销/服务主张",
+        evidence: "官方主张封闭壳体和 10,000 km 油液维护间隔。",
+        boundary: "属于服务/维护主张，不等于独立耐久测试。"
+      },
+      F005: {
+        kind: "finding",
+        title: "Avinox 量产驱动单元边界摘录",
+        sourceId: "V002",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/source_findings.csv",
+        scope: "Avinox official drive-unit page",
+        evidence: "Avinox 官方量产驱动单元是 M2S、M2、M1；该来源不验证 MG Concept 规格。",
+        boundary: "用于防止把量产 M 系列参数套到 MG Concept。"
+      },
+      F013: {
+        kind: "finding",
+        title: "Bosch eShift 架构摘录",
+        sourceId: "V005",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/source_findings.csv",
+        scope: "Official Bosch page",
+        evidence: "eShift 是有手动和自动变体的电动换挡生态，不是电机内部 gearbox。",
+        boundary: "用于说明外部电子/自动换挡替代路线。"
+      },
+      F015: {
+        kind: "finding",
+        title: "Bosch CX 基准规格摘录",
+        sourceId: "V006",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/source_findings.csv",
+        scope: "Official technical data and footnotes",
+        evidence: "Performance Line CX BDU384Y 最大可能值为 120 Nm、750 W、600% 支持、约 2.8 kg；脚注说明标准供货值仍是 85 Nm 和 600 W。",
+        boundary: "用于普通高性能中置对照；最大值和标准值需分开。"
+      },
+      F016: {
+        kind: "finding",
+        title: "Shimano AUTO SHIFT 控制摘录",
+        sourceId: "V007",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/source_findings.csv",
+        scope: "Official Shimano technology page",
+        evidence: "AUTO SHIFT 使用 cadence、torque 和 speed 传感数据，让骑手处于合适档位，并允许手动覆盖。",
+        boundary: "不是 MGU；用于证明自动换挡体验已有成熟外部路线。"
+      },
+      F018: {
+        kind: "finding",
+        title: "SRAM Eagle Powertrain 架构摘录",
+        sourceId: "V008",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/source_findings.csv",
+        scope: "Official SRAM page",
+        evidence: "Eagle Powertrain 把 e-MTB 驱动系统与 Eagle Transmission、Auto Shift、Coast Shift、AXS Bridge Display、AXS Pod 和 AXS app 集成。",
+        boundary: "不是电机内部变速；用于说明 eMTB 电子外变生态压力。"
+      },
+      F020: {
+        kind: "finding",
+        title: "enviolo Automatic 用户价值摘录",
+        sourceId: "V009",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/source_findings.csv",
+        scope: "Official enviolo products page",
+        evidence: "Automatic 让骑手设定 preferred pace 并自动换挡；页面强调封闭低维护传动和皮带兼容。",
+        boundary: "hub CVT 路线，不是电机内部 e-CVT。"
+      },
+      F024: {
+        kind: "finding",
+        title: "3X3 gear hub 架构摘录",
+        sourceId: "V012",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/source_findings.csv",
+        scope: "Official 3X3 system page",
+        evidence: "3X3 主张免维护 gear hub，可静止或负载换挡，兼容链条/皮带和有无 e-drive，系统含 NINE/SIX 与 Electric Shift 控制。",
+        boundary: "用于说明内变花鼓替代能力，不作为 e-CVT MGU 证据。"
+      },
+      F026: {
+        kind: "finding",
+        title: "Gobao 目标踏频控制摘录",
+        sourceId: "V004",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Gobao official X-system page",
+        evidence: "官方页说明骑手可选择 preferred cadence，AI-based ECVT 保持踏频一致，并平滑连续调整；除非用户需要，否则没有档位阶跃，也可手动换挡。",
+        boundary: "官方页面证据；长期效率、热和可靠性仍需验证。"
+      },
+      F027: {
+        kind: "finding",
+        title: "Gobao 系统价值摘录",
+        sourceId: "V004",
+        quality: "confidence: medium",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Gobao official X-system page",
+        evidence: "官方页把 X-system 定位为 motor plus transmission in one unit，强调 fewer parts、reduced failure risk、maintenance-free transmission，并通过 CCU 提供 connected security/service。",
+        boundary: "官方系统主张；未确认 OEM 客户、真实量产状态、长期可靠性和效率 map。"
+      },
+      F034: {
+        kind: "finding",
+        title: "Avinox 系统价值媒体摘录",
+        sourceId: "V028",
+        quality: "confidence: medium",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Industry-media launch article",
+        evidence: "Velobiz 报道 Avinox 的主张包括单速链条或皮带下无需后拨/多片飞轮、低维护内部 gearbox、平台适配，以及 150 kg 以上总运动质量下的自然骑行感。",
+        boundary: "行业媒体报道，不是最终官方规格。"
+      },
+      F041: {
+        kind: "finding",
+        title: "enviolo 替代压力摘录",
+        sourceId: "V009",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Official enviolo product page",
+        evidence: "enviolo 官方证据显示 preferred-cadence 自动 CVT 和封闭低维护 hub 路线已经能解决许多城市/utility 换挡痛点，且不需要电机内部集成。",
+        boundary: "用于替代压力判断，不是 e-CVT MGU 的独有优势。"
+      },
+      F043: {
+        kind: "finding",
+        title: "Avinox 准量产定义摘录",
+        sourceId: "V032",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "BikeRumor / Avinox booth image OCR",
+        evidence: "Tech Details 六图可作为高可信 Avinox 量产方向/准量产产品定义证据，用于内部对标：扭矩平滑、无缝换挡、可配置齿比、低维护单速外传动、next-gen functions 和六平台覆盖。",
+        boundary: "仍是展台图卡/OCR；最终 datasheet、测试基准和内部机制未闭环。"
+      },
+      F044: {
+        kind: "finding",
+        title: "Avinox Natural Ride Feel 摘录",
+        sourceId: "V032",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Booth image OCR; test basis still needs official closure",
+        evidence: "Natural Ride Feel 图卡定义价值为 torque smoothing、fast response with no overshoot、assist remain/overrun，并主张非簧载质量降低 >1.1 kg、支持 150 kg heavier riders 和 45 dB ultra-quiet operation。",
+        boundary: "测试基础仍需官方闭环；不能写成已独立验证工程结果。"
+      },
+      F045: {
+        kind: "finding",
+        title: "Avinox Seamless Shifting 摘录",
+        sourceId: "V032",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Booth image OCR; torque measurement position and test conditions unknown",
+        evidence: "Seamless Shifting 图卡主张 assist-off gear shift、stationary shifting、300 Nm 负载换挡、传统换挡窗口 >1 s、Avinox 换挡窗口 <0.1 s 和 constant torque output。",
+        boundary: "300 Nm 的测量位置和测试条件未知；作为准量产目标，不是闭环测试结论。"
+      },
+      F046: {
+        kind: "finding",
+        title: "Avinox 连续变比/虚拟档摘录",
+        sourceId: "V032",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Booth image OCR; internal mechanism not confirmed",
+        evidence: "Fully Customizable 图卡显示 infinitely variable gear ratio、configurable gear profiles、automatic/manual/multi-gear shifting，并以 1-13 虚拟档展示 100%-520% 范围。",
+        boundary: "内部机构未确认；不能把它写成已官方确认的某一种 CVT 机械拓扑。"
+      },
+      F047: {
+        kind: "finding",
+        title: "Avinox 低维护/系统功能摘录",
+        sourceId: "V032",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Booth image OCR; durability/efficiency/charging basis needs validation",
+        evidence: "Maintenance-Free 与 Next-Gen Functions 图卡主张单速风格 Avinox MG drivetrain、3 times more durable、traditional drivetrain 10% less efficient、mechanical motor lock、electric reverse assist、built-in speed sensor 和 downhill charging 图示。",
+        boundary: "耐久、效率和 charging 传动路径的测试基础仍需验证。"
+      },
+      F048: {
+        kind: "finding",
+        title: "Avinox 平台覆盖摘录",
+        sourceId: "V032",
+        quality: "confidence: high",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Booth image OCR",
+        evidence: "Made For All Bike Platforms 图卡明确覆盖 eMTB、eTrekking、eSUV、eGravel、eCity 和 eCargo，支持把它视作跨平台 MGU 产品定义信号，而不只是 eMTB demo。",
+        boundary: "覆盖平台是图卡产品定义信号；各平台真实商业机会仍需分场景验证。"
+      }
+    };
+
+    const detail = document.querySelector(".layer-detail");
+    const layerControls = document.querySelectorAll("[data-layer]");
+    const prevButton = document.querySelector("[data-prev]");
+    const nextButton = document.querySelector("[data-next]");
+    const evidencePanel = document.querySelector("[data-evidence-panel]");
+    const evidenceTitle = document.querySelector("#evidence-detail-title");
+    const evidenceBody = document.querySelector("[data-evidence-body]");
+    const evidenceClose = document.querySelector("[data-evidence-close]");
+    let activeLayer = 0;
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function evidenceHtml(ids) {
+      return ids.map((id) => `<button class="evidence-chip" type="button" data-evidence-id="${id}" aria-label="查看证据 ${id}">${id}</button>`).join("");
+    }
+
+    function enhanceEvidenceChips(root = document) {
+      root.querySelectorAll(".evidence code").forEach((node) => {
+        const id = node.textContent.trim();
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "evidence-chip";
+        button.dataset.evidenceId = id;
+        button.setAttribute("aria-label", `查看证据 ${id}`);
+        button.textContent = id;
+        node.replaceWith(button);
+      });
+    }
+
+    function evidenceSource(item) {
+      return item.kind === "finding" ? evidenceLibrary[item.sourceId] : item;
+    }
+
+    function openEvidence(id) {
+      const item = evidenceLibrary[id];
+      document.querySelectorAll(".evidence-chip").forEach((chip) => {
+        chip.classList.toggle("active", chip.dataset.evidenceId === id);
+      });
+
+      if (!item) {
+        evidenceTitle.textContent = `${id} · 未找到证据记录`;
+        evidenceBody.innerHTML = `
+          <div class="evidence-block">
+            <h4>处理建议</h4>
+            <p>这个 ID 暂未接入页面证据库，需要回到研究记录中补齐后再展示。</p>
+          </div>
+        `;
+        evidencePanel.hidden = false;
+        return;
+      }
+
+      const source = evidenceSource(item);
+      const typeText = item.kind === "source" ? "来源条目" : "事实摘录";
+      const ownerText = item.kind === "source" ? item.owner : `对应来源 ${item.sourceId}${source?.owner ? ` · ${source.owner}` : ""}`;
+      const sourceTitle = item.kind === "source" ? item.title : `${item.title}${source?.title ? ` / ${source.title}` : ""}`;
+      const url = source?.url || item.url;
+
+      evidenceTitle.textContent = `${id} · ${item.title}`;
+      evidenceBody.innerHTML = `
+        <dl class="evidence-meta">
+          <dt>类型</dt><dd>${escapeHtml(typeText)}</dd>
+          <dt>来源</dt><dd>${escapeHtml(ownerText)}</dd>
+          <dt>标题</dt><dd>${escapeHtml(sourceTitle)}</dd>
+          <dt>等级</dt><dd>${escapeHtml(item.quality)}</dd>
+          <dt>记录文件</dt><dd>${escapeHtml(item.sourceFile)}</dd>
+          <dt>范围</dt><dd>${escapeHtml(item.scope)}</dd>
+        </dl>
+        <div class="evidence-block">
+          <h4>支持内容</h4>
+          <p>${escapeHtml(item.evidence)}</p>
+        </div>
+        <div class="evidence-block">
+          <h4>证据边界</h4>
+          <p>${escapeHtml(item.boundary)}</p>
+        </div>
+        ${url ? `<a class="evidence-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">打开来源页面</a>` : ""}
+      `;
+      evidencePanel.hidden = false;
+    }
+
+    function closeEvidence() {
+      evidencePanel.hidden = true;
+      document.querySelectorAll(".evidence-chip.active").forEach((chip) => chip.classList.remove("active"));
+    }
+
+    function setLayer(index) {
+      activeLayer = (index + layers.length) % layers.length;
+      const layer = layers[activeLayer];
+      detail.innerHTML = `
+        <p class="layer-kicker">${layer.kicker}</p>
+        <h3>${layer.title}</h3>
+        <p class="layer-summary">${layer.summary}</p>
+        <ul class="point-list">
+          ${layer.points.map((point) => `<li>${point}</li>`).join("")}
+        </ul>
+        <div class="evidence">证据 ${evidenceHtml(layer.evidence)}</div>
+        <div class="pager">
+          <button type="button" data-prev>上一层</button>
+          <button type="button" data-next>下一层</button>
+        </div>
+      `;
+
+      document.querySelectorAll("[data-layer]").forEach((control) => {
+        control.classList.toggle("active", Number(control.dataset.layer) === activeLayer);
+      });
+
+      detail.querySelector("[data-prev]").addEventListener("click", () => setLayer(activeLayer - 1));
+      detail.querySelector("[data-next]").addEventListener("click", () => setLayer(activeLayer + 1));
+    }
+
+    enhanceEvidenceChips();
+
+    document.addEventListener("click", (event) => {
+      const eventTarget = event.target instanceof Element ? event.target : event.target.parentElement;
+      const chip = eventTarget?.closest("[data-evidence-id]");
+      if (chip) {
+        openEvidence(chip.dataset.evidenceId);
+        return;
+      }
+
+      if (eventTarget?.closest("[data-evidence-close]")) {
+        closeEvidence();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !evidencePanel.hidden) {
+        closeEvidence();
+      }
+    });
+
+    layerControls.forEach((control) => {
+      control.addEventListener("click", () => setLayer(Number(control.dataset.layer)));
+      control.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setLayer(Number(control.dataset.layer));
+        }
+      });
+    });
+
+    prevButton.addEventListener("click", () => setLayer(activeLayer - 1));
+    nextButton.addEventListener("click", () => setLayer(activeLayer + 1));
+    evidenceClose.addEventListener("click", closeEvidence);
+  </script>
+</body>
+</html>
+

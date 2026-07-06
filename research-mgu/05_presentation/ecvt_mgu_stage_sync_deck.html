@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>e-CVT MGU 分页汇报原型</title>
+  <style>
+    :root {
+      --bg: #f4f5f3;
+      --paper: #ffffff;
+      --ink: #17211f;
+      --muted: #66736f;
+      --line: #d9dfdc;
+      --green: #1f7a55;
+      --green-soft: #dff0e7;
+      --blue: #285f91;
+      --blue-soft: #e2edf7;
+      --amber: #93630e;
+      --amber-soft: #f5ead0;
+      --red: #944034;
+      --red-soft: #f2ded9;
+      --shadow: 0 18px 44px rgba(24, 32, 29, .1);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+    }
+
+    .deck-shell {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr);
+    }
+
+    .rail {
+      border-right: 1px solid var(--line);
+      background: #fbfcfb;
+      padding: 16px 12px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 18px;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .toc {
+      display: grid;
+      gap: 6px;
+      align-content: start;
+      overflow-y: auto;
+      padding-right: 3px;
+    }
+
+    .toc button {
+      width: 100%;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: transparent;
+      padding: 9px;
+      text-align: left;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+    }
+
+    .toc button:hover {
+      background: #eef2f0;
+    }
+
+    .toc button[aria-current="true"] {
+      background: var(--green-soft);
+      border-color: #bddbc9;
+    }
+
+    .toc-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      background: #eef1f0;
+      color: #43534f;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .toc button[aria-current="true"] .toc-num {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .toc-title {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .toc-sub {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.3;
+    }
+
+    .rail-foot {
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .slide-stage {
+      position: relative;
+      min-width: 0;
+      height: 100vh;
+      padding: 18px;
+    }
+
+    .slide {
+      display: none;
+      height: calc(100vh - 36px);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3vw, 34px);
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 16px;
+    }
+
+    .slide-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: 0;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 980px;
+      font-size: clamp(32px, 3.7vw, 46px);
+      line-height: 1.12;
+    }
+
+    h2 {
+      margin: 0;
+      max-width: 980px;
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.12;
+    }
+
+    .lead {
+      max-width: 900px;
+      margin: 12px 0 0;
+      color: #354842;
+      font-size: 16px;
+    }
+
+    .slide-body {
+      min-height: 0;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .slide-body > * {
+      width: 100%;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 25px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .label.high { background: var(--green-soft); color: #1d6748; }
+    .label.mid { background: var(--blue-soft); color: #214f77; }
+    .label.low { background: var(--red-soft); color: #7a342c; }
+    .label.gap { background: var(--amber-soft); color: #734d0d; }
+    .label.neutral { background: #eef1f0; color: #41524c; }
+
+    .evidence {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    code {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #f1f4f3;
+      padding: 1px 4px;
+      color: #26332f;
+      font-family: Consolas, "Microsoft YaHei", monospace;
+      font-size: 12px;
+    }
+
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+      max-width: 1280px;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 1280px;
+      margin-top: 12px;
+    }
+
+    .summary-item {
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--green);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: #fbfcfb;
+      padding: 12px 14px;
+    }
+
+    .summary-item:nth-child(2) {
+      border-left-color: var(--amber);
+    }
+
+    .summary-item:nth-child(3) {
+      border-left-color: var(--blue);
+    }
+
+    .summary-item strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .summary-item p {
+      margin: 0;
+      color: #3c4e49;
+      font-size: 13px;
+    }
+
+    .card,
+    .scene,
+    .signal,
+    .risk {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcfb;
+      padding: 14px;
+    }
+
+    .card h3,
+    .scene h3,
+    .signal h3,
+    .risk h3 {
+      margin: 10px 0 8px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .card p,
+    .scene p,
+    .signal p,
+    .risk p {
+      margin: 0;
+      color: #3c4e49;
+      font-size: 14px;
+    }
+
+    .formula {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 1360px;
+    }
+
+    .formula .card {
+      min-height: 190px;
+      border-top: 5px solid var(--green);
+    }
+
+    .thesis-grid .card {
+      min-height: 138px;
+    }
+
+    .formula .card:last-child {
+      border-top-color: var(--amber);
+    }
+
+    .focus-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+      gap: 16px;
+      max-width: 1360px;
+      margin-top: 16px;
+    }
+
+    .hero-claim {
+      min-height: 300px;
+      border: 1px solid #c8ddd2;
+      border-left: 8px solid var(--green);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #f6fbf8 0%, #eef7f2 100%);
+      padding: 22px;
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .hero-claim .mini-label,
+    .equation-panel .mini-label,
+    .scenario-focus .mini-label,
+    .solution-card .mini-label {
+      margin: 0;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .hero-claim strong {
+      display: block;
+      max-width: 860px;
+      font-size: clamp(30px, 3.2vw, 52px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .hero-claim p {
+      margin: 0;
+      max-width: 760px;
+      color: #344941;
+      font-size: 15px;
+    }
+
+    .proof-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .proof-card,
+    .factor-card,
+    .scenario-focus,
+    .mini-scene,
+    .solution-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcfb;
+      padding: 14px;
+    }
+
+    .proof-card {
+      border-left: 4px solid var(--blue);
+      display: grid;
+      align-content: center;
+      gap: 8px;
+      min-height: 92px;
+    }
+
+    .proof-stack .proof-card {
+      position: relative;
+      overflow: hidden;
+      padding-left: 78px;
+    }
+
+    .proof-stack .proof-card::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 58px;
+      color: var(--blue);
+      opacity: .18;
+      font-size: clamp(36px, 3.4vw, 54px);
+      font-weight: 950;
+      line-height: 1;
+      letter-spacing: 0;
+      text-align: center;
+    }
+
+    .proof-stack .proof-card:nth-child(3)::before {
+      color: var(--amber);
+      opacity: .22;
+    }
+
+    .proof-stack .proof-card > .label {
+      display: none;
+    }
+
+    .scenario-side .proof-card > .label {
+      min-height: 0;
+      width: fit-content;
+      justify-content: flex-start;
+      padding: 0 0 5px;
+      border-radius: 0;
+      background: transparent;
+      color: var(--green);
+      opacity: 1;
+      font-size: 11px;
+      font-weight: 950;
+      line-height: 1;
+      text-align: left;
+      white-space: nowrap;
+      text-transform: uppercase;
+      border-bottom: 2px solid rgba(31, 122, 85, .32);
+    }
+
+    .scenario-side .proof-card:nth-child(2) > .label {
+      color: var(--blue);
+      border-bottom-color: rgba(40, 95, 145, .28);
+    }
+
+    .scenario-side .proof-card:nth-child(3) > .label {
+      color: var(--amber);
+      opacity: 1;
+      width: fit-content;
+      font-size: 11px;
+      border-bottom-color: rgba(147, 99, 14, .32);
+    }
+
+    .proof-card:nth-child(3) {
+      border-left-color: var(--amber);
+    }
+
+    .proof-card strong,
+    .factor-card strong,
+    .mini-scene strong,
+    .solution-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .proof-card p,
+    .factor-card p,
+    .mini-scene p,
+    .solution-card p {
+      margin: 0;
+      color: #3c4e49;
+      font-size: 13px;
+    }
+
+    .value-layout {
+      display: grid;
+      grid-template-columns: minmax(320px, .9fr) minmax(0, 1.1fr);
+      gap: 16px;
+      max-width: 1360px;
+    }
+
+    .equation-panel {
+      min-height: 430px;
+      border-radius: var(--radius);
+      background: #17211f;
+      color: #fff;
+      padding: 24px;
+      display: grid;
+      align-content: center;
+      gap: 16px;
+    }
+
+    .equation-panel .mini-label {
+      color: #a9d7bd;
+    }
+
+    .equation-panel h3 {
+      margin: 0;
+      font-size: clamp(26px, 2.5vw, 42px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .equation-panel p {
+      margin: 0;
+      color: #d9e5df;
+      font-size: 15px;
+    }
+
+    .equation-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .equation-line span {
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      padding: 7px 10px;
+      font-size: 13px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .equation-line b {
+      color: #a9d7bd;
+      font-size: 18px;
+    }
+
+    .factor-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .factor-card {
+      min-height: 160px;
+      border-top: 5px solid var(--green);
+      display: grid;
+      align-content: start;
+      gap: 8px;
+    }
+
+    .factor-card > .label {
+      min-height: 0;
+      border-radius: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .factor-card > .label.mid {
+      color: var(--blue);
+      background: transparent;
+    }
+
+    .factor-card > .label.gap {
+      color: var(--amber);
+      background: transparent;
+    }
+
+    .factor-card.gate {
+      grid-column: span 2;
+      min-height: 128px;
+      border-top-color: var(--amber);
+      background: #fffaf0;
+    }
+
+    .scenario-map {
+      display: grid;
+      grid-template-columns: minmax(360px, 1.1fr) minmax(0, .9fr);
+      gap: 14px;
+      max-width: 1360px;
+    }
+
+    .scenario-focus {
+      border-left: 8px solid var(--green);
+      background: #f7fbf8;
+      display: grid;
+      gap: 12px;
+    }
+
+    .scenario-focus h3 {
+      margin: 0;
+      font-size: clamp(24px, 2.1vw, 34px);
+      line-height: 1.15;
+    }
+
+    .scenario-focus p {
+      margin: 0;
+      color: #334942;
+      font-size: 14px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .metric {
+      border: 1px solid #d5e3dc;
+      border-radius: 7px;
+      background: #fff;
+      padding: 9px;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 17px;
+      line-height: 1.1;
+    }
+
+    .scenario-side {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-scene-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 1360px;
+      margin-top: 12px;
+    }
+
+    .mini-scene {
+      min-height: 148px;
+      border-left: 4px solid var(--blue);
+      display: grid;
+      align-content: start;
+      gap: 8px;
+    }
+
+    .mini-scene.warning {
+      border-left-color: var(--amber);
+    }
+
+    .mini-scene.low {
+      border-left-color: var(--red);
+    }
+
+    .substitute-board {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 1360px;
+    }
+
+    .solution-card {
+      min-height: 260px;
+      border-top: 5px solid var(--blue);
+      display: grid;
+      align-content: start;
+      gap: 9px;
+    }
+
+    .solution-card.feature {
+      border-top-color: var(--green);
+      background: #f7fbf8;
+    }
+
+    .solution-card.warning {
+      border-top-color: var(--amber);
+    }
+
+    .solution-card.low {
+      border-top-color: var(--red);
+    }
+
+    .detail-matrix {
+      max-width: 1360px;
+      margin-top: 12px;
+    }
+
+    .detail-matrix summary {
+      cursor: pointer;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fbfcfb;
+      padding: 9px 11px;
+      color: #344941;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .detail-matrix[open] summary {
+      border-radius: 6px 6px 0 0;
+      border-bottom: 0;
+    }
+
+    .detail-matrix .matrix-wrap {
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 1360px;
+    }
+
+    .scene {
+      min-height: 390px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .scene-block {
+      border-left: 4px solid var(--blue);
+      background: #f8fbfd;
+      border-radius: 0 7px 7px 0;
+      padding: 9px 11px;
+    }
+
+    .scene-block strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    .scene.compact .scene-block {
+      padding: 8px 10px;
+    }
+
+    .scene.compact .scene-block strong {
+      margin-bottom: 4px;
+    }
+
+    .scene.compact p {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      max-width: 1360px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 920px;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th, td {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef3f1;
+      color: #26332f;
+      font-size: 12px;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    th:last-child, td:last-child { border-right: 0; }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 1360px;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 1360px;
+    }
+
+    .risk {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      border-left: 5px solid var(--amber);
+    }
+
+    .risk > .label {
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      z-index: -1;
+      width: 82%;
+      min-height: 0;
+      justify-content: flex-end;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--amber);
+      opacity: .18;
+      font-size: clamp(34px, 3.8vw, 58px);
+      font-weight: 950;
+      line-height: .9;
+      text-align: right;
+      white-space: normal;
+      pointer-events: none;
+    }
+
+    .slide-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .controls button {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fbfcfb;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .controls button:hover {
+      background: #eef2f0;
+    }
+
+    .progress {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 8px;
+      height: 4px;
+      border-radius: 999px;
+      background: #dce2df;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 14.28%;
+      background: var(--green);
+      transition: width .18s ease;
+    }
+
+    @media (min-width: 1400px) {
+      .slide-stage {
+        display: grid;
+        align-items: center;
+      }
+
+      .slide {
+        height: min(calc(100vh - 64px), calc((100vw - 246px) * .5625));
+        min-height: 860px;
+      }
+
+      .thesis-grid .card {
+        min-height: 165px;
+      }
+
+      .hero-claim {
+        min-height: 520px;
+        padding: 32px;
+      }
+
+      .proof-card {
+        min-height: 164px;
+        padding: 20px;
+      }
+
+      .equation-panel {
+        min-height: 560px;
+        padding: 34px;
+      }
+
+      .factor-card {
+        min-height: 188px;
+        padding: 18px;
+      }
+
+      .scenario-focus {
+        min-height: 420px;
+        padding: 20px;
+      }
+
+      .scenario-side .proof-card {
+        min-height: 132px;
+        padding: 16px;
+      }
+
+      .mini-scene {
+        min-height: 106px;
+        padding: 12px;
+      }
+
+      .solution-card {
+        min-height: 360px;
+        padding: 18px;
+      }
+
+      .formula {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: 1260px;
+        gap: 16px;
+      }
+
+      .formula .card {
+        min-height: 320px;
+        display: grid;
+        align-content: center;
+        gap: 10px;
+        padding: 22px;
+      }
+
+      .formula .card:last-child {
+        grid-column: span 2;
+      }
+
+      .signal-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 1120px;
+        gap: 16px;
+      }
+
+      .signal {
+        min-height: 250px;
+        display: grid;
+        align-content: center;
+        gap: 10px;
+      }
+
+      .risk-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: 1180px;
+        gap: 16px;
+      }
+
+      .risk {
+        min-height: 245px;
+        display: grid;
+        align-content: center;
+        gap: 10px;
+      }
+
+      .risk:nth-child(5) {
+        grid-column: span 2;
+      }
+
+      .summary-strip {
+        max-width: 1280px;
+      }
+
+      th,
+      td {
+        padding: 14px;
+      }
+
+      table {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .focus-layout,
+      .value-layout,
+      .scenario-map {
+        grid-template-columns: 1fr;
+      }
+
+      .substitute-board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .formula {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .summary-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .signal-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .risk-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      body { overflow: auto; }
+
+      .deck-shell {
+        min-height: 100vh;
+        height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        grid-template-rows: auto auto;
+      }
+
+      .toc {
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(150px, 1fr);
+        overflow-x: auto;
+      }
+
+      .rail-foot { display: none; }
+
+      .slide-stage {
+        height: auto;
+        padding: 14px;
+      }
+
+      .slide {
+        height: auto;
+        min-height: calc(100vh - 160px);
+      }
+
+      .formula,
+      .scene-grid,
+      .signal-grid,
+      .risk-grid,
+      .thesis-grid,
+      .factor-grid,
+      .mini-scene-grid,
+      .substitute-board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .focus-layout,
+      .value-layout,
+      .scenario-map {
+        grid-template-columns: 1fr;
+      }
+
+      .factor-card.gate {
+        grid-column: auto;
+      }
+
+      .progress { display: none; }
+    }
+
+    @media (max-width: 720px) {
+      .slide {
+        padding: 20px;
+      }
+
+      .formula,
+      .scene-grid,
+      .signal-grid,
+      .risk-grid,
+      .thesis-grid,
+      .factor-grid,
+      .mini-scene-grid,
+      .substitute-board,
+      .metric-row {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .slide-head {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck-shell">
+    <aside class="rail">
+      <div class="brand">
+        <strong>e-CVT MGU 分页汇报原型</strong>
+        <span>滚轮 / 方向键 / 左侧目录切换</span>
+      </div>
+
+      <nav class="toc" aria-label="章节导航">
+        <button type="button" data-slide="0" aria-current="true"><span class="toc-num">1</span><span><span class="toc-title">核心判断</span><span class="toc-sub">整车系统收益</span></span></button>
+        <button type="button" data-slide="1"><span class="toc-num">2</span><span><span class="toc-title">价值公式</span><span class="toc-sub">四类痛点叠加</span></span></button>
+        <button type="button" data-slide="2"><span class="toc-num">3</span><span><span class="toc-title">场景判断</span><span class="toc-sub">痛点与替代压力</span></span></button>
+        <button type="button" data-slide="3"><span class="toc-num">4</span><span><span class="toc-title">替代空间</span><span class="toc-sub">真实机会在哪里</span></span></button>
+        <button type="button" data-slide="4"><span class="toc-num">5</span><span><span class="toc-title">证据信号</span><span class="toc-sub">按成熟度分层</span></span></button>
+        <button type="button" data-slide="5"><span class="toc-num">6</span><span><span class="toc-title">证据缺口</span><span class="toc-sub">场景价值能否成立</span></span></button>
+        <button type="button" data-slide="6"><span class="toc-num">7</span><span><span class="toc-title">证据边界</span><span class="toc-sub">来源与适用范围</span></span></button>
+      </nav>
+
+      <div class="rail-foot">这是交互原型，不替换现有长网页。</div>
+    </aside>
+
+    <main class="slide-stage">
+      <section class="slide active" aria-labelledby="slide-1-title">
+        <div class="slide-head">
+          <div>
+            <p class="eyebrow">01 / 核心判断</p>
+            <h1 id="slide-1-title">e-CVT MGU 的机会，在于把分散痛点变成整车系统收益。</h1>
+            <p class="lead">只有当外露传动、目标踏频、高载低速、后轮结构和整车控制同时成为问题时，中置集成 e-CVT 才可能比电子外变、花鼓 CVT/内变、有级 MGU 或普通中置电机更有 OEM 系统收益。</p>
+          </div>
+          <span class="label high">价值认知</span>
+        </div>
+        <div class="slide-body">
+          <div class="focus-layout">
+            <div class="hero-claim">
+              <p class="mini-label">本页读法</p>
+              <strong>不要先问“它能不能自动变速”，先问“它能不能把分散痛点一次性收掉”。</strong>
+              <p>现有调研支持的判断是：单项能力都有替代路线，e-CVT MGU 的机会只出现在多种痛点叠加，并且 OEM 能把它转化为整车架构收益的场景。</p>
+              <div class="evidence"><code>V004</code><code>V009</code><code>V001</code><code>V008</code><code>F026</code><code>F041</code></div>
+            </div>
+            <div class="proof-stack">
+              <article class="proof-card" data-step="01"><span class="label high">判断 1</span><strong>自动变速不是护城河</strong><p>电子外变、hub CVT/内变、有级 MGU 都能解决一部分换挡或低维护需求。</p></article>
+              <article class="proof-card" data-step="02"><span class="label high">判断 2</span><strong>系统收益才是核心</strong><p>Gobao 线索显示，目标踏频、连续变比、低维护、诊断和 connected/security 被包装成整车系统。</p></article>
+              <article class="proof-card" data-step="03"><span class="label gap">判断 3</span><strong>eMTB 不是边缘场景</strong><p>它是 A 级痛点与战略场景，只是重量、效率、NVH、冲击耐久和骑手信任验证门槛最高。</p></article>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>不是正式立项结论，也不是产品投放路线图。</span><div class="controls"><button data-prev>上一页</button><button data-next>下一页</button></div></footer>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-2-title">
+        <div class="slide-head">
+          <div>
+            <p class="eyebrow">02 / 价值公式</p>
+            <h2 id="slide-2-title">e-CVT MGU 只有在四类痛点叠加时才成立。</h2>
+            <p class="lead">把“自动变速”降级为一个能力，把“系统收益”作为判断核心。</p>
+          </div>
+          <span class="label high">判断框架</span>
+        </div>
+        <div class="slide-body">
+          <div class="value-layout">
+            <div class="equation-panel">
+              <p class="mini-label">成立公式</p>
+              <h3>e-CVT MGU = 自动变比 + 低维护 + 后轮简化 + 整车控制</h3>
+              <div class="equation-line">
+                <span>外露传动易损</span><b>+</b><span>用户不用操心换挡</span><b>+</b><span>高载/爬坡/停启</span><b>+</b><span>后轮结构收益</span>
+              </div>
+              <p>缺少其中任一项，方案就容易被电子外变、hub CVT/内变、有级 MGU 或普通中置电机替代。</p>
+            </div>
+            <div class="factor-grid">
+              <article class="factor-card"><span class="label high">痛点</span><strong>外露传动易损</strong><p>后拨、飞轮、链条暴露在泥沙、冲击、高扭矩和误用中，eMTB 尤其明显。</p><div class="evidence"><code>V008</code><code>F036</code></div></article>
+              <article class="factor-card"><span class="label high">体验</span><strong>用户不用操心换挡</strong><p>目标踏频和连续变比能降低新手、家庭用户、通勤和长距离骑行负担。</p><div class="evidence"><code>V004</code><code>V031</code><code>F026</code><code>F039</code></div></article>
+              <article class="factor-card"><span class="label high">工况</span><strong>高载 / 爬坡 / 停启</strong><p>满载起步、低速大扭矩和技术爬坡需要稳定、正确、可预测的变比。</p><div class="evidence"><code>V004</code><code>F029</code></div></article>
+              <article class="factor-card"><span class="label mid">架构</span><strong>后轮结构收益</strong><p>相对 hub CVT/内变，中置集成可能保留后轮轻量、轮组维护便利和悬架/后轮布置空间。</p><div class="evidence"><code>V009</code><code>V012</code><code>F041</code></div></article>
+              <article class="factor-card gate"><span class="label gap">门槛</span><strong>但价值成立还要过效率、热、NVH、控制、耐久、售后六道关。</strong><p>这些不能靠公开资料拍板，必须后续用台架、样机、OEM 访谈和用户反馈验证。<code>F029</code> <code>F035</code></p></article>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>公式不是结论，是判断场景是否值得继续看的过滤器。</span><div class="controls"><button data-prev>上一页</button><button data-next>下一页</button></div></footer>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-3-title">
+        <div class="slide-head">
+          <div>
+            <p class="eyebrow">03 / 场景应用</p>
+            <h2 id="slide-3-title">场景判断要同时看痛点强度和替代压力。</h2>
+            <p class="lead">这里不做产品投放排序，只判断 e-CVT MGU 在不同整车场景里的价值来源和被替代可能。</p>
+          </div>
+          <span class="label high">场景地图</span>
+        </div>
+        <div class="slide-body">
+          <div class="scenario-map">
+            <article class="scenario-focus">
+              <p class="mini-label">最容易被误读的场景</p>
+              <h3>High-end eMTB：不是低优先级，而是“高价值、高门槛”。</h3>
+              <p>现有材料已经支撑 eMTB 的三个真实痛点：后拨/飞轮/链条外露易损；簧下质量与后轮动态；技术爬坡、负载变比和骑手控制。e-CVT MGU 的结构机会是去后拨、把复杂机构放回车架中部，并保留虚拟档或手动覆盖。</p>
+              <div class="metric-row">
+                <div class="metric"><span>痛点强度</span><strong>A</strong></div>
+                <div class="metric"><span>战略价值</span><strong>A</strong></div>
+                <div class="metric"><span>稳妥性</span><strong>B</strong></div>
+                <div class="metric"><span>验证门槛</span><strong>最高</strong></div>
+              </div>
+              <div class="evidence"><code>V003</code><code>V004</code><code>V008</code><code>V027</code><code>F036</code></div>
+            </article>
+            <div class="scenario-side">
+              <article class="proof-card"><span class="label high">Cargo / family</span><strong>强痛点，也强替代</strong><p>满载起步、坡道、频繁停启和低维护是真痛点；但 hub CVT/内变、有级 MGU 已经很强，必须证明高载热、寿命、TCO 和后轮维护收益。</p><div class="evidence"><code>V004</code><code>V009</code><code>F041</code></div></article>
+              <article class="proof-card"><span class="label high">SUV / trekking</span><strong>综合价值最均衡</strong><p>低维护、目标踏频、皮带友好、后轮简化和中置质量集中可以合成高级整车体验；替代压力中高。</p><div class="evidence"><code>V004</code><code>V009</code><code>F026</code><code>F027</code></div></article>
+              <article class="proof-card"><span class="label gap">Urban / touring / lightweight</span><strong>更多是边界判断</strong><p>urban 的 UX 价值强但 hub CVT/Owuru/enviolo 替代压力高；touring 更看可靠性；lightweight eMTB/eGravel 受重量和低阻约束。</p><div class="evidence"><code>V031</code><code>V010</code><code>V014</code><code>F039</code></div></article>
+            </div>
+          </div>
+          <div class="mini-scene-grid">
+            <article class="mini-scene"><span class="label high">价值来源</span><strong>结构痛点</strong><p>eMTB 的后拨外露、簧下质量，cargo 的重载停启，SUV/trekking 的低维护和舒适体验，都是可能成立的价值入口。</p></article>
+            <article class="mini-scene warning"><span class="label gap">替代压力</span><strong>不要忽视成熟方案</strong><p>电子外变、hub CVT/内变、有级 MGU 不只是竞品，也是判断 e-CVT 是否值得做的参照系。</p></article>
+            <article class="mini-scene low"><span class="label low">弱适配</span><strong>轻量运动不是天然主场</strong><p>如果核心购买理由是轻、低阻、传统运动手感，e-CVT MGU 很容易被普通轻量中置 + 外变替代。</p></article>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>Lightweight eMTB/eGravel 是轻量运动边界场景，不等同于 high-end eMTB。</span><div class="controls"><button data-prev>上一页</button><button data-next>下一页</button></div></footer>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-4-title">
+        <div class="slide-head">
+          <div>
+            <p class="eyebrow">04 / 替代方案</p>
+            <h2 id="slide-4-title">替代方案留下的空间，才是 e-CVT MGU 的真实机会。</h2>
+            <p class="lead">先看五条路线各自能解决什么，再展开矩阵追细节。</p>
+          </div>
+          <span class="label mid">替代边界</span>
+        </div>
+        <div class="slide-body">
+          <div class="substitute-board">
+            <article class="solution-card feature"><p class="mini-label">目标路线</p><strong>e-CVT MGU</strong><p>潜在优势是把目标踏频、连续变比、低维护、后轮简化和整车诊断放进一个中置系统。</p><p>必须证明：效率、热、NVH、控制、耐久和售后不成为代价。</p><div class="evidence"><code>V004</code><code>F026</code><code>F029</code></div></article>
+            <article class="solution-card"><p class="mini-label">强替代</p><strong>电子外变 + 中置</strong><p>已经覆盖自动/电子换挡、运动控制、用户熟悉和生态成熟。</p><p>留下空间：后拨、飞轮、链条仍外露，泥沙、冲击和维护痛点未根除。</p><div class="evidence"><code>V005</code><code>V008</code><code>F042</code></div></article>
+            <article class="solution-card warning"><p class="mini-label">最强替代压力</p><strong>花鼓 CVT / 内变</strong><p>城市、cargo、trekking 上已经能讲目标踏频、低维护和停启友好。</p><p>留下空间：后轮质量、轮组维护、悬架响应和整车诊断分散。</p><div class="evidence"><code>V009</code><code>V010</code><code>F041</code></div></article>
+            <article class="solution-card warning"><p class="mini-label">量产参照</p><strong>有级 gearbox MGU</strong><p>已经证明封闭传动、后拨取消、宽范围和高端装车路线可讲清。</p><p>留下空间：连续变比和目标踏频是否更自然，但 e-CVT 不能输在效率、噪声和可靠性。</p><div class="evidence"><code>V001</code><code>V020</code><code>V025</code></div></article>
+            <article class="solution-card low"><p class="mini-label">成本/重量基准</p><strong>普通高性能中置</strong><p>动力、重量、成本、供应链和维修网络最成熟。</p><p>留下空间：不能系统解决去后拨、目标踏频和低维护传动，但在轻量运动车上仍很难被替代。</p><div class="evidence"><code>V002</code><code>V006</code><code>F015</code></div></article>
+          </div>
+          <details class="detail-matrix">
+            <summary>展开详细替代矩阵</summary>
+            <div class="matrix-wrap" role="region" aria-label="替代方案矩阵" tabindex="0">
+              <table>
+                <thead><tr><th>替代路线</th><th>已经能解决</th><th>解决不了 / 可能留下的空间</th><th>替代压力最大的场景</th><th>证据</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>电子外变 + 中置电机</strong></td><td>自动/电子换挡、运动控制、用户熟悉、重量和开发风险更可控。</td><td>后拨、飞轮、链条仍外露；泥沙、冲击、摔车和维护痛点仍在。</td><td>eMTB、轻量运动、成本/重量敏感车型。</td><td><code>V005</code> <code>V007</code> <code>V008</code> <code>F042</code></td></tr>
+                  <tr><td><strong>花鼓 CVT / 内变</strong></td><td>目标踏频、低维护、停启友好、封闭传动和宽范围的一部分问题。</td><td>激进 eMTB 的后轮质量、悬架响应、轮组维护和中置一体化诊断。</td><td>urban、cargo/family、SUV/trekking。</td><td><code>V009</code> <code>V010</code> <code>V011</code> <code>V012</code> <code>F041</code></td></tr>
+                  <tr><td><strong>有级 gearbox MGU</strong></td><td>封闭传动、宽范围、低维护、后拨取消和高端装车叙事。</td><td>目标踏频/连续变比的自然体验；但 e-CVT 必须证明效率、噪声、售后不输。</td><td>touring、SUV/trekking、部分 eMTB。</td><td><code>V001</code> <code>V020</code> <code>V022</code> <code>V025</code></td></tr>
+                  <tr><td><strong>普通高性能中置</strong></td><td>动力、重量、成本、供应链、用户认知和维修网络。</td><td>无法系统解决低维护、目标踏频和去后拨；后轮仍要围绕飞轮、后拨、链条和链线布置。</td><td>lightweight eMTB/eGravel、价格敏感车型、普通高性能车。</td><td><code>V002</code> <code>V006</code> <code>F015</code></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+        <footer class="slide-foot"><span>矩阵用于讲清 e-CVT MGU 的价值边界，不是给替代方案排序。</span><div class="controls"><button data-prev>上一页</button><button data-next>下一页</button></div></footer>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-5-title">
+        <div class="slide-head">
+          <div>
+            <p class="eyebrow">05 / 证据信号</p>
+            <h2 id="slide-5-title">证据信号要按成熟度分层，不能按热度读。</h2>
+            <p class="lead">官方硬证据、媒体/展会信号、UX 启发和替代压力必须分层。</p>
+          </div>
+          <span class="label mid">证据边界</span>
+        </div>
+        <div class="slide-body">
+          <div class="signal-grid">
+            <article class="signal"><span class="label high">官方硬证据</span><h3>Gobao X-system</h3><p>官方页面展示 motor + transmission single unit、automatic continuously variable transmission 和目标踏频。</p><div class="evidence"><code>V004</code><code>F026</code><code>F027</code></div></article>
+            <article class="signal"><span class="label mid">媒体/展会强信号</span><h3>Avinox MG Concept</h3><p>先按 e-CVT MGU 方向研究；但不能写成官方量产规格。</p><div class="evidence"><code>V003</code><code>V027</code><code>V028</code><code>V029</code><code>F035</code></div></article>
+            <article class="signal"><span class="label mid">UX 启发</span><h3>Owuru / Decathlon</h3><p>证明目标踏频和用户不用操心换挡在城市车上有体验价值。</p><div class="evidence"><code>V030</code><code>V031</code><code>F039</code></div></article>
+            <article class="signal"><span class="label gap">替代压力</span><h3>Pinion / enviolo / Rohloff / Bosch / Shimano / SRAM</h3><p>证明自动换挡、低维护、宽范围、封闭传动和高端装车都有替代路径。</p><div class="evidence"><code>V001</code><code>V005</code><code>V008</code><code>V009</code><code>V010</code></div></article>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>Avinox MG Concept 的内部实现和量产规格仍未官方闭环。</span><div class="controls"><button data-prev>上一页</button><button data-next>下一页</button></div></footer>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-6-title">
+        <div class="slide-head">
+          <div>
+            <p class="eyebrow">06 / 不能拍板</p>
+            <h2 id="slide-6-title">e-CVT MGU 的场景价值，还缺哪些关键证据？</h2>
+            <p class="lead">这些是确认价值是否成立的证据缺口，不是商业落地清单。</p>
+          </div>
+          <span class="label gap">待验证</span>
+        </div>
+        <div class="slide-body">
+          <div class="risk-grid">
+            <article class="risk"><span class="label gap">效率</span><h3>是否吞续航？</h3><p>不同踏频、扭矩、坡度、车速下的效率 map 需要对比。</p></article>
+            <article class="risk"><span class="label gap">热</span><h3>高载低速能否持续？</h3><p>cargo 满载、eMTB 技术爬坡、长坡和高温环境下是否热衰减。</p></article>
+            <article class="risk"><span class="label gap">控制</span><h3>骑手是否信任？</h3><p>自动踏频、虚拟档位、手动覆盖、站姿重踩和湿滑路面必须可预测。</p></article>
+            <article class="risk"><span class="label gap">耐久</span><h3>冲击和污染能否扛住？</h3><p>泥沙、清洗、摔车、跳跃落地、载重冲击会考验密封和执行器。</p></article>
+            <article class="risk"><span class="label gap">售后</span><h3>维修边界是否可接受？</h3><p>如果从换后拨变成整机返修，必须证明诊断、模块更换和成本可控。</p></article>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>这些缺口决定“价值能否成立”，不是在安排产品路线图。</span><div class="controls"><button data-prev>上一页</button><button data-next>下一页</button></div></footer>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-7-title">
+        <div class="slide-head">
+          <div>
+            <p class="eyebrow">07 / 证据附录</p>
+            <h2 id="slide-7-title">这些判断来自哪些证据，边界在哪里？</h2>
+            <p class="lead">用于被追问来源时快速定位。O 为官方来源，B 为媒体/行业媒体/评测。</p>
+          </div>
+          <span class="label neutral">附录</span>
+        </div>
+        <div class="slide-body">
+          <div class="matrix-wrap" role="region" aria-label="来源索引" tabindex="0">
+            <table>
+              <thead><tr><th>ID</th><th>等级</th><th>来源</th><th>可支撑内容</th><th>边界</th></tr></thead>
+              <tbody>
+                <tr><td><code>V001</code></td><td>O</td><td>Pinion E-Drive MGU 官方页</td><td>有级 MGU 量产参照、9/12 档、568/600% 范围、低维护叙事。</td><td>不是 e-CVT。</td></tr>
+                <tr><td><code>V003</code></td><td>B</td><td>The Verge Avinox/Gobao 报道</td><td>Avinox MG Concept 与 Gobao X-series 的 Eurobike eCVT MGU 市场信号。</td><td>媒体来源，不是官方最终规格。</td></tr>
+                <tr><td><code>V004</code></td><td>O</td><td>Gobao X-system 官方页</td><td>motor + transmission single unit、automatic continuously variable transmission、120/150 Nm、400/500% 范围。</td><td>未确认 X1/X1P 命名和量产客户。</td></tr>
+                <tr><td><code>V008</code></td><td>O</td><td>SRAM Eagle Powertrain 官方页</td><td>eMTB 电子外变与 Auto Shift 替代压力。</td><td>仍保留外部传动。</td></tr>
+                <tr><td><code>V009</code></td><td>O</td><td>enviolo 官方页</td><td>Automatic preferred cadence、enclosed low-upkeep、hub CVT 替代压力。</td><td>不是中置 MGU。</td></tr>
+                <tr><td><code>V027</code> <code>V028</code> <code>V029</code></td><td>B</td><td>Avinox MG Concept 媒体/展会报道</td><td>e-CVT/连续变速方向、虚拟档、OEM prototype 信号。</td><td>不能写成官方量产规格。</td></tr>
+                <tr><td><code>V030</code> <code>V031</code></td><td>B</td><td>Owuru / Decathlon 报道</td><td>连续变速、目标踏频、城市 UX 和高功率 prototype 线索。</td><td>不能直接外推高功率 MGU 可靠性。</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>分页原型结束。滚轮向上或点左侧目录可返回前面章节。</span><div class="controls"><button data-prev>上一页</button><button data-next>下一页</button></div></footer>
+      </section>
+
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </main>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const navButtons = Array.from(document.querySelectorAll('.toc button[data-slide]'));
+    const progress = document.querySelector('.progress span');
+    let current = 0;
+    let wheelLocked = false;
+
+    function setSlide(index) {
+      const next = Math.max(0, Math.min(slides.length - 1, index));
+      if (next === current) return;
+      slides[current].classList.remove('active');
+      navButtons[current].removeAttribute('aria-current');
+      current = next;
+      slides[current].classList.add('active');
+      navButtons[current].setAttribute('aria-current', 'true');
+      progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+    }
+
+    function go(delta) {
+      setSlide(current + delta);
+    }
+
+    navButtons.forEach((button) => {
+      button.addEventListener('click', () => setSlide(Number(button.dataset.slide)));
+    });
+
+    document.querySelectorAll('[data-next]').forEach((button) => {
+      button.addEventListener('click', () => go(1));
+    });
+
+    document.querySelectorAll('[data-prev]').forEach((button) => {
+      button.addEventListener('click', () => go(-1));
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(event.key)) {
+        event.preventDefault();
+        go(1);
+      }
+      if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(event.key)) {
+        event.preventDefault();
+        go(-1);
+      }
+      if (event.key === 'Home') setSlide(0);
+      if (event.key === 'End') setSlide(slides.length - 1);
+    });
+
+    window.addEventListener('wheel', (event) => {
+      if (Math.abs(event.deltaY) < 18) return;
+
+      const body = slides[current].querySelector('.slide-body');
+      const canScroll = body && body.scrollHeight > body.clientHeight + 2;
+      if (canScroll) {
+        const atTop = body.scrollTop <= 2;
+        const atBottom = body.scrollTop + body.clientHeight >= body.scrollHeight - 2;
+        const goingDown = event.deltaY > 0;
+
+        if ((goingDown && !atBottom) || (!goingDown && !atTop)) {
+          return;
+        }
+      }
+
+      if (wheelLocked) return;
+      event.preventDefault();
+      wheelLocked = true;
+      go(event.deltaY > 0 ? 1 : -1);
+      window.setTimeout(() => { wheelLocked = false; }, 520);
+    }, { passive: false });
+  </script>
+</body>
+</html>
