@@ -703,3 +703,31 @@
 - `ecvt_mgu_product_direction.html`
 
 同步更新 `README.md` 和最新内容版本记录 `content_versions/ecvt_mgu_ring_layers_v3.md` 中的当前网页路径。
+
+## 29. 2026-07-07 产品方向网页中文化校对
+
+用户指出页面中除品牌名和不可替代专业术语外仍有较多英文，要求统一改为中文表达。
+
+本次修改文件：
+
+- `ecvt_mgu_product_direction.html`
+- `content_versions/ecvt_mgu_ring_layers_v4.md`
+- `README.md`
+
+### 29.1 修改内容
+
+- 将页面版本更新为 `v4 · 2026-07-07 中文化校对`。
+- 将主页面可见正文中的英文场景名、方案名和功能描述改为中文表达，例如：
+  - `High-end eMTB / gravity / technical climbing` 改为 `高端 eMTB / 重力骑行 / 技术爬坡`。
+  - `Cargo / family utility / heavy-load` 改为 `载货 / 家庭工具车 / 重载`。
+  - `Premium urban commuter` 改为 `高端城市通勤`。
+  - `Fleet / delivery / shared utility` 改为 `车队 / 配送 / 共享工具车`。
+- 将 `gearbox`、`hub route`、`preferred cadence`、`connected service/security`、`datasheet` 等解释性英文改为 `齿轮箱`、`花鼓路线`、`目标踏频`、`联网服务/安全功能`、`规格表` 等中文表达。
+- 将年轮交互中的 `Layer 01-05` 改为 `第 01-05 层`。
+- 将证据详情浮层中的解释性英文同步中文化，保留品牌名、产品名、官方功能名、证据 ID、文件路径和 URL。
+- 新增 `content_versions/ecvt_mgu_ring_layers_v4.md`，记录本版完整正文、来源文件、证据 ID、证据边界和相对 v3 的变化。
+- 更新 `README.md` 最新内容版本入口到 `content_versions/ecvt_mgu_ring_layers_v4.md`。
+
+### 29.2 口径边界
+
+本次是语言校对和可读性调整，不新增事实、规格、场景排序或技术结论；不删除研究记录中的证据边界；不把 Avinox / Gobao 未确认信息写成确定规格。
