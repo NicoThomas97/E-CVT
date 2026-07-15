@@ -1,0 +1,1304 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1280">
+  <title>e-CVT MGU 骑手体感可视化</title>
+  <style>
+    :root {
+      --bg: #f6f8f7;
+      --paper: #ffffff;
+      --ink: #16211f;
+      --muted: #66736f;
+      --line: #d9e0dd;
+      --soft: #edf3f1;
+      --teal: #12646a;
+      --teal-soft: #dcefed;
+      --blue: #285f9d;
+      --blue-soft: #e4eef9;
+      --deep-blue: #173f73;
+      --violet: #6a5a8a;
+      --violet-soft: #ebe7f4;
+      --orange: #b56224;
+      --orange-soft: #f4e5d8;
+      --green: #2f7355;
+      --green-soft: #dfeee6;
+      --amber: #b28729;
+      --amber-soft: #fbf1d6;
+      --red: #9d4c3e;
+      --red-soft: #f4e2de;
+      --shadow: 0 18px 44px rgba(19, 32, 29, .08);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-width: 1180px;
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .92), rgba(246, 248, 247, .98) 420px),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.56;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(217, 224, 221, .92);
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      width: 1320px;
+      min-height: 64px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .navlinks a {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: var(--ink);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .navlinks a:hover {
+      background: var(--soft);
+      text-decoration: none;
+    }
+
+    main {
+      width: 1320px;
+      margin: 0 auto;
+      padding: 34px 0 78px;
+    }
+
+    section {
+      scroll-margin-top: 86px;
+      margin: 46px 0;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      letter-spacing: 0;
+      line-height: 1.18;
+    }
+
+    p { margin: 0; }
+
+    .hero {
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 450px;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-system,
+    .priority-card,
+    .chart-card,
+    .diagram-card,
+    .matrix-card,
+    .note-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 10px 26px rgba(20, 32, 29, .05);
+    }
+
+    .hero-copy {
+      padding: 38px;
+      display: grid;
+      align-content: center;
+      box-shadow: var(--shadow);
+    }
+
+    .kicker {
+      margin-bottom: 12px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .hero h1 {
+      max-width: 790px;
+      font-size: 48px;
+    }
+
+    .hero-lead {
+      max-width: 820px;
+      margin-top: 20px;
+      color: #31433f;
+      font-size: 19px;
+    }
+
+    .hero-points {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .hero-point {
+      border-left: 4px solid var(--teal);
+      border-radius: 6px;
+      background: var(--soft);
+      padding: 14px 14px 16px;
+    }
+
+    .hero-point:nth-child(2) { border-color: var(--orange); }
+    .hero-point:nth-child(3) { border-color: var(--violet); }
+
+    .hero-point strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .hero-point span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero-system {
+      padding: 22px;
+      display: grid;
+      align-content: space-between;
+      gap: 18px;
+    }
+
+    .system-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 14px;
+    }
+
+    .system-title h2 {
+      font-size: 22px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border-radius: 999px;
+      background: var(--teal-soft);
+      padding: 4px 10px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .system-svg {
+      width: 100%;
+      height: 390px;
+      display: block;
+    }
+
+    svg text {
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    .system-legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .legend-item {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--teal);
+      flex: 0 0 auto;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .section-title {
+      font-size: 31px;
+    }
+
+    .section-note {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .priority-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .priority-card {
+      min-height: 260px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .priority-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--teal);
+    }
+
+    .priority-card.intent::before { background: var(--orange); }
+    .priority-card.torque::before { background: var(--violet); }
+
+    .priority-index {
+      color: rgba(22, 33, 31, .12);
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .priority-card h3 {
+      margin-top: 18px;
+      font-size: 24px;
+    }
+
+    .priority-card p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .priority-list {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: #334541;
+      font-size: 14px;
+    }
+
+    .priority-list li {
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .priority-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .72em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: .42;
+    }
+
+    .chart-card {
+      padding: 22px;
+    }
+
+    .chart-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 14px;
+    }
+
+    .chart-title-block h3 {
+      font-size: 25px;
+    }
+
+    .chart-title-block p {
+      max-width: 760px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .data-note {
+      align-self: start;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--soft);
+      padding: 8px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .chart-shell {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #ffffff 0%, #fbfcfc 100%);
+      overflow: hidden;
+    }
+
+    .stacked-chart {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .chart-captions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .caption {
+      border-left: 4px solid var(--line);
+      border-radius: 6px;
+      background: var(--soft);
+      padding: 10px 12px;
+      min-height: 88px;
+    }
+
+    .caption.input { border-color: var(--orange); }
+    .caption.judge { border-color: var(--teal); }
+    .caption.output { border-color: var(--violet); }
+    .caption.feel { border-color: var(--green); }
+
+    .caption strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .caption span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .phase-layout {
+      display: grid;
+      grid-template-columns: 440px minmax(0, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .phase-copy {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+
+    .phase-copy h3 {
+      font-size: 25px;
+    }
+
+    .phase-copy p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .phase-copy ul {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+      color: #334541;
+    }
+
+    .phase-copy li {
+      padding: 10px 12px;
+      border-radius: 6px;
+      background: var(--soft);
+    }
+
+    .phase-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+
+    .phase-svg {
+      width: 100%;
+      height: 420px;
+      display: block;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .diagram-card {
+      padding: 22px;
+      min-height: 520px;
+    }
+
+    .diagram-card h3 {
+      font-size: 24px;
+    }
+
+    .diagram-card > p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .flow-svg,
+    .coord-svg {
+      width: 100%;
+      height: 390px;
+      display: block;
+      margin-top: 14px;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .matrix-card {
+      min-height: 210px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .matrix-card::after {
+      content: attr(data-index);
+      position: absolute;
+      right: 12px;
+      bottom: -4px;
+      color: rgba(22, 33, 31, .08);
+      font-size: 58px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .matrix-card h3 {
+      position: relative;
+      z-index: 1;
+      font-size: 18px;
+    }
+
+    .matrix-card p {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .metric {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      margin-top: 14px;
+      border-radius: 999px;
+      background: var(--teal-soft);
+      padding: 5px 9px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .note-panel {
+      margin-top: 16px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      background: #fffdf8;
+    }
+
+    .note-panel strong {
+      font-size: 16px;
+    }
+
+    .note-panel span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer {
+      margin-top: 58px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="页面导航">
+      <div class="brand">
+        <strong>e-CVT MGU 骑手体感可视化</strong>
+        <span>桌面端离线展示页 · 2026-07-16</span>
+      </div>
+      <div class="navlinks">
+        <a href="#definition">产品定义</a>
+        <a href="#priority">控制优先级</a>
+        <a href="#sprint">平路冲刺</a>
+        <a href="#climb">陡坡爬坡</a>
+        <a href="#phase">换比窗口</a>
+        <a href="#intent">意图识别</a>
+        <a href="#coordination">协同输出</a>
+        <a href="#validation">验证矩阵</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="definition" class="hero">
+      <div class="hero-copy">
+        <p class="kicker">智能脚感一致性 e-CVT MGU 平台</p>
+        <h1>不是让骑手少换挡而已，而是让系统主动管理脚下感觉。</h1>
+        <p class="hero-lead">
+          这是一套面向整车厂的电机集成 e-CVT 系统：以踏频管理为基础，以脚感一致性为目标，结合踏频、踩踏力矩、曲柄位置、车速、坡度和电机状态，动态调整目标踏频、传动比和电机转矩。
+        </p>
+        <div class="hero-points" aria-label="核心控制原则">
+          <div class="hero-point">
+            <strong>巡航看踏频</strong>
+            <span>平路和轻微起伏时，优先让骑手停留在舒适 rpm。</span>
+          </div>
+          <div class="hero-point">
+            <strong>冲刺看意图</strong>
+            <span>突然加力时，先尊重加速意图，允许踏频短时上扬。</span>
+          </div>
+          <div class="hero-point">
+            <strong>爬坡看脚感力矩</strong>
+            <span>陡坡时，固定踏频退居二线，优先稳住脚下负载。</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-system" aria-label="整车系统示意">
+        <div class="system-title">
+          <h2>整车系统闭环</h2>
+          <span class="status-chip">概念架构</span>
+        </div>
+        <svg class="system-svg" viewBox="0 0 430 390" role="img" aria-labelledby="system-title system-desc">
+          <title id="system-title">e-CVT MGU 整车系统示意图</title>
+          <desc id="system-desc">骑手输入和路况输入进入控制器，控制器协调电机转矩与 e-CVT 传动比，并通过 HMI 和整车控制器反馈。</desc>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#66736f"></path>
+            </marker>
+          </defs>
+          <rect x="15" y="18" width="400" height="354" rx="12" fill="#f8fbfa" stroke="#d9e0dd"></rect>
+          <circle cx="113" cy="128" r="36" fill="#f4e5d8" stroke="#b56224" stroke-width="2"></circle>
+          <path d="M93 126c10-20 30-20 40 0M104 145h20M112 164l-17 42M119 164l31 39M94 206h-24M149 203h28" fill="none" stroke="#7d431d" stroke-width="5" stroke-linecap="round"></path>
+          <text x="113" y="82" text-anchor="middle" fill="#16211f" font-size="15" font-weight="800">骑手</text>
+          <text x="113" y="240" text-anchor="middle" fill="#66736f" font-size="12">力矩 / 踏频 / 曲柄相位</text>
+
+          <rect x="242" y="42" width="120" height="54" rx="8" fill="#dcefed" stroke="#12646a"></rect>
+          <text x="302" y="65" text-anchor="middle" fill="#12646a" font-size="14" font-weight="800">路况输入</text>
+          <text x="302" y="83" text-anchor="middle" fill="#12646a" font-size="11">车速 · 坡度 · 刹车</text>
+
+          <rect x="223" y="145" width="158" height="78" rx="10" fill="#ffffff" stroke="#12646a" stroke-width="2"></rect>
+          <text x="302" y="175" text-anchor="middle" fill="#16211f" font-size="16" font-weight="900">意图识别控制器</text>
+          <text x="302" y="197" text-anchor="middle" fill="#66736f" font-size="12">目标踏频 / 目标力矩区间</text>
+
+          <rect x="52" y="291" width="132" height="48" rx="8" fill="#e4eef9" stroke="#285f9d"></rect>
+          <text x="118" y="320" text-anchor="middle" fill="#285f9d" font-size="14" font-weight="800">电机转矩</text>
+
+          <rect x="238" y="291" width="132" height="48" rx="8" fill="#ebe7f4" stroke="#6a5a8a"></rect>
+          <text x="304" y="320" text-anchor="middle" fill="#6a5a8a" font-size="14" font-weight="800">e-CVT 传动比</text>
+
+          <path d="M151 129 C188 129 196 172 222 178" fill="none" stroke="#66736f" stroke-width="2" marker-end="url(#arrow)"></path>
+          <path d="M302 96 L302 144" fill="none" stroke="#66736f" stroke-width="2" marker-end="url(#arrow)"></path>
+          <path d="M255 223 C218 246 176 270 136 290" fill="none" stroke="#66736f" stroke-width="2" marker-end="url(#arrow)"></path>
+          <path d="M313 223 L306 290" fill="none" stroke="#66736f" stroke-width="2" marker-end="url(#arrow)"></path>
+          <path d="M184 316 C205 337 234 338 238 318" fill="none" stroke="#66736f" stroke-width="2" marker-end="url(#arrow)"></path>
+        </svg>
+        <div class="system-legend">
+          <div class="legend-item"><span class="swatch" style="background: var(--orange)"></span>骑手输入</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--green)"></span>路况输入</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--blue)"></span>电机输出</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--violet)"></span>传动输出</div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="priority">
+      <div class="section-head">
+        <div>
+          <p class="kicker">为什么单纯恒踏频不够</p>
+          <h2 class="section-title">同一个 e-CVT，要在不同场景切换控制优先级。</h2>
+        </div>
+        <p class="section-note">目标踏频仍然重要，但它不是铁律。冲刺时它要给骑手意图让路；陡坡时它要服务于脚下力矩一致性。</p>
+      </div>
+
+      <div class="priority-grid">
+        <article class="priority-card">
+          <div class="priority-index">01</div>
+          <h3>巡航看踏频</h3>
+          <p>平路或缓坡稳定骑行时，系统把目标踏频作为主控制目标，降低频繁变比，让骑手进入稳定节奏。</p>
+          <ul class="priority-list">
+            <li>目标踏频可设为约 50 rpm 或用户偏好值。</li>
+            <li>传动比缓慢修正，避免巡航时来回找点。</li>
+            <li>体感目标是安静、平顺、省心。</li>
+          </ul>
+        </article>
+        <article class="priority-card intent">
+          <div class="priority-index">02</div>
+          <h3>冲刺看意图</h3>
+          <p>骑手突然加力时，系统先判断加速意图，电机快速接住需求，e-CVT 再平滑升齿比。</p>
+          <ul class="priority-list">
+            <li>真实踏频可以短时上扬，不急着压回固定 rpm。</li>
+            <li>冲刺结束后目标踏频回到巡航值。</li>
+            <li>较高齿比保留，让车进入高速巡航。</li>
+          </ul>
+        </article>
+        <article class="priority-card torque">
+          <div class="priority-index">03</div>
+          <h3>爬坡看脚感力矩</h3>
+          <p>陡坡时，脚下踩踏力矩是否处于舒服中间区，比固定踏频更关键。</p>
+          <ul class="priority-list">
+            <li>目标踏频动态变化，用来调节脚感。</li>
+            <li>齿比和电机转矩共同把力矩拉回舒适区。</li>
+            <li>避免既沉重踩不动，也空、虚、失去支撑。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="sprint">
+      <div class="chart-card">
+        <div class="chart-top">
+          <div class="chart-title-block">
+            <p class="kicker">平路巡航中的突然加速</p>
+            <h3>冲刺时允许踏频上扬，电机先接住意图，e-CVT 再整理节奏。</h3>
+            <p>坡度约 3°，骑手踩踏力矩突然上升。系统不把真实踏频强行压在 50 rpm，而是让踏频短时上扬，同时平滑提高传动比；冲刺结束后，目标踏频回到 50 rpm，但高齿比和高车速被保留下来。</p>
+          </div>
+          <span class="data-note">趋势示意，非实测数据</span>
+        </div>
+        <div class="chart-shell">
+          <svg id="sprint-chart" class="stacked-chart" viewBox="0 0 1274 690" role="img" aria-label="平路巡航突然加速堆叠曲线图"></svg>
+        </div>
+        <div class="chart-captions">
+          <div class="caption input"><strong>输入</strong><span>骑手力矩突然上升，表达加速 / 冲刺意图。</span></div>
+          <div class="caption judge"><strong>判断</strong><span>状态从舒适巡航切换为冲刺，再进入高速巡航。</span></div>
+          <div class="caption output"><strong>输出</strong><span>电机转矩快速响应，e-CVT 齿比更慢、更平滑地升高。</span></div>
+          <div class="caption feel"><strong>体感结果</strong><span>冲刺不被打断，结束后以舒适踏频维持更高车速。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="climb">
+      <div class="chart-card">
+        <div class="chart-top">
+          <div class="chart-title-block">
+            <p class="kicker">陡坡爬坡中的脚感一致性</p>
+            <h3>爬坡时目标踏频是工具，脚下踩踏力矩舒适区才是主目标。</h3>
+            <p>坡度约 10°，系统不死守固定踏频。它通过动态目标踏频、e-CVT 齿比和电机转矩协同，把踩踏力矩拉回不过重、不过空的中间区，让爬坡支撑感更稳定。</p>
+          </div>
+          <span class="data-note">趋势示意，非实测数据</span>
+        </div>
+        <div class="chart-shell">
+          <svg id="climb-chart" class="stacked-chart" viewBox="0 0 1274 690" role="img" aria-label="陡坡爬坡脚感一致性堆叠曲线图"></svg>
+        </div>
+        <div class="chart-captions">
+          <div class="caption input"><strong>输入</strong><span>坡度和脚下负载升高，力矩偏离舒适中间区。</span></div>
+          <div class="caption judge"><strong>判断</strong><span>进入陡坡脚感控制，固定踏频优先级降低。</span></div>
+          <div class="caption output"><strong>输出</strong><span>目标踏频、传动比和电机转矩共同修正脚感。</span></div>
+          <div class="caption feel"><strong>体感结果</strong><span>骑手不需要硬踩，也不会觉得系统把脚下变空。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="phase">
+      <div class="section-head">
+        <div>
+          <p class="kicker">曲柄相位决定变比窗口</p>
+          <h2 class="section-title">变比时机不只看时间，也看脚踩力矩波形。</h2>
+        </div>
+        <p class="section-note">曲柄 12 点位置附近，踩踏力矩通常处于低谷。把 e-CVT 变比动作安排在这个窗口，脚下突兀感会更低。</p>
+      </div>
+
+      <div class="phase-layout">
+        <div class="phase-copy">
+          <h3>低力矩窗口，适合做细微变比。</h3>
+          <p>这个图不是说每次都必须在固定角度换比，而是强调曲柄相位应作为脚感控制的重要输入。</p>
+          <ul>
+            <li>高力矩区变比：骑手更容易感到顿挫、拖拽或脚下支撑变化。</li>
+            <li>低力矩区变比：变比动作更容易被踏频波动自然吸收。</li>
+            <li>工程标定：需要结合力矩波形、变比幅度、电机转矩和传动机构响应速度。</li>
+          </ul>
+        </div>
+        <div class="phase-card">
+          <svg id="phase-chart" class="phase-svg" viewBox="0 0 790 420" role="img" aria-label="曲柄相位换比窗口示意图"></svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="intent">
+      <div class="section-head">
+        <div>
+          <p class="kicker">多传感器意图识别</p>
+          <h2 class="section-title">系统不是替骑手做决定，而是读懂骑手已经表达出的意图。</h2>
+        </div>
+        <p class="section-note">同一套控制器要把输入、判断、目标选择和输出串起来，才能让电机和 e-CVT 不互相打架。</p>
+      </div>
+
+      <article class="diagram-card">
+        <h3>输入 -> 判断 -> 输出</h3>
+        <p>传感器包越完整，系统越有机会区分巡航、冲刺、爬坡、滑行恢复和起步。</p>
+        <svg id="intent-flow" class="flow-svg" viewBox="0 0 610 390" role="img" aria-label="多传感器意图识别框图"></svg>
+      </article>
+    </section>
+
+    <section id="coordination">
+      <div class="section-head">
+        <div>
+          <p class="kicker">电机转矩与 e-CVT 协同</p>
+          <h2 class="section-title">电机先接住意图，e-CVT 再整理节奏。</h2>
+        </div>
+        <p class="section-note">冲刺时允许踏频上扬，爬坡时稳住脚下力矩。真正决定体感的不是单个输出，而是电机转矩和目标传动比的协同。</p>
+      </div>
+
+      <article class="diagram-card">
+        <h3>快响应与慢整理</h3>
+        <p>电机负责快速响应骑手意图，e-CVT 负责中慢速整理节奏和脚感，两者共同决定真实踏频、车速和脚下力矩。</p>
+        <svg id="coord-flow" class="coord-svg" viewBox="0 0 610 390" role="img" aria-label="电机转矩与 e-CVT 协同图"></svg>
+      </article>
+    </section>
+
+    <section id="validation">
+      <div class="section-head">
+        <div>
+          <p class="kicker">如何验证这套体验</p>
+          <h2 class="section-title">验证重点不是只看变速速度，而是看脚感是否被管理住。</h2>
+        </div>
+        <p class="section-note">后续台架、样车和主观评价要围绕自然、平顺、响应、控制感和噪音边界展开。</p>
+      </div>
+
+      <div class="matrix-grid">
+        <article class="matrix-card" data-index="01">
+          <h3>巡航稳定</h3>
+          <p>平路和轻微起伏中，目标 rpm 设定后踏频是否稳定，系统是否避免频繁找点。</p>
+          <span class="metric">踏频偏差</span>
+        </article>
+        <article class="matrix-card" data-index="02">
+          <h3>冲刺恢复</h3>
+          <p>突然加力后是否允许踏频上扬，并在力矩下降后进入高齿比高速巡航。</p>
+          <span class="metric">意图识别</span>
+        </article>
+        <article class="matrix-card" data-index="03">
+          <h3>爬坡脚感</h3>
+          <p>陡坡时是否优先把踩踏力矩拉回舒适区，而不是死守固定踏频。</p>
+          <span class="metric">力矩舒适区</span>
+        </article>
+        <article class="matrix-card" data-index="04">
+          <h3>换比窗口</h3>
+          <p>变比动作是否落在力矩低谷附近，脚下是否减少顿挫、拖拽或突兀支撑变化。</p>
+          <span class="metric">曲柄相位</span>
+        </article>
+        <article class="matrix-card" data-index="05">
+          <h3>安全降级</h3>
+          <p>IMU、力矩、轮速、曲柄位置异常时，系统是否能进入可骑行安全模式。</p>
+          <span class="metric">故障策略</span>
+        </article>
+      </div>
+
+      <div class="note-panel">
+        <strong>参数口径提醒</strong>
+        <span>45 dB、300 N·m、520% 等只能作为竞品参考、研究目标或待验证指标，不能在本页写成自有量产承诺。</span>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>来源：`03_analysis/ecvt_mgu_visual_storyboard.md` 与产品功能定义讨论。</span>
+      <span>本页为概念可视化说明，不作为控制算法、实测数据或量产规格承诺。</span>
+    </footer>
+  </main>
+
+  <script>
+    const colors = {
+      ink: "#16211f",
+      muted: "#66736f",
+      line: "#d9e0dd",
+      grid: "#eef3f1",
+      orange: "#b56224",
+      orangeSoft: "#f4e5d8",
+      green: "#2f7355",
+      teal: "#12646a",
+      blue: "#285f9d",
+      deepBlue: "#173f73",
+      violet: "#6a5a8a",
+      violetSoft: "#ebe7f4",
+      amberSoft: "#fbf1d6",
+      amber: "#b28729",
+      red: "#9d4c3e"
+    };
+
+    function svgEl(name, attrs = {}, children = []) {
+      const node = document.createElementNS("http://www.w3.org/2000/svg", name);
+      for (const [key, value] of Object.entries(attrs)) {
+        node.setAttribute(key, value);
+      }
+      for (const child of children) {
+        node.appendChild(child);
+      }
+      return node;
+    }
+
+    function addText(parent, text, x, y, attrs = {}) {
+      const node = svgEl("text", { x, y, ...attrs });
+      node.textContent = text;
+      parent.appendChild(node);
+      return node;
+    }
+
+    function linePath(points, xScale, yScale) {
+      return points.map((point, index) => `${index === 0 ? "M" : "L"} ${xScale(point[0]).toFixed(1)} ${yScale(point[1]).toFixed(1)}`).join(" ");
+    }
+
+    function smoothPath(points, xScale, yScale) {
+      if (points.length < 2) return linePath(points, xScale, yScale);
+      const mapped = points.map((point) => [xScale(point[0]), yScale(point[1])]);
+      let d = `M ${mapped[0][0].toFixed(1)} ${mapped[0][1].toFixed(1)}`;
+      for (let i = 1; i < mapped.length; i++) {
+        const prev = mapped[i - 1];
+        const current = mapped[i];
+        const midX = (prev[0] + current[0]) / 2;
+        d += ` C ${midX.toFixed(1)} ${prev[1].toFixed(1)}, ${midX.toFixed(1)} ${current[1].toFixed(1)}, ${current[0].toFixed(1)} ${current[1].toFixed(1)}`;
+      }
+      return d;
+    }
+
+    function drawStackedChart(targetId, config) {
+      const svg = document.getElementById(targetId);
+      const width = 1274;
+      const left = 190;
+      const right = 34;
+      const top = 28;
+      const rowH = 66;
+      const gap = 10;
+      const plotW = width - left - right;
+      const totalH = top + config.rows.length * rowH + (config.rows.length - 1) * gap + 40;
+      svg.setAttribute("viewBox", `0 0 ${width} ${totalH}`);
+      svg.innerHTML = "";
+
+      const xScale = (x) => left + (x / 100) * plotW;
+
+      for (let x = 0; x <= 100; x += 20) {
+        svg.appendChild(svgEl("line", {
+          x1: xScale(x), y1: top - 6, x2: xScale(x), y2: totalH - 30,
+          stroke: colors.grid, "stroke-width": 1
+        }));
+        addText(svg, `${x}`, xScale(x), totalH - 14, {
+          "text-anchor": "middle", fill: colors.muted, "font-size": 11
+        });
+      }
+      addText(svg, "时间", left + plotW / 2, totalH - 1, {
+        "text-anchor": "middle", fill: colors.muted, "font-size": 12
+      });
+
+      config.stateSegments.forEach((seg) => {
+        svg.appendChild(svgEl("rect", {
+          x: xScale(seg.start),
+          y: 7,
+          width: xScale(seg.end) - xScale(seg.start),
+          height: 18,
+          rx: 4,
+          fill: seg.color
+        }));
+        addText(svg, seg.label, (xScale(seg.start) + xScale(seg.end)) / 2, 20, {
+          "text-anchor": "middle", fill: "#fff", "font-size": 11, "font-weight": 800
+        });
+      });
+
+      config.rows.forEach((row, index) => {
+        const y = top + index * (rowH + gap);
+        const yScale = (value) => y + rowH - ((value - row.min) / (row.max - row.min)) * rowH;
+        const mid = y + rowH / 2;
+
+        svg.appendChild(svgEl("rect", {
+          x: 0, y: y - 4, width, height: rowH + 8,
+          fill: index % 2 === 0 ? "#ffffff" : "#fbfcfc"
+        }));
+
+        addText(svg, row.label, 18, y + 18, {
+          fill: colors.ink, "font-size": 13, "font-weight": 900
+        });
+        addText(svg, row.subLabel, 18, y + 38, {
+          fill: colors.muted, "font-size": 11
+        });
+
+        svg.appendChild(svgEl("line", {
+          x1: left, y1: mid, x2: left + plotW, y2: mid,
+          stroke: colors.grid, "stroke-width": 1
+        }));
+        svg.appendChild(svgEl("line", {
+          x1: left, y1: y + rowH, x2: left + plotW, y2: y + rowH,
+          stroke: colors.line, "stroke-width": 1
+        }));
+
+        config.windows?.forEach((win) => {
+          svg.appendChild(svgEl("rect", {
+            x: xScale(win.start),
+            y: y,
+            width: xScale(win.end) - xScale(win.start),
+            height: rowH,
+            fill: colors.amberSoft,
+            opacity: .72
+          }));
+          if (index === 0) {
+            addText(svg, win.label, (xScale(win.start) + xScale(win.end)) / 2, y + 15, {
+              "text-anchor": "middle", fill: colors.amber, "font-size": 11, "font-weight": 800
+            });
+          }
+        });
+
+        if (row.band) {
+          const bandTop = yScale(row.band.max);
+          svg.appendChild(svgEl("rect", {
+            x: left,
+            y: bandTop,
+            width: plotW,
+            height: yScale(row.band.min) - yScale(row.band.max),
+            fill: row.band.color,
+            opacity: row.band.opacity ?? .28
+          }));
+          const tagW = row.band.label.length * 12 + 18;
+          const tagY = Math.max(y + 5, bandTop - 20);
+          svg.appendChild(svgEl("rect", {
+            x: left + 10,
+            y: tagY,
+            width: tagW,
+            height: 18,
+            rx: 4,
+            fill: "#ffffff",
+            stroke: row.band.textColor || colors.green,
+            opacity: .96
+          }));
+          addText(svg, row.band.label, left + 18, tagY + 13, {
+            fill: row.band.textColor || colors.green, "font-size": 11, "font-weight": 800
+          });
+        }
+
+        row.series.forEach((series) => {
+          const path = series.smooth === false
+            ? linePath(series.points, xScale, yScale)
+            : smoothPath(series.points, xScale, yScale);
+          svg.appendChild(svgEl("path", {
+            d: path,
+            fill: "none",
+            stroke: series.color,
+            "stroke-width": series.width || 3,
+            "stroke-linecap": "round",
+            "stroke-linejoin": "round",
+            "stroke-dasharray": series.dash || "none"
+          }));
+          if (series.label) {
+            const last = series.points[series.points.length - 1];
+            addText(svg, series.label, xScale(last[0]) + 8, yScale(last[1]) + 4, {
+              fill: series.color, "font-size": 11, "font-weight": 800
+            });
+          }
+        });
+
+        if (row.annotations) {
+          row.annotations.forEach((annotation) => {
+            addText(svg, annotation.text, xScale(annotation.x), yScale(annotation.y), {
+              "text-anchor": annotation.anchor || "middle",
+              fill: annotation.color || colors.muted,
+              "font-size": 11,
+              "font-weight": 800
+            });
+          });
+        }
+      });
+    }
+
+    const sprintChart = {
+      stateSegments: [
+        { start: 0, end: 32, label: "舒适巡航", color: colors.teal },
+        { start: 32, end: 66, label: "冲刺 / 加速意图", color: colors.orange },
+        { start: 66, end: 100, label: "高速巡航", color: colors.deepBlue }
+      ],
+      windows: [
+        { start: 45, end: 49, label: "12点低谷" },
+        { start: 60, end: 64, label: "12点低谷" }
+      ],
+      rows: [
+        {
+          label: "坡度", subLabel: "约 3° 缓坡", min: 0, max: 12,
+          series: [{ points: [[0,3],[100,3]], color: colors.green, smooth: false, label: "3°" }]
+        },
+        {
+          label: "目标踏频", subLabel: "约 50 rpm", min: 40, max: 95,
+          series: [
+            { points: [[0,50],[32,50],[42,58],[62,58],[70,50],[100,50]], color: colors.blue, dash: "6 5", label: "目标" },
+            { points: [[32,62],[62,88]], color: colors.blue, dash: "2 5", width: 2, smooth: false, label: "允许上扬区间" }
+          ]
+        },
+        {
+          label: "真实踏频", subLabel: "短时上扬", min: 40, max: 95,
+          series: [{ points: [[0,50],[28,51],[36,68],[47,86],[58,78],[70,55],[100,50]], color: colors.deepBlue, label: "真实" }],
+          annotations: [{ x: 48, y: 91, text: "不急着压回 50 rpm", color: colors.deepBlue }]
+        },
+        {
+          label: "e-CVT 齿比", subLabel: "平滑升高并保持", min: 0, max: 100,
+          series: [{ points: [[0,32],[28,32],[42,42],[58,65],[70,78],[100,80]], color: colors.violet, label: "高齿比平台" }]
+        },
+        {
+          label: "电机转矩", subLabel: "快速响应", min: 0, max: 100,
+          series: [{ points: [[0,24],[28,25],[34,74],[48,88],[62,76],[72,42],[100,40]], color: "#4d5fa8", label: "快速接住" }]
+        },
+        {
+          label: "车速", subLabel: "进入更高巡航", min: 0, max: 100,
+          series: [{ points: [[0,34],[28,35],[42,47],[58,66],[72,78],[100,81]], color: colors.green, label: "高速巡航" }]
+        },
+        {
+          label: "踩踏力矩", subLabel: "骑手输入", min: 0, max: 100,
+          series: [{ points: [[0,32],[18,34],[29,38],[34,82],[46,90],[58,78],[68,35],[100,32]], color: colors.orange, label: "力矩下降" }]
+        }
+      ]
+    };
+
+    const climbChart = {
+      stateSegments: [
+        { start: 0, end: 100, label: "爬坡 / 陡坡脚感控制", color: colors.violet }
+      ],
+      windows: [
+        { start: 28, end: 32, label: "低谷变比" },
+        { start: 58, end: 62, label: "低谷变比" }
+      ],
+      rows: [
+        {
+          label: "坡度", subLabel: "约 10° 陡坡", min: 0, max: 12,
+          series: [{ points: [[0,8],[18,10],[100,10]], color: colors.green, smooth: false, label: "10°" }]
+        },
+        {
+          label: "踩踏力矩", subLabel: "舒适区优先", min: 0, max: 100,
+          band: { min: 42, max: 62, color: colors.green, label: "脚感舒适中间区" },
+          series: [{ points: [[0,54],[16,59],[28,76],[40,60],[54,45],[66,55],[82,65],[100,56]], color: colors.orange, label: "拉回中间区" }],
+          annotations: [{ x: 31, y: 84, text: "偏重", color: colors.orange }, { x: 55, y: 37, text: "避免过空", color: colors.orange }]
+        },
+        {
+          label: "目标踏频", subLabel: "动态变化", min: 40, max: 95,
+          series: [{ points: [[0,58],[16,56],[30,66],[43,61],[56,54],[70,60],[100,58]], color: colors.blue, dash: "6 5", label: "服务脚感" }]
+        },
+        {
+          label: "真实踏频", subLabel: "跟随但非唯一核心", min: 40, max: 95,
+          series: [{ points: [[0,56],[18,55],[32,63],[44,60],[58,53],[72,58],[100,57]], color: colors.deepBlue, label: "真实" }]
+        },
+        {
+          label: "e-CVT 齿比", subLabel: "按力矩偏差调整", min: 0, max: 100,
+          series: [{ points: [[0,62],[20,60],[34,42],[48,50],[60,64],[74,57],[100,60]], color: colors.violet, label: "调脚感" }]
+        },
+        {
+          label: "电机转矩", subLabel: "支撑而不掏空", min: 0, max: 100,
+          series: [{ points: [[0,58],[20,62],[32,76],[46,68],[60,56],[76,66],[100,62]], color: "#4d5fa8", label: "支撑" }]
+        },
+        {
+          label: "车速", subLabel: "不是第一目标", min: 0, max: 100,
+          series: [{ points: [[0,44],[18,43],[36,41],[56,42],[78,43],[100,42]], color: colors.green, label: "相对稳定" }]
+        }
+      ]
+    };
+
+    function drawPhaseChart() {
+      const svg = document.getElementById("phase-chart");
+      svg.innerHTML = "";
+      svg.appendChild(svgEl("rect", { x: 0, y: 0, width: 790, height: 420, rx: 10, fill: "#fbfcfc" }));
+
+      const cx = 150;
+      const cy = 185;
+      svg.appendChild(svgEl("circle", { cx, cy, r: 96, fill: "#ffffff", stroke: colors.line, "stroke-width": 2 }));
+      svg.appendChild(svgEl("circle", { cx, cy, r: 8, fill: colors.ink }));
+      svg.appendChild(svgEl("line", { x1: cx, y1: cy, x2: cx, y2: cy - 82, stroke: colors.orange, "stroke-width": 8, "stroke-linecap": "round" }));
+      svg.appendChild(svgEl("circle", { cx, cy: cy - 92, r: 16, fill: colors.orangeSoft, stroke: colors.orange, "stroke-width": 2 }));
+      addText(svg, "12点", cx, cy - 116, { "text-anchor": "middle", fill: colors.orange, "font-size": 14, "font-weight": 900 });
+      addText(svg, "曲柄位置", cx, 330, { "text-anchor": "middle", fill: colors.ink, "font-size": 16, "font-weight": 900 });
+      addText(svg, "低踩踏力矩相位", cx, 354, { "text-anchor": "middle", fill: colors.muted, "font-size": 12 });
+
+      const left = 310;
+      const top = 88;
+      const w = 420;
+      const h = 210;
+      const xScale = (x) => left + (x / 100) * w;
+      const yScale = (y) => top + h - (y / 100) * h;
+      svg.appendChild(svgEl("rect", { x: left - 10, y: top - 18, width: w + 20, height: h + 50, rx: 8, fill: "#ffffff", stroke: colors.line }));
+      for (let x = 0; x <= 100; x += 25) {
+        svg.appendChild(svgEl("line", { x1: xScale(x), y1: top, x2: xScale(x), y2: top + h, stroke: colors.grid }));
+      }
+      svg.appendChild(svgEl("rect", { x: xScale(47), y: top, width: xScale(55) - xScale(47), height: h, fill: colors.amberSoft, opacity: .9 }));
+      svg.appendChild(svgEl("rect", { x: xScale(80), y: top, width: xScale(88) - xScale(80), height: h, fill: colors.amberSoft, opacity: .55 }));
+      const points = [];
+      for (let i = 0; i <= 100; i += 4) {
+        const wave = 47 + 32 * Math.sin((i / 100) * Math.PI * 4 - Math.PI / 2);
+        const notch = Math.abs(i - 51) < 7 || Math.abs(i - 84) < 7 ? -18 : 0;
+        points.push([i, Math.max(8, Math.min(92, wave + notch))]);
+      }
+      svg.appendChild(svgEl("path", {
+        d: smoothPath(points, xScale, yScale),
+        fill: "none",
+        stroke: colors.orange,
+        "stroke-width": 4,
+        "stroke-linecap": "round"
+      }));
+      addText(svg, "踩踏力矩波形", left, top - 34, { fill: colors.ink, "font-size": 17, "font-weight": 900 });
+      addText(svg, "推荐变比窗口", xScale(51), top + 18, { "text-anchor": "middle", fill: colors.amber, "font-size": 12, "font-weight": 900 });
+      addText(svg, "力矩低谷", xScale(51), yScale(12), { "text-anchor": "middle", fill: colors.orange, "font-size": 12, "font-weight": 900 });
+      addText(svg, "时间 / 曲柄相位", left + w / 2, top + h + 34, { "text-anchor": "middle", fill: colors.muted, "font-size": 12 });
+
+      svg.appendChild(svgEl("line", { x1: 246, y1: 180, x2: 300, y2: 180, stroke: colors.line, "stroke-width": 2 }));
+      svg.appendChild(svgEl("path", { d: "M 292 172 L 306 180 L 292 188 Z", fill: colors.line }));
+
+      const compareY = 358;
+      const items = [
+        ["高力矩区变比", "脚感冲击更明显", colors.red],
+        ["低力矩区变比", "脚感更自然", colors.green]
+      ];
+      items.forEach((item, index) => {
+        const x = 338 + index * 210;
+        svg.appendChild(svgEl("rect", { x, y: compareY, width: 180, height: 42, rx: 7, fill: index === 0 ? "#f4e2de" : "#dfeee6", stroke: item[2] }));
+        addText(svg, item[0], x + 90, compareY + 17, { "text-anchor": "middle", fill: item[2], "font-size": 12, "font-weight": 900 });
+        addText(svg, item[1], x + 90, compareY + 33, { "text-anchor": "middle", fill: colors.muted, "font-size": 11 });
+      });
+    }
+
+    function drawIntentFlow() {
+      const svg = document.getElementById("intent-flow");
+      svg.innerHTML = "";
+      const columns = [
+        { title: "传感器输入", x: 22, items: ["踩踏力矩", "踏频", "曲柄位置", "车速", "坡度 / IMU", "刹车状态"], color: colors.orange },
+        { title: "意图识别", x: 172, items: ["舒适巡航", "突然加速", "陡坡爬坡", "滑行恢复", "停车起步"], color: colors.teal },
+        { title: "目标选择", x: 322, items: ["目标踏频", "力矩舒适区", "目标齿比", "助力响应"], color: colors.blue },
+        { title: "控制输出", x: 472, items: ["电机转矩", "e-CVT 齿比", "再生限制", "HMI 提示"], color: colors.violet }
+      ];
+      columns.forEach((col, index) => {
+        svg.appendChild(svgEl("rect", { x: col.x, y: 34, width: 120, height: 298, rx: 8, fill: "#ffffff", stroke: colors.line }));
+        svg.appendChild(svgEl("rect", { x: col.x, y: 34, width: 120, height: 34, rx: 8, fill: col.color }));
+        addText(svg, col.title, col.x + 60, 56, { "text-anchor": "middle", fill: "#fff", "font-size": 13, "font-weight": 900 });
+        col.items.forEach((item, itemIndex) => {
+          const y = 88 + itemIndex * 35;
+          svg.appendChild(svgEl("rect", { x: col.x + 12, y, width: 96, height: 24, rx: 5, fill: "#f8fbfa", stroke: colors.line }));
+          addText(svg, item, col.x + 60, y + 16, { "text-anchor": "middle", fill: colors.ink, "font-size": 11 });
+        });
+        if (index < columns.length - 1) {
+          svg.appendChild(svgEl("line", { x1: col.x + 120, y1: 184, x2: columns[index + 1].x, y2: 184, stroke: colors.muted, "stroke-width": 2 }));
+          svg.appendChild(svgEl("path", { d: `M ${columns[index + 1].x - 10} 176 L ${columns[index + 1].x} 184 L ${columns[index + 1].x - 10} 192 Z`, fill: colors.muted }));
+        }
+      });
+      addText(svg, "多输入融合后，控制目标不是单一 rpm，而是随场景切换。", 305, 368, {
+        "text-anchor": "middle", fill: colors.muted, "font-size": 12
+      });
+    }
+
+    function drawCoordFlow() {
+      const svg = document.getElementById("coord-flow");
+      svg.innerHTML = "";
+      svg.appendChild(svgEl("rect", { x: 22, y: 36, width: 566, height: 310, rx: 10, fill: "#fbfcfc", stroke: colors.line }));
+
+      const nodes = [
+        { x: 60, y: 82, w: 150, h: 72, title: "骑手意图", text: "力矩变化 / 踏频变化", color: colors.orange },
+        { x: 230, y: 70, w: 150, h: 96, title: "电机转矩", text: "快速响应，先接住请求", color: colors.blue },
+        { x: 400, y: 70, w: 150, h: 96, title: "e-CVT 齿比", text: "中慢速整理节奏", color: colors.violet },
+        { x: 230, y: 230, w: 150, h: 72, title: "真实踏频", text: "允许上扬或动态跟随", color: colors.deepBlue },
+        { x: 400, y: 230, w: 150, h: 72, title: "脚下力矩", text: "回到舒适中间区", color: colors.green }
+      ];
+      nodes.forEach((node) => {
+        svg.appendChild(svgEl("rect", { x: node.x, y: node.y, width: node.w, height: node.h, rx: 8, fill: "#ffffff", stroke: node.color, "stroke-width": 2 }));
+        addText(svg, node.title, node.x + node.w / 2, node.y + 28, { "text-anchor": "middle", fill: node.color, "font-size": 15, "font-weight": 900 });
+        addText(svg, node.text, node.x + node.w / 2, node.y + 52, { "text-anchor": "middle", fill: colors.muted, "font-size": 11 });
+      });
+
+      const arrows = [
+        [210,118,230,118], [380,118,400,118], [305,166,305,230], [475,166,475,230], [380,266,400,266]
+      ];
+      arrows.forEach(([x1,y1,x2,y2]) => {
+        svg.appendChild(svgEl("line", { x1, y1, x2, y2, stroke: colors.muted, "stroke-width": 2 }));
+        const angle = Math.atan2(y2 - y1, x2 - x1);
+        const size = 8;
+        const ax = x2 - Math.cos(angle) * size;
+        const ay = y2 - Math.sin(angle) * size;
+        const p1 = `${x2},${y2}`;
+        const p2 = `${ax + Math.cos(angle + Math.PI / 2) * size * .6},${ay + Math.sin(angle + Math.PI / 2) * size * .6}`;
+        const p3 = `${ax + Math.cos(angle - Math.PI / 2) * size * .6},${ay + Math.sin(angle - Math.PI / 2) * size * .6}`;
+        svg.appendChild(svgEl("polygon", { points: `${p1} ${p2} ${p3}`, fill: colors.muted }));
+      });
+
+      svg.appendChild(svgEl("path", { d: "M 154 154 C 175 218, 202 250, 230 266", fill: "none", stroke: colors.orange, "stroke-width": 2, "stroke-dasharray": "5 5" }));
+      addText(svg, "冲刺：电机快，齿比慢", 305, 190, { "text-anchor": "middle", fill: colors.blue, "font-size": 12, "font-weight": 900 });
+      addText(svg, "爬坡：齿比和电机一起稳住脚感", 475, 190, { "text-anchor": "middle", fill: colors.green, "font-size": 12, "font-weight": 900 });
+    }
+
+    drawStackedChart("sprint-chart", sprintChart);
+    drawStackedChart("climb-chart", climbChart);
+    drawPhaseChart();
+    drawIntentFlow();
+    drawCoordFlow();
+  </script>
+</body>
+</html>

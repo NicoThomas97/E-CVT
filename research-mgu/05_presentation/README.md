@@ -1,8 +1,14 @@
 # e-CVT MGU 价值认知离线网页
 
-最后更新：2026-07-07
+最后更新：2026-07-16
 
 ## 如何打开
+
+新增骑手体感可视化正式展示页：
+
+`research-mgu/05_presentation/ecvt_mgu_rider_feel_visualization_20260716.html`
+
+这是一个桌面端单文件离线网页，用 SVG/JS 绘制趋势曲线，用于解释 e-CVT MGU 的“智能脚感一致性控制”：巡航看踏频、冲刺看意图、爬坡看脚感力矩。页面面向会议投屏和桌面浏览，不做移动端适配；曲线只表达控制逻辑和体感趋势，不代表实测数据或量产规格。
 
 新增年轮逻辑版：
 
@@ -46,6 +52,14 @@
 
 页面中 `Vxxx` / `Fxxx` 证据标签为可点击证据入口：点击后会显示来源标题、来源方、记录文件、核验范围、支持内容和证据边界；该浮层默认隐藏，不作为新的主线章节展示。
 
+阅读骑手体感可视化页时，建议按以下顺序：
+
+1. `产品定义`：先看系统为什么从“自动换挡”升级为“脚感管理”。
+2. `控制优先级`：理解巡航、冲刺、爬坡三种状态的不同目标。
+3. `平路冲刺` 和 `陡坡爬坡`：重点看目标踏频、真实踏频、踩踏力矩、电机转矩和 e-CVT 齿比如何协同。
+4. `换比窗口`：理解曲柄 12 点 / 力矩低谷为什么是更自然的变比时机。
+5. `验证矩阵`：把视觉假设转成后续台架、样车和主观评价任务。
+
 ## 证据边界记录
 
 - Gobao X-system 是当前最强官方 e-CVT MGU 证据。
@@ -70,6 +84,12 @@
 - `03_analysis/emtb_pain_points_and_ecvt_mgu_opportunity.md`
 - `01_evidence/verified_sources*.csv`
 - `01_evidence/ecvt_source_findings.csv`
+
+骑手体感可视化页主要来自：
+
+- `03_analysis/ecvt_mgu_visual_storyboard.md`
+- `03_analysis/ecvt_mgu_product_function_definition.md`
+- `03_analysis/url_key_info_integrated_dedup_summary.md`
 
 ## 变更记录
 
