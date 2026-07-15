@@ -27,7 +27,7 @@
 | 直接竞争 | Gobao | X-system MTB & Cargo / likely X1P | 直接 e-CVT MGU | 官方 X-system 页面与 BikeBiz 发布页已验证；X1P 命名/2027 年 2 月量产节奏来自 BikeBiz/媒体 |
 | 直接替代 | Pinion | E-Drive MGU E1.9 | 量产有级 gearbox MGU | 官方页面已验证 |
 | 直接替代 | Pinion | E-Drive MGU E1.12 | 量产有级 gearbox MGU | 官方页面已验证 |
-| 原型/边界 | Owuru | Owuru Ride | 高功率连续变速 motor / e-CVT 相邻路线 | 媒体试骑/原型证据 |
+| 官方城市链条 + 高功率原型 | Owuru / E2Drives | OWURU Propulsive Module / LD 920 E / Owuru high-power route | 官方城市车连续变速模块 + 高功率 eMTB/cargo 媒体原型路线 | 官方 E2Drives/OWURU/Decathlon 已补齐城市车链条；高功率路线仍需官方 datasheet |
 | 强替代 | Bosch eBike Systems | eShift | 外部电子/自动换挡生态 | 官方页面已验证 |
 | 强替代 | Shimano | AUTO SHIFT / FREE SHIFT / Di2 with EP platforms | 外部自动换挡 + 手动/滑行换挡覆盖 | 官方 AUTO SHIFT、FREE SHIFT、调参和 E-TUBE 页面已验证；骑行测评仍待补 |
 | 强替代 | SRAM | Eagle Powertrain | eMTB 电机 + Eagle Transmission 自动换挡生态 | 官方页面与 E-MOUNTAINBIKE 实测已验证 |
@@ -43,7 +43,7 @@
 | eShift 伙伴 | Gearsensor | GS / GSSS / GSGI | Bosch eShift 伙伴系统 | Bosch 与 Gearsensor 官方页均已验证 |
 | 历史线索 | Valeo | Cyclee / Smart e-Bike System | 历史 integrated motor + automatic gearbox | 媒体证据；官方/current status 待补 |
 | 历史线索 | Revonte | Revonte ONE | 历史 integrated motor + CVT | 媒体线索；官方/current status 待补 |
-| UX 证据 | Owuru / Decathlon | Btwin LD 920 E / Owuru continuous-variation motor | 城市车目标踏频 UX 替代证据 | 媒体测评；不能直接外推高功率 MGU |
+| UX 证据 | Owuru / Decathlon | Btwin LD 920 E / Owuru continuous-variation motor | 城市车目标踏频 UX 替代证据 | 官方装车页 + 媒体测评；不能直接外推高功率 MGU |
 
 ## 3. 网页索引
 
@@ -149,8 +149,14 @@
 
 | 状态 | 网页类型 | 标题 | URL | 用途 |
 | --- | --- | --- | --- | --- |
+| 已核验 | 官方技术/架构页 | E2Drives Technology | https://e2drives.com/technology/ | Owuru/E2Drives Propulsive Module 官方技术链；all-in-one drive unit、底部支架旁自动传动、双电机、皮带、行星齿轮、ratchets/freewheel、Gen 1 用于 Decathlon LD920E |
+| 已核验 | 官方公司/商业关系页 | E2Drives Company | https://e2drives.com/company/ | E2Drives 与 Decathlon 的合作、战略关系、2023 年首批产品进店、Decathlon 子公司状态；用于补商业成熟度和量产关系 |
+| 已核验 | 官方产品页 | OWURU official page | https://owuru-ebike.com/en/ | OWURU Powered by E2 Drives；目标踏频、自动连续变速、无后拨/无花鼓变速、双电机、Decathlon LD 920 E 首款装车 |
+| 已核验 | 官方 OEM 装车/商品页 | Decathlon LD 920 E Automatic Owuru product page | https://www.decathlon.co.uk/p/long-distance-automatic-owuru-motor-low-frame-electric-city-bike-ld-920-e/355444/m8883702 | Decathlon UK 官方商品页；证明 LD 920 E / Owuru 不是只有媒体测评，而是官方零售装车证据；地区/库存需单独标注 |
 | 已核验 | 原型/试骑 | Owuru Ride : 150 Nm de couple et 1000 W de puissance pour le moteur a variation continue | https://www.transitionvelo.com/composants/moteurs-batteries/moteurs/owuru-ride-150-nm-de-couple-et-1000-w-de-puissance-pour-le-moteur-a-variation-continue/ | Owuru Ride 高功率连续变速原型；150 Nm、1000 W、3.9 kg、500% range、Eurobike 2025、短试骑体验、Rockrider/非 Decathlon OEM 商业化线索 |
+| 已核验 | 高功率路线/媒体首看 | Owuru's gearbox unit - the Pinion MGU killer? | https://ebike-mtb.com/en/owuru-gearbox-unit/ | Owuru 高功率 eMTB/cargo 连续变速路线的重要媒体源；也可作为 Pinion MGU 对照，但应归入 Owuru 正文 |
 | 已核验 | 骑行体验/测评 | Test - Decathlon Btwin LD 920 E, le velo de ville electrique ultime ? | https://www.transitionvelo.com/test/test-decathlon-btwin-ld-920-e-le-velo-de-ville-electrique-ultime/ | 城市车目标踏频/不用换挡体验；记录流畅、响应、目标踏频 40-90 rpm、65 Nm 持续扭矩等 UX 证据；不能直接外推高功率 eMTB/cargo MGU |
+| 已核验 | 骑行体验/测评 | Testing Decathlon's new BTWIN LD 920E Automatic city e-bike | https://downtown-mag.com/en/decathlon-btwin-ld-920e-automatic-city-e-bike-owuru-motor-test/ | DOWNTOWN 对 LD 920E / OWURU 城市车自动连续变速体验的独立测评；补充城市 UX 证据 |
 
 ### 3.13 Valeo - Cyclee / Smart e-Bike System
 
@@ -176,6 +182,12 @@
 | 已核验 | Gearsensor | GS / GSSS / GSGI | 官方功能页 | https://gearsensor.com/products | 机械变速降扭传感器；换挡时向中置电机控制器发信号，临时切断/降低电机扭矩，降低链条/变速系统冲击 |
 | 已核验 | Gearsensor | compatible drive units | 官方兼容页 | https://gearsensor.com/compatible-drive-units | 列出 Bosch、Brose、Bafang、Panasonic、Fazua 等兼容驱动单元；说明它是跨电机平台的外部降扭换挡生态 |
 
+### 3.16 跨品牌 eCVT 机制/风险解释
+
+| 状态 | 网页类型 | 标题 | URL | 用途 |
+| --- | --- | --- | --- | --- |
+| 已核验 | 媒体技术解释/风险边界 | What Is an eCVT? Could It Replace Derailleurs and Gearboxes? | https://www.pinkbike.com/news/why-ecvts-could-be-the-future-of-e-bike-drivetrains.html | 横向解释 Avinox、Gobao、Owuru 等 eCVT 逻辑；用于机制框架、虚拟档/目标踏频、效率、低电/断电、法规和轻助力适配风险边界；不是单一产品规格源 |
+
 ## 4. 高优先级跟踪对象
 
 优先级最高：
@@ -183,7 +195,7 @@
 - Avinox MG Concept：补官方 press kit、最终规格表、量产时间、内部机制、OEM prototype 页面。
 - Gobao X-system / X1 / X1P：BikeBiz 已补 X1/X1P、2027 年 2 月量产和 OEM 服务策略线索；仍需 Gobao 官方命名页、OEM 客户、效率/热/寿命闭环。
 - Pinion E-Drive MGU E1.9/E1.12：补更多长期骑行体验、噪声、故障、维修成本、OEM 价格带。
-- Owuru Ride：补官方资料、Rockrider/Decathlon 量产计划、非 Decathlon OEM 合作、长测。
+- Owuru / E2Drives：官方城市车技术链已补齐；继续追高功率 datasheet、Rockrider/Decathlon 量产计划、非 Decathlon OEM 合作、效率/热/寿命和长测。
 
 强替代持续跟踪：
 
@@ -241,7 +253,7 @@
 | 视频待复核 | 视频/首骑 | First Ride: Pinion Motor Gearbox Unit (MGU) | https://www.youtube.com/watch?v=aCkImVCX7Yc | Alex Bike Tester；Google 章节显示 specs、ride experience、noise、unsprung mass、shifting 等 |
 | 视频待复核 | 视频/测评 | PINION E1.12 REVIEW - First Integrated EMTB Gearbox & Motor | https://www.youtube.com/watch?v=0i5AsEzsP6Y | Sam's Bikes；章节覆盖爬坡、噪声、换挡、自动换挡、续航、断电骑行和竞品对比 |
 | 视频待复核 | 视频/首骑 | Pinion MGU Equipped Nicolai S16 eMTB - First Ride Review | https://www.youtube.com/watch?v=QENBAjQKUto | The Loam Wolf；章节覆盖 Nicolai S16 MGU 技术、爬坡、下坡和总结 |
-| 搜索命中待复核 | 媒体/相邻竞品 | Owuru's gearbox unit - the Pinion MGU killer? | https://ebike-mtb.com/en/owuru-gearbox-unit/ | 与 Owuru 高功率连续变速路线相关，也可作为 Pinion 对照 |
+| 已提升至 3.12 | 媒体/相邻竞品 | Owuru's gearbox unit - the Pinion MGU killer? | https://ebike-mtb.com/en/owuru-gearbox-unit/ | 已归入 Owuru 正文；此处仅保留为 Pinion MGU 对照线索 |
 
 ### 6.4 Bosch eShift / TRP E.A.S.I. 扩展候选
 
@@ -333,9 +345,15 @@
 
 | 状态 | 网页类型 | 标题/线索 | URL | 备注 |
 | --- | --- | --- | --- | --- |
-| 搜索命中待复核 | 测评 | Testing Decathlon's new BTWIN LD 920E Automatic city e-bike | https://downtown-mag.com/en/decathlon-btwin-ld-920e-automatic-city-e-bike-owuru-motor-test/ | DOWNTOWN；可补城市车自动踏频体验 |
+| 已提升至 3.12 | 测评 | Testing Decathlon's new BTWIN LD 920E Automatic city e-bike | https://downtown-mag.com/en/decathlon-btwin-ld-920e-automatic-city-e-bike-owuru-motor-test/ | 已作为 LD 920E / OWURU 城市 UX 补充测评写入正文 |
 | 搜索命中待复核 | 发布/车型 | New e-city bike from Decathlon with automatic transmission | https://www.bike-magazin.de/en/bicycles/city-bikes/urban-bikes/b-twin-ld-920-e-automatic-new-e-city-bike-from-decathlon-with-automatic-transmission/ | BIKE Magazin；LD 920 E 装车/发布 |
 | 搜索命中待复核 | 发布/车型 | Decathlon's B'Twin LD 920E hits the UK with a unique mid-motor and auto transmission | https://road.cc/ebiketips/content/news/decathlons-b-twin-ld-920e-hits-the-uk-with-a-unique-mid-motor-and-auto-transmission | Road.cc；UK 上市/车型 |
-| 搜索命中待复核 | OEM 装车页 | Long-Distance Automatic Owuru Motor Low Frame Electric City Bike LD 920 E | https://www.decathlon.co.uk/p/long-distance-automatic-owuru-motor-low-frame-electric-city-bike-ld-920-e/355444/m8883702 | Decathlon UK 官方商品页；需补地区/库存边界 |
+| 已提升至 3.12 | OEM 装车页 | Long-Distance Automatic Owuru Motor Low Frame Electric City Bike LD 920 E | https://www.decathlon.co.uk/p/long-distance-automatic-owuru-motor-low-frame-electric-city-bike-ld-920-e/355444/m8883702 | 已作为官方 OEM 装车/商品页写入正文；地区/库存边界仍需标注 |
 | 搜索命中待复核 | 测评 | Automatically good? The affordable Decathlon BTWIN LD920E LF tested | https://urbanbike.news/en/affordable-decathlon-btwin-ld920e-lf-tested/ | UrbanBike.News；可补城市车测评 |
 | 视频待复核 | 视频/测评 | Decathlon Btwin LD 920 E review: the ultimate city bike? | https://www.youtube.com/watch?v=Z3RzOfGDQkw | Transition Velo 视频；与正文法文测评互证 |
+
+### 6.14 HEPHA UrbanX / Gobao 城市 eCVT 新线索
+
+| 状态 | 网页类型 | 标题/线索 | URL | 备注 |
+| --- | --- | --- | --- | --- |
+| 搜索命中待复核 | 概念车/城市 eCVT 线索 | Konzeptbike Hepha UrbanX | https://www.welt.de/motor/news/article6a4e18b5bb0cf80de56a2069/konzeptbike-hepha-urbanx.html | 2026-07-08 之后出现的新线索；搜索结果指向 Gobao eCVT、regenerative braking、connected anti-theft 等城市车方向。需找 HEPHA 官方页或稳定正文后才能写入 verified sources |

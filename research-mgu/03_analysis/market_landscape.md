@@ -30,7 +30,7 @@
 | Gobao X1/X1P MGU | 计划量产信号 | 与 Avinox MG Concept 同期成为 eCVT/MGU 市场信号；需补官方 X-series 规格。 | O003, S001 |
 | Valeo Cyclee | 历史/当前状态待核实 | 是“电机+自动变速箱”路线的关键历史样本，但本轮未完成官方规格抽取。 | O020 |
 | Revonte ONE | 历史/当前状态待核实 | 与 MGU 方向高度相关，但当前商业状态、量产交付和官方资料需要二轮确认。 | O021 |
-| Owuru | 边界待定 | 可能是自动无级/类 CVT 传动路线，需确认是否 motor-internal、bottom-bracket、hub 或外部 transmission。 | O022 |
+| Owuru / E2Drives | 官方城市车链条已补齐；高功率路线仍需闭环 | E2Drives/OWURU/Decathlon 官方页已确认 Gen 1 城市车自动连续变速模块和 LD 920 E 装车；高功率 eMTB/cargo 仍需官方 datasheet、效率/热/寿命和非 Decathlon OEM 证据。 | V033-V039 |
 
 ### L2 准直接方案：中置电机+自动/电子变速深度集成
 
@@ -85,7 +85,8 @@
 - Pinion E1.9/E1.12：完整 datasheet、OEM 车型、用户评价、服务成本、噪音、失效案例。
 - Avinox MG Concept：press kit、专利、量产时间、与 M1/M2/M2S 的边界；Tech Details 图卡值的测试口径，包括 >1.1 kg、150 kg、45 dB、300 Nm、<0.1 s、100%-520%、3 times more durable、10% less efficient、charging。
 - Gobao X1/X1P：官方 X-series 资料、规格页、量产节奏、OEM 合作。
-- Valeo Cyclee / Revonte ONE / Owuru：确认当前商业状态，避免把停止或未量产项目当成活跃竞品。
+- Valeo Cyclee / Revonte ONE：确认当前商业状态，避免把停止或未量产项目当成活跃竞品。
+- Owuru / E2Drives：城市车官方链条已补齐；继续确认高功率路线的官方量产状态、非 Decathlon OEM、效率、热、寿命和服务策略。
 - Bosch/Shimano/SRAM/enviolo/Rohloff：提取“自动换挡体验”的用户价值与系统边界，而不是只抄参数。
 
 ## 5. 如何接入 pm-skills

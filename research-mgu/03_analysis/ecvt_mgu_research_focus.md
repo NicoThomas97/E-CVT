@@ -48,6 +48,7 @@ e-CVT MGU 需要重点验证：
 
 - Gobao X-system：第一核心官方竞品/参照。
 - Avinox MG Concept：第一量产方向/准量产目标参照；Tech Details 图卡可作为内部对标输入，继续追 press kit、专利、OEM prototype 页面、测试基准和最终公开 datasheet。
-- Valeo Cyclee、Revonte ONE、Owuru：提高优先级，用于追溯历史 e-CVT/自动变速方案的技术卡点、商业状态和失败原因。
+- Owuru / E2Drives / Decathlon：官方城市车技术链和 LD 920 E 装车已补齐，可证明目标踏频/连续变速 UX 与 Decathlon OEM fit；高功率 eMTB/cargo 仍停留在媒体首看/原型证据，需要继续追官方 datasheet、效率、热、寿命和服务策略。
+- Valeo Cyclee、Revonte ONE：继续作为历史 e-CVT/自动变速方案线索，用于追溯技术卡点、商业状态和失败原因。
 - Pinion MGU：降为量产 MGU 参照，不再作为主目标路线。
 - `scenario_substitutability_matrix.csv` 后续应改成 e-CVT MGU 的场景不可替代性矩阵。

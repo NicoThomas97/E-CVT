@@ -175,4 +175,4 @@ No-Go 倾向：
 - 将 `ecvt_mgu_validation_task_matrix.csv` 转成测试需求表。
 - 将本文件第 4 节转成 OEM / 经销商 / 用户访谈提纲。
 - 对 `VT001-VT012` 标注责任人、优先级、预计证据来源和完成状态。
-- 继续补查 Gobao、Avinox、Owuru 的官方或准官方资料；Avinox Tech Details 先按量产方向/准量产目标使用，同时追 press kit、专利、OEM prototype 页面、测试基准和最终公开 datasheet。
+- 继续补查 Gobao、Avinox、Owuru 的官方或准官方闭环资料：Gobao 追量产、客户和服务策略；Avinox Tech Details 先按量产方向/准量产目标使用，同时追 press kit、专利、OEM prototype 页面、测试基准和最终公开 datasheet；Owuru/E2Drives 追高功率 datasheet、效率/热/寿命、服务策略和非 Decathlon OEM。

@@ -9,7 +9,7 @@
 "Cargo / family utility","花鼓 CVT/内变 + 中置电机","载重、停启、自动踏频和低维护已经强。","后轮复杂、轮组维修和中心质量不如 MGU。","货运/家庭车已有可解释方案。","e-CVT MGU 在后轮维护、诊断和高载起步体验形成量化优势。","V009;V010;V011;V012;F020;F021;F022;F023;F041"
 "Cargo / family utility","有级 gearbox MGU","封闭、低维护、宽范围，适合高端 cargo/SUV。","无级踏频体验和低技能用户友好性可能不如 e-CVT。","高端可靠路线，故事清晰。","e-CVT 在满载停启中更平顺、更不需要档位心智。","V001;V020;V025;F001;F004"
 "Cargo / family utility","普通中置电机 + 机械传动","成本较低、维修点熟悉。","重载误换挡和外露传动磨损无法根除。","适合价格敏感车型。","TCO 和家庭用户易用性成为核心卖点。","V006;F015"
-"Premium urban commuter","e-CVT MGU","用户不用操心换挡、目标踏频、connected/security、低维护形象。","城市场景已有成熟替代，成本压力大。","做 premium connected city bike。","比 enviolo/Owuru/hub route 有更强整车集成、防盗和后轮维护收益。","V004;V031;F026;F027;F039;F040"
+"Premium urban commuter","e-CVT MGU","用户不用操心换挡、目标踏频、connected/security、低维护形象。","城市场景已有成熟替代，成本压力大。","做 premium connected city bike。","必须证明相对 Owuru Gen 1 城市方案、enviolo/hub CVT 和普通内变，在防盗、诊断、后轮维护或高级感上有清晰增量。","V004;V031;V033;V034;V035;V036;F026;F027;F039;F040;F049;F050;F052;F053;F054"
 "Premium urban commuter","电子外变 + 中置电机","自动换挡可用，成本/重量可能更好。","对低维护和无心智负担的改善有限。","中高端通勤可快速量产。","外露件维护和误用仍造成差评。","V005;V007;F013;F016;F042"
 "Premium urban commuter","花鼓 CVT/内变 + 中置电机","非常强：自动踏频、封闭、低维护、城市停启适配。","后轮复杂和系统分散，但多数用户不敏感。","最容易解释也较成熟。","e-CVT MGU 的整车安全、诊断、后轮维护和高级感能覆盖成本差。","V009;V031;F020;F039;F041"
 "Premium urban commuter","有级 gearbox MGU","低维护、封闭和高端差异化。","可能过重过贵，有级体验未必比 hub CVT 更适合城市。","高端小众可用。","e-CVT 更顺、更少档位感、更接近普通用户需求。","V001;V025;F001;F004"

@@ -84,7 +84,7 @@ Valeo Cyclee 和 Revonte ONE 仍是历史线索，不能作为当前活跃竞品
 - Gobao X1/X1P 官方命名、量产时间、OEM 客户、持续功率、效率 map、热衰减、寿命和服务策略。
 - Avinox MG Concept 官方资料、完整 press kit、专利、prototype bike 页面，以及 e-CVT 内部实现、断电降级和最终公开 datasheet 确认；这些是闭环项，不影响 Tech Details 图卡作为量产方向/准量产目标使用。
 - Avinox Tech Details 图卡中的关键值和功能边界：`>1.1 kg` reduced unsprung mass、150 kg heavier riders、45 dB、300 Nm shift under load、<0.1 s shifting window、100%-520% gear ratio、3 times more durable、10% less efficient、mechanical motor lock、electric reverse assist、built-in speed sensor、下坡 charging。
-- Owuru 官方资料、Decathlon/E2Drives 官方资料、售后/量产状态。
+- Owuru / E2Drives / Decathlon 官方城市车技术链已初步补齐：E2Drives Technology、E2Drives Company、OWURU official page 和 Decathlon LD 920 E 官方商品页可证明 Gen 1 城市车/OEM fit；仍缺高功率 eMTB/cargo 官方 datasheet、非 Decathlon OEM、效率 map、热衰减、寿命、诊断和服务策略。
 - Valeo Cyclee 和 Revonte ONE 的官方归档、装车历史和商业结果。
 
 下一阶段必须由测试或访谈补齐：
@@ -130,5 +130,5 @@ Valeo Cyclee 和 Revonte ONE 仍是历史线索，不能作为当前活跃竞品
 - 基于 `ecvt_mgu_validation_task_matrix.csv` 给 `VT001-VT012` 标注优先级、责任人、目标证据和状态。
 - 将 `ecvt_mgu_validation_plan.md` 第 3 节转成台架测试需求，将第 4 节转成 OEM / 经销商 / 用户访谈提纲。
 - 已用 `avinox_mg_concept_deep_research.md` 更新验证矩阵：新增 Avinox Tech Details 对应验证项，特别是扭矩平滑、非簧载质量、负载换挡、maintenance-free、mechanical lock、reverse assist、built-in speed sensor 和 charging。
-- 补查 Gobao/Avinox/Owuru 的官方或准官方资料，特别是量产、客户和技术机制；Avinox 优先追 press kit、专利和 OEM prototype 页面。
+- 补查 Gobao/Avinox/Owuru 的官方或准官方闭环资料：Gobao 重点是量产、客户和服务策略；Avinox 重点是 press kit、专利、OEM prototype 页面、测试基准和最终公开 datasheet；Owuru/E2Drives 重点转为高功率 datasheet、效率/热/寿命、服务策略和非 Decathlon OEM。
 - 使用 `pm-skills` 的 competitive-analysis 对已核验方案做结构化定位，但不让它生成事实。
