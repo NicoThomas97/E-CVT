@@ -1,6 +1,6 @@
 # MGU 调研包入口
 
-最后更新：2026-07-14
+最后更新：2026-07-15
 
 ## 先读什么
 
@@ -13,6 +13,13 @@
 - `03_analysis/ecvt_competitive_products_web_index.md`：网页索引和复核状态。
 - `01_evidence/verified_sources*.csv` 与 `01_evidence/*source_findings.csv`：可引用来源和逐条事实。
 - `02_matrices/*.csv`：竞品、替代方案、场景价值和验证任务矩阵。
+
+齿比范围相关结论优先读 `02_matrices/transmission_ratio_range_benchmark.csv`，并回查 `01_evidence/ratio_source_findings.csv`。
+
+场景和替代方案判断优先读：
+
+- `03_analysis/scenario_entry_priority_note.md`：场景进入优先级阅读版，对应 `02_matrices/ecvt_mgu_scenario_matrix.csv` 和 `02_matrices/scenario_substitutability_matrix.csv`。
+- `03_analysis/substitute_solution_segment_note.md`：替代方案分场景阅读版，对应 `02_matrices/substitute_solution_segment_matrix.csv`。
 
 ## 当前研究主轴
 

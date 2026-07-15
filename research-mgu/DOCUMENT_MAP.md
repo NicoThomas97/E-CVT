@@ -1,6 +1,6 @@
 # MGU 调研文档地图
 
-最后更新：2026-07-14
+最后更新：2026-07-15
 
 ## 1. 入口和阅读顺序
 
@@ -14,6 +14,18 @@
 4. `01_evidence/verified_sources*.csv` 和 `01_evidence/*source_findings.csv`：可引用证据和逐条 finding。
 5. `02_matrices/*.csv`：把证据转成竞品、替代方案、场景价值和验证任务。
 6. `03_analysis/*.md`：专题分析、场景假设、验证计划和 go/no-go 草案。
+
+新增齿比范围口径时，优先读：
+
+1. `02_matrices/transmission_ratio_range_benchmark.csv`：证据闭合的外变、MGU、内变/CVT/gearbox 齿比范围对比矩阵。
+2. `01_evidence/ratio_source_findings.csv`：逐条齿比范围 finding 和计算口径。
+3. `03_analysis/transmission_ratio_range_benchmark_note.md`：范围定义、排除项和当前最大外变速结论。
+
+阅读场景和替代方案判断时，优先读：
+
+1. `03_analysis/scenario_entry_priority_note.md`：场景进入优先级阅读版，对应 `02_matrices/ecvt_mgu_scenario_matrix.csv` 和 `02_matrices/scenario_substitutability_matrix.csv`。
+2. `03_analysis/substitute_solution_segment_note.md`：替代方案分场景阅读版，对应 `02_matrices/substitute_solution_segment_matrix.csv`。
+3. `02_matrices/ecvt_mgu_validation_task_matrix.csv` 和 `03_analysis/ecvt_mgu_validation_plan.md`：把上述场景判断转成验证任务。
 
 ## 2. 文件类型和证据边界
 

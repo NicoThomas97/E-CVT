@@ -108,6 +108,8 @@
 | 已核验 | 官方功能页 | Shimano FREE SHIFT technology page | https://bike.shimano.com/en-NA/technologies/details/free-shift.html | FREE SHIFT 滑行/不踩踏换挡；兼容 Di2 e-bike，驱动单元在滑行时用少量动力带动链盘/飞轮完成换挡；支持 Automatic FREE SHIFT 与 Manual FREE SHIFT，仍绑定 LINKGLIDE/HYPERGLIDE+ 与 Di2 兼容边界 |
 | 已核验 | 官方设置/应用页 | AUTO SHIFT Customization Quick Manual | https://bike.shimano.com/en-NA/technologies/details/auto-shift-customization-quick-manual.html | AUTO SHIFT 调参入口；记录 Shift timing、Climbing response、Start gear、Automatic FREE SHIFT，以及 DU-EP801/DU-EP600 + RD-M8150/RD-U6070/RD-U6050 等组合示例 |
 | 已核验 | 官方应用页 | E-TUBE PROJECT Cyclist | https://bike.shimano.com/en-NA/technologies/details/e-tube-project-cyclist.html | 用于开启/自定义 AUTO SHIFT、FREE SHIFT 等 Shimano e-bike / Di2 功能；补软件交互与调参证据 |
+| 已核验 | 官方规格手册/PDF | Shimano 2023-2024 Product Specifications Handbook | https://productinfo.shimano.com/pdfs/product/archive/2023-2024_Specifications_v028_en.pdf | 齿比范围矩阵新增来源；用于核验 CUES、MTB、trekking、road/gravel 外变牙盘/飞轮齿数组合和前后拨容量闭合 |
+| 已核验 | 官方规格页 | Shimano Alfine SG-S7001-11 official product page | https://bike.shimano.com/products/components/pdp.P-SG-S7001-11.html | Shimano Alfine 11 速内变花鼓 409% 范围；作为内变替代路线齿比范围基准 |
 | 待补 | 骑行体验/评测 | Shimano AUTO SHIFT / FREE SHIFT ride reviews | 待补 | 需要定向查 BikeRadar、E-MOUNTAINBIKE、Pinkbike、BikeRumor 等对 EP801/EP6 + Di2 自动换挡的实际骑行评价 |
 
 ### 3.7 SRAM - Eagle Powertrain
@@ -115,6 +117,8 @@
 | 状态 | 网页类型 | 标题 | URL | 用途 |
 | --- | --- | --- | --- | --- |
 | 已核验 | 官方功能/OEM 页 | SRAM Eagle Powertrain official page | https://www.sram.com/en/sram/mountain/collections/eagle-powertrain | Auto Shift、Pedal Speed personalization、Coast Shift、AXS Bridge Display、AXS Pod、AXS app、630/720 Wh 电池、250 Wh range extender、Nukeproof/Transition/Propain/Berria/GasGas OEM 链接 |
+| 已核验 | 官方规格页 | SRAM Eagle cassette official product page | https://www.sram.com/en/sram/models/cs-xg-1299-b1 | 齿比范围矩阵新增来源；10-52T 作为 1x 外变 520% cassette range 基准 |
+| 已核验 | 官方规格页 | SRAM XPLR XG-1251 cassette official product page | https://www.sram.com/en/sram/models/cs-xg-1251-d1 | 齿比范围矩阵新增来源；10-44T 作为 1x gravel 440% cassette range 基准 |
 | 已核验 | 骑行体验/评测 | In review: the new SRAM Eagle Powertrain motor system | https://ebike-mtb.com/en/sram-eagle-powertrain-review/ | E-MOUNTAINBIKE 实测；记录 90 Nm/2.98 kg、Brose Drive S Mag 基础、Auto-Shift、Coast-Shift、AXS Pod/Bridge/app、四台 eMTB 试骑；结论偏向 Coast-Shift 对技术路况有用，Auto-Shift 更适合巡航/接驳/稳定踏频，技术爬坡与动态场景仍常需手动覆盖 |
 | 待补 | 骑行体验/评测 | SRAM Eagle Powertrain additional ride reviews | 待补 | 继续补 Pinkbike、BikeRadar、Vital MTB、The Loam Wolf 等横向和长期测评，尤其耐久、售后和不同 OEM 标定差异 |
 

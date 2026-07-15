@@ -1,6 +1,6 @@
 # MGU 调研项目状态
 
-最后更新：2026-07-05，v6.5
+最后更新：2026-07-15，v7.1
 
 ## 1. 当前目标
 
@@ -36,12 +36,15 @@
 
 - `01_evidence/verified_sources_v6_addendum.csv`：新增 Gobao、Avinox、Owuru、LD 920 E 等 e-CVT/连续变速相关证据。
 - `01_evidence/ecvt_source_findings.csv`：e-CVT 专用逐条 finding，避免把旧广义 MGU 证据和本轮结论混在一起。
+- `01_evidence/verified_sources_v7_ratio_addendum.csv`：新增 Shimano / SRAM / Shimano Alfine 官方齿比范围来源。
+- `01_evidence/ratio_source_findings.csv`：新增齿比范围逐条 finding，并区分官方总范围、外变计算范围和 booth/OCR 相对范围。
 
 矩阵文件：
 
 - `02_matrices/ecvt_mgu_scenario_matrix.csv`：按整车场景判断 e-CVT MGU 的系统收益、替代压力和场景角色。
 - `02_matrices/substitute_solution_segment_matrix.csv`：按场景比较 e-CVT MGU、电子外变、花鼓 CVT/内变、有级 MGU、普通中置方案。
 - `02_matrices/ecvt_mgu_validation_task_matrix.csv`：把场景价值假设转成公开追证、台架、样车、访谈验证任务。
+- `02_matrices/transmission_ratio_range_benchmark.csv`：证据闭合的外变、MGU、内变/CVT/gearbox 齿比范围对比矩阵；当前官方资料扫描中，Shimano CUES 2x11 `36-22T + 11-45T` 是最大外变候选，范围为 669.4%。
 
 分析文件：
 
@@ -55,6 +58,9 @@
 - `03_analysis/scenario_hypothesis_emtb.md`
 - `03_analysis/scenario_hypothesis_cargo_family.md`
 - `03_analysis/scenario_hypothesis_suv_trekking.md`
+- `03_analysis/scenario_entry_priority_note.md`：把 `ecvt_mgu_scenario_matrix.csv` 和 `scenario_substitutability_matrix.csv` 转成人读的场景进入优先级，强调“优先验证”不等于“确定首发市场”。
+- `03_analysis/substitute_solution_segment_note.md`：把 `substitute_solution_segment_matrix.csv` 转成人读的替代方案分场景判断，说明每个场景中 e-CVT MGU 需要战胜的最强替代路线。
+- `03_analysis/transmission_ratio_range_benchmark_note.md`：解释齿比范围口径、排除无证据示例，并说明为什么不能把最低档默认写成 1。
 
 ## 5. 当前证据状态
 
