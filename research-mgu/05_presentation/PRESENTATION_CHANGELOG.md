@@ -324,8 +324,8 @@
 
 - `02_matrices/ecvt_mgu_scenario_matrix.csv`
 - `02_matrices/substitute_solution_segment_matrix.csv`
-- `03_analysis/emtb_pain_points_and_ecvt_mgu_opportunity.md`
-- `03_analysis/gobao_x_system_deep_dive.md`
+- `03_analysis/10_market_and_scenarios/emtb_pain_points_and_ecvt_mgu_opportunity.md`
+- `03_analysis/20_architecture_and_benchmarks/gobao_x_system_deep_dive.md`
 
 ### 16.1 修改内容
 
@@ -365,10 +365,10 @@
 
 - `02_matrices/ecvt_mgu_scenario_matrix.csv`
 - `02_matrices/substitute_solution_segment_matrix.csv`
-- `03_analysis/emtb_pain_points_and_ecvt_mgu_opportunity.md`
-- `03_analysis/gobao_x_system_deep_dive.md`
-- `03_analysis/avinox_mg_concept_evidence_pack.md`
-- `03_analysis/go_no_go_criteria_draft.md`
+- `03_analysis/10_market_and_scenarios/emtb_pain_points_and_ecvt_mgu_opportunity.md`
+- `03_analysis/20_architecture_and_benchmarks/gobao_x_system_deep_dive.md`
+- `03_analysis/20_architecture_and_benchmarks/avinox_mg_concept_evidence_pack.md`
+- `03_analysis/40_feasibility_and_validation/go_no_go_criteria_draft.md`
 
 ### 17.1 修改内容
 
@@ -532,11 +532,11 @@
 - `00_status/PROJECT_STATUS.md`
 - `02_matrices/ecvt_mgu_scenario_matrix.csv`
 - `02_matrices/substitute_solution_segment_matrix.csv`
-- `03_analysis/scenario_hypothesis_emtb.md`
-- `03_analysis/scenario_hypothesis_cargo_family.md`
-- `03_analysis/scenario_hypothesis_suv_trekking.md`
-- `03_analysis/gobao_x_system_deep_dive.md`
-- `03_analysis/pain_point_opportunity_map.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_emtb.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_cargo_family.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_suv_trekking.md`
+- `03_analysis/20_architecture_and_benchmarks/gobao_x_system_deep_dive.md`
+- `03_analysis/10_market_and_scenarios/pain_point_opportunity_map.md`
 
 第五层采用证据中立口径：
 
@@ -578,14 +578,14 @@
 - `02_matrices/ecvt_mgu_scenario_matrix.csv`
 - `02_matrices/substitute_solution_segment_matrix.csv`
 - `02_matrices/feature_pain_matrix.csv`
-- `03_analysis/avinox_mg_concept_deep_research.md`
-- `03_analysis/avinox_mg_concept_evidence_pack.md`
-- `03_analysis/emtb_pain_points_and_ecvt_mgu_opportunity.md`
-- `03_analysis/scenario_hypothesis_emtb.md`
-- `03_analysis/scenario_hypothesis_cargo_family.md`
-- `03_analysis/scenario_hypothesis_suv_trekking.md`
-- `03_analysis/l2_l3_l4_benchmark.md`
-- `03_analysis/go_no_go_criteria_draft.md`
+- `03_analysis/20_architecture_and_benchmarks/avinox_mg_concept_deep_research.md`
+- `03_analysis/20_architecture_and_benchmarks/avinox_mg_concept_evidence_pack.md`
+- `03_analysis/10_market_and_scenarios/emtb_pain_points_and_ecvt_mgu_opportunity.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_emtb.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_cargo_family.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_suv_trekking.md`
+- `03_analysis/20_architecture_and_benchmarks/l2_l3_l4_benchmark.md`
+- `03_analysis/40_feasibility_and_validation/go_no_go_criteria_draft.md`
 
 ### 23.2 关键口径变化
 
@@ -734,7 +734,7 @@
 
 ## 30. 2026-07-16 新增骑手体感可视化正式展示页
 
-用户要求根据 `03_analysis/ecvt_mgu_visual_storyboard.md` 生成一个可以正式展示的桌面端网页，用于说明 e-CVT MGU 的“智能脚感一致性控制”。
+用户要求根据 `03_analysis/30_product_definition/ecvt_mgu_visual_storyboard.md` 生成一个可以正式展示的桌面端网页，用于说明 e-CVT MGU 的“智能脚感一致性控制”。
 
 本次新增文件：
 
@@ -781,3 +781,94 @@
 - 页面包含 8 个主章节：产品定义、控制优先级、平路冲刺、陡坡爬坡、换比窗口、意图识别、协同输出、验证矩阵。
 - 静态检查确认没有外链脚本、外链样式、图片依赖、`TODO`、`TBD` 或占位词。
 - 内容检查确认目标踏频和真实踏频分开表达，平路冲刺、陡坡爬坡和曲柄 12 点 / 力矩低谷换比窗口均已出现。
+
+## 31. 2026-07-16 骑手体感可视化页文案去 AI 味
+
+用户反馈 `ecvt_mgu_rider_feel_visualization_20260716.html` 的可视化直观、内容逻辑无问题，但部分文字有 AI 总结稿痕迹。
+
+本次只修改该 HTML 的可见中文文案：
+
+- 将第一屏标题从“少换挡 / 主动管理”式表达，改为“把踏频、齿比和助力调到同一个脚感目标上”。
+- 将多处“不是……而是……”和口号式总结改成工程判断句。
+- 调整巡航、冲刺、爬坡、曲柄相位、意图识别、协同输出和验证矩阵的说明文字，让表达更接近内部技术汇报。
+- 同步微调 SVG 中少量可见标签，例如目标踏频、真实踏频、电机转矩和意图识别图下方说明。
+
+本次不修改：
+
+- 页面结构。
+- 图表数据点。
+- SVG/JS 绘图逻辑。
+- CSS 视觉系统。
+- 研究结论、证据边界或参数口径。
+
+## 32. 2026-07-16 新增高级工程产品感试验页
+
+用户反馈现有展示页虽然直观，但整体审美仍显廉价，希望新增一个不参考旧版视觉风格的网页做尝试。目标是更克制、更精密、更像技术产品发布或内部高层评审材料。
+
+本次新增文件：
+
+- `ecvt_mgu_premium_engineering_concept_20260716.html`
+
+### 32.1 页面定位
+
+这是一个新的独立桌面端离线 HTML 试验页，不替换现有 `ecvt_mgu_rider_feel_visualization_20260716.html`、`ecvt_mgu_product_direction.html` 或其他展示页。
+
+页面沿用已经确认的控制逻辑：巡航看踏频、冲刺看意图、爬坡看脚感力矩、目标踏频和真实踏频分开、冲刺后高齿比高速巡航、爬坡踩踏力矩舒适区优先、曲柄 12 点 / 力矩低谷为推荐换比窗口。
+
+### 32.2 视觉方向
+
+- 不沿用旧版卡片堆叠、模板渐变和厚重阴影风格。
+- 采用 true white / light graphite 背景、深墨色文字、精密青绿和少量铜色强调。
+- 用开放式版面、细线分隔、工程标注和更大留白建立高级工程产品感。
+- 首屏使用代码矢量系统主视觉，不使用 AI 产品渲染图。
+- 三张核心图继续用内联 SVG/JS 绘制，但图表线条、网格、标注和舒适区表达更精细。
+
+### 32.3 实现方式
+
+- 单文件 HTML，CSS 和 JS 全部内联。
+- 不新建 React/Vite 工程。
+- 不安装依赖，不使用第三方图表库、外部字体、外部图片或外网资源。
+- 主视觉、堆叠曲线、曲柄相位图和控制器框图全部由代码矢量生成。
+- 页面只面向桌面展示，重点适配 `1366×768`、`1440×900` 和 `1901×1280`。
+
+### 32.4 证据边界
+
+- 本页不作为事实源，不替代 `source_id`、`finding_id` 或内容版本记录。
+- 页面曲线只表达控制逻辑和体感趋势，显式保留“趋势示意，非实测数据”口径。
+- `45 dB`、`300 N·m`、`520%` 仍只能作为竞品参考、研究目标或待验证指标，不能写成自有量产承诺。
+- 未新增量产规格、官方参数、OEM 客户或内部机械结构结论。
+
+## 33. 2026-07-16 高级试验页曲线可读性增强
+
+用户反馈 `ecvt_mgu_premium_engineering_concept_20260716.html` 中部分曲线变化范围过小，尤其是陡坡爬坡图的“脚感舒适中间区”太窄，投屏或快速浏览时容易被看成一条线。
+
+本次只修改高级工程产品感试验页的图表可读性：
+
+- 在共用堆叠曲线绘制逻辑中增加每行独立显示范围，用局部纵向放大强化趋势表达。
+- 将曲线默认线宽提高，并为舒适区增加上下边界线。
+- 提高爬坡图中“脚感舒适中间区”的透明度和可见面积，使其明确呈现为带状区域。
+- 放大平路冲刺和陡坡爬坡两张核心图中踏频、齿比、转矩、车速和踩踏力矩的视觉变化。
+- 增强曲柄相位图中推荐变比窗口的填充和边界。
+- 图表角标补充“各行纵向为局部放大”，避免误读为同一物理量坐标。
+
+本次不修改：
+
+- 产品控制逻辑。
+- 章节结构。
+- 研究结论和证据边界。
+- `45 dB`、`300 N·m`、`520%` 等参数口径。
+
+## 34. 2026-07-16 高级试验页验证矩阵指标中文化
+
+用户反馈 `ecvt_mgu_premium_engineering_concept_20260716.html` 验证矩阵右侧指标列仍使用英文，与页面中文技术汇报语境不一致。
+
+本次只修改验证矩阵右侧指标列：
+
+- `cadence stability` 改为 `踏频稳定性`。
+- `sprint recovery` 改为 `冲刺恢复`。
+- `torque comfort band` 改为 `力矩舒适区`。
+- `crank phase window` 改为 `曲柄相位窗口`。
+- `fault fallback` 改为 `安全降级`。
+- 同步将该列样式从等宽英文标签风格调整为中文强调文本。
+
+本次不修改验证项目含义、页面结构或证据边界。

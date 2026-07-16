@@ -1082,6 +1082,10 @@
       border-left-color: var(--green);
     }
 
+    .decision-card:nth-child(4) {
+      border-left-color: var(--blue);
+    }
+
     .decision-card::before {
       content: "0" counter(decision);
       position: absolute;
@@ -1107,6 +1111,45 @@
 
     .decision-card strong {
       color: #0f172a;
+    }
+
+    .evidence-boundary-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .evidence-boundary-item {
+      min-width: 0;
+      border: 1px solid rgba(148, 163, 184, .54);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      padding: 16px;
+      border-top: 5px solid var(--teal);
+    }
+
+    .evidence-boundary-item:nth-child(2) {
+      border-top-color: var(--blue);
+    }
+
+    .evidence-boundary-item:nth-child(3) {
+      border-top-color: var(--amber);
+    }
+
+    .evidence-boundary-item h3 {
+      color: #0f172a;
+      font-size: 15px;
+      font-weight: 950;
+    }
+
+    .evidence-boundary-item p {
+      margin-top: 7px;
+      color: #475569;
+      font-size: 14px;
+      line-height: 1.62;
+      overflow-wrap: anywhere;
     }
 
     .section-head {
@@ -1348,6 +1391,38 @@
       color: #0f172a;
     }
 
+    .proof-grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .proof-item {
+      min-width: 0;
+      border: 1px solid rgba(148, 163, 184, .48);
+      border-radius: 6px;
+      background: #f8fafc;
+      padding: 10px;
+    }
+
+    .proof-item span {
+      display: block;
+      color: #0f172a;
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .proof-item p {
+      margin-top: 5px;
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.56;
+    }
+
+    .proof-item.claim-limit {
+      background: #fff8ec;
+      border-color: rgba(161, 98, 7, .32);
+    }
+
     .tag {
       min-height: 28px;
       border-radius: 6px;
@@ -1380,6 +1455,60 @@
     .scenario-card.balance {
       background: linear-gradient(180deg, #ffffff, #f2f8f4);
       border-color: rgba(45, 113, 79, .32);
+    }
+
+    .scenario-matrix {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .scenario-matrix .scenario-card {
+      position: relative;
+      border-top: 5px solid var(--teal);
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .scenario-matrix .scenario-card.priority {
+      border-top-color: var(--green);
+      background: linear-gradient(180deg, #ffffff, #f2f8f4);
+    }
+
+    .scenario-matrix .scenario-card.strategic {
+      border-top-color: var(--teal);
+      background: linear-gradient(180deg, #ffffff, #f1f8f6);
+    }
+
+    .scenario-matrix .scenario-card.reference {
+      border-top-color: var(--violet);
+      background: linear-gradient(180deg, #ffffff, #f7f7fb);
+    }
+
+    .scenario-matrix .scenario-card.niche {
+      border-top-color: var(--blue);
+      background: linear-gradient(180deg, #ffffff, #f2f6fb);
+    }
+
+    .scenario-matrix .scenario-card.tco {
+      border-top-color: var(--amber);
+      background: linear-gradient(180deg, #ffffff, #fff8ec);
+    }
+
+    .scenario-matrix .scenario-card.deprioritized {
+      border-top-color: var(--red);
+      background: linear-gradient(180deg, #ffffff, #fbf4f3);
+    }
+
+    .scenario-rank {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .scenario-rank .metric {
+      background: rgba(255, 255, 255, .78);
     }
 
     .scenario-card h3 {
@@ -1498,6 +1627,8 @@
 
       .layer-grid,
       .scenario-grid,
+      .scenario-matrix,
+      .evidence-boundary-strip,
       .solution-grid,
       .boundary-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1536,21 +1667,21 @@
 
       .hero-copy {
         width: 100%;
-        max-width: calc(100vw - 22px);
+        max-width: 100%;
         min-height: 0;
         padding: 26px 20px;
       }
 
       .hero {
-        width: calc(100vw - 22px);
-        max-width: calc(100vw - 22px);
+        width: 100%;
+        max-width: 100%;
         grid-template-columns: minmax(0, 1fr) !important;
       }
 
       .hero-side,
       .decision-card {
         width: 100%;
-        max-width: calc(100vw - 22px);
+        max-width: 100%;
       }
 
       .hero-copy::before {
@@ -1598,6 +1729,8 @@
 
       .layer-grid,
       .scenario-grid,
+      .scenario-matrix,
+      .evidence-boundary-strip,
       .solution-grid,
       .boundary-grid,
       .split-panel {
@@ -1613,6 +1746,10 @@
       }
 
       .metric-row {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario-rank {
         grid-template-columns: 1fr;
       }
 
@@ -1650,24 +1787,46 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">内部认知页 · 长页看板版</p>
-        <h1 id="hero-title">e-CVT MGU 的机会，在于把分散痛点变成整车系统收益。</h1>
-        <p class="lead">这页不把 e-CVT 简化成“自动变速”。它从中心向外拆开五层判断：先定义它是什么，再看它能进哪些场景、现有方案具体怎么解决、这些方案还剩什么问题以及 e-CVT 如何补位，最后收束到真正适合验证的整车场景。</p>
+        <h1 id="hero-title">e-CVT MGU 的机会，是把换挡、后轮和低维护问题放进同一个中置单元。</h1>
+        <p class="lead">这页不把 e-CVT 当作“自动变速”来讲。阅读顺序是五层：先定义边界，再看可进入的场景、已有方案的解法、它们留下的问题，最后落到哪些整车值得先验证。</p>
       </div>
-      <aside class="hero-side" aria-label="核心判断">
+      <aside class="hero-side" aria-label="判断摘要">
         <article class="decision-card">
-          <h3>中心判断</h3>
-          <p><strong>e-CVT MGU 的价值不是单点能力，</strong>而是在一个中置单元里同时处理目标踏频、扭矩平滑、低维护传动、低速高扭矩、后轮结构和整车控制。</p>
+          <h3>主判断</h3>
+          <p><strong>e-CVT MGU 不是靠单点功能成立。</strong>它要在一个中置单元里同时处理目标踏频、扭矩平顺、低维护传动、低速高扭矩、后轮结构和整车控制。</p>
         </article>
         <article class="decision-card">
           <h3>替代边界</h3>
-          <p>电子外变、花鼓 CVT/内变、有级齿轮箱 MGU 和普通中置电机都能解决一部分问题；e-CVT 必须证明它能把剩余问题补成整车系统收益。</p>
+          <p>电子外变、花鼓 CVT/内变、有级齿轮箱 MGU 和普通中置电机都已经解决一部分问题；e-CVT 只有把剩余问题补出可测收益，才有进入高端整车的理由。</p>
         </article>
         <article class="decision-card">
           <h3>场景收束</h3>
-          <p>高端 eMTB、载货/家庭工具车与高端多用途车/长途通勤都是主场景，但各自的验证门槛和替代压力不同，不能只用单一排序理解。</p>
+          <p>高端 SUV/trekking 与载货/家庭工具车先验证；eMTB 保留为高门槛验证场。三个方向都要正面对比成熟替代路线。</p>
+        </article>
+        <article class="decision-card">
+          <h3>证据边界</h3>
+          <p>Gobao 是目前最直接的官方 e-CVT MGU 页面证据；Avinox 可当作准量产目标参照，效率、耐久、回充、机构和最终规格仍未闭环。</p>
         </article>
       </aside>
     </section>
+
+    <div class="evidence-boundary-strip" aria-label="证据边界">
+      <article class="evidence-boundary-item">
+        <h3>官方 e-CVT 证据</h3>
+        <p>Gobao X-system 支持目标踏频、连续变比和电机/传动一体化，但长期效率、热、可靠性、OEM 状态和服务模型仍要验证。</p>
+        <div class="evidence">证据 <code>V004</code><code>F026</code><code>F027</code></div>
+      </article>
+      <article class="evidence-boundary-item">
+        <h3>准量产目标参照</h3>
+        <p>Avinox Tech Details 给出跨平台、虚拟档、无缝换挡、低维护等目标，可用于内部对标。</p>
+        <div class="evidence">证据 <code>V032</code><code>F043</code><code>F046</code><code>F047</code><code>F048</code></div>
+      </article>
+      <article class="evidence-boundary-item">
+        <h3>未闭环数字</h3>
+        <p>3 倍耐久、传统传动效率低 10%、charging、300 Nm 负载换挡等只能写成产品定义目标，不能写成已验证工程结论。</p>
+        <div class="evidence">证据 <code>F045</code><code>F047</code></div>
+      </article>
+    </div>
 
     <section id="rings" aria-labelledby="rings-title">
       <div class="section-head">
@@ -1727,8 +1886,8 @@
           <p class="layer-summary">在本调研口径中，e-CVT MGU 指中置电机与连续变比机构集成为单一驱动单元，通过目标踏频、扭矩平滑、连续变比和虚拟档位降低用户换挡负担，并把单速链条/皮带外传动和整车系统功能纳入同一架构。</p>
           <ul class="point-list">
             <li>它不是“普通中置电机 + 自动换挡”的同义词，而是把电机、传动、控制和整车诊断放进同一系统边界。</li>
-            <li>Gobao X-system 是当前最强官方证据：页面支持电机与传动集成在单一单元、自动连续变比、目标踏频和联网服务/安全功能。</li>
-            <li>Avinox MG Concept 已升级为量产方向/准量产目标参照：技术细节图卡可用于内部对标，但最终规格表、内部机械实现和测试基准仍需闭环。</li>
+            <li>Gobao X-system 是目前最直接的官方页面证据：页面支持电机与传动集成在单一单元、自动连续变比、目标踏频和联网服务/安全功能。</li>
+            <li>Avinox MG Concept 可作为量产方向/准量产目标参照：技术细节图卡可用于内部对标，但最终规格表、内部机械实现和测试基准仍需闭环。</li>
           </ul>
           <div class="evidence">证据 <code>V004</code><code>V032</code><code>F026</code><code>F027</code><code>F043</code><code>F048</code></div>
           <div class="pager">
@@ -1754,7 +1913,7 @@
           <ul class="mini-list">
             <li>不是单纯自动换挡。</li>
             <li>不是只拼峰值扭矩。</li>
-            <li>核心是整车系统收益。</li>
+            <li>要看整车收益能否测出来。</li>
           </ul>
         </article>
 
@@ -1773,7 +1932,7 @@
           <h3>已有方案怎么解决</h3>
           <p>电子外变、花鼓 CVT/内变、有级齿轮箱 MGU 和普通中置电机都已经用不同方式解决了自动换挡、低维护、宽范围、封闭传动或量产风险。</p>
           <ul class="mini-list">
-            <li>Bosch/Shimano/SRAM：传感 + 电机卸力 + 应用/显示生态。</li>
+            <li>Bosch/Shimano/SRAM：传感 + 电机卸力 + 应用/显示配套。</li>
             <li>enviolo/Rohloff/3X3：封闭低维护 + 起步/静止/负载换挡。</li>
             <li>Pinion：封闭齿轮箱 MGU + 宽范围 + 服务叙事。</li>
           </ul>
@@ -1791,11 +1950,11 @@
 
         <article class="layer-card" data-index="05">
           <h3>真正适合场景</h3>
-          <p>真正适合的场景不是“能装上 e-CVT”的场景，而是替代方案难以同时做到低维护、目标踏频、后端简化、低速高扭矩和整车系统收益的场景。</p>
+          <p>真正适合的场景不是“能装上 e-CVT”的场景，而是替代方案难以同时做到低维护、目标踏频、后端简化、低速高扭矩和可验证整车收益，且值得优先补证的场景。</p>
           <ul class="mini-list">
-            <li>eMTB：强痛点，高门槛。</li>
-            <li>载货/家庭工具车：强痛点，强替代。</li>
-            <li>多用途车/长途通勤：综合价值均衡。</li>
+            <li>SUV/trekking：低维护、目标踏频和后轮简化能同车验证，强替代，第一优先验证。</li>
+            <li>载货/家庭工具车：强痛点，强替代，第一优先验证。</li>
+            <li>eMTB：强痛点，高曝光度，高验证门槛。</li>
           </ul>
         </article>
       </div>
@@ -1808,32 +1967,48 @@
           <p class="eyebrow">第三层</p>
           <h2 class="section-title" id="solutions-title">已有解决方案具体怎么解决问题</h2>
         </div>
-        <p class="section-note">这一层只讲已有方案的解法，不急着评价 e-CVT。先承认别人已经解决了哪些问题，后面才知道 e-CVT 的真实空间。</p>
+        <p class="section-note">这一层只讲已有方案怎么做，不先给 e-CVT 下结论。Owuru / E2Drives / Decathlon LD 920 E 已经把城市车链条和 OEM fit 做成事实；高功率路线另算。</p>
       </div>
 
       <div class="solution-grid">
         <article class="solution-card">
           <span class="tag blue">电子外变 + 中置</span>
           <h3>Bosch / Shimano / SRAM 的解法</h3>
-          <p>通过踏频、扭矩、速度等传感数据、电机卸力、自动换挡、滑行换挡、手动覆盖、应用/显示生态，把“忘记换挡”和“换挡时机不稳”外部化解决。</p>
+          <div class="proof-grid">
+            <div class="proof-item"><span>已解决</span><p>通过踏频、扭矩、速度传感、电机卸力、自动/滑行换挡、手动覆盖和应用/显示配套，把换挡时机问题外部化解决。</p></div>
+            <div class="proof-item"><span>仍留给 e-CVT</span><p>后拨、飞轮和链条仍外露；低维护、后端简化和整车诊断仍不是同一个中置系统边界。</p></div>
+            <div class="proof-item claim-limit"><span>不能提前宣称</span><p>不能把“自动换挡”写成 e-CVT 独有，也不能在重量、效率、NVH 和运动控制未验证前说它天然优于电子外变。</p></div>
+          </div>
           <div class="evidence"><code>V005</code><code>V007</code><code>V008</code><code>F013</code><code>F016</code><code>F018</code></div>
         </article>
         <article class="solution-card">
           <span class="tag green">花鼓 CVT/内变 + 中置</span>
           <h3>enviolo / Rohloff / 3X3 的解法</h3>
-          <p>用目标踏频、自动无级、起步档、静止/负载换挡、封闭低维护和链/带兼容，解决城市、长途通勤、载货的停启、省心和维护问题。</p>
+          <div class="proof-grid">
+            <div class="proof-item"><span>已解决</span><p>目标踏频、自动无级、起步档、静止/负载换挡、封闭低维护和链/带兼容，已经覆盖城市、长途通勤、载货的主要省心需求。</p></div>
+            <div class="proof-item"><span>仍留给 e-CVT</span><p>复杂度和质量仍在后轮侧，轮组维修、车架/货架布置、诊断边界和高扭矩效率仍需要正面对比。</p></div>
+            <div class="proof-item claim-limit"><span>不能提前宣称</span><p>不能把目标踏频、自动低维护写成 e-CVT 独有；未证明效率、热、寿命和成本前，不能宣称全面优于成熟内变/CVT。</p></div>
+          </div>
           <div class="evidence"><code>V009</code><code>V010</code><code>V011</code><code>V012</code><code>F020</code><code>F024</code></div>
         </article>
         <article class="solution-card">
           <span class="tag violet">有级齿轮箱 MGU</span>
           <h3>Pinion MGU / 齿轮箱的解法</h3>
-          <p>用封闭齿轮箱、9/12 档、568%/600% 范围、Auto.Shift / Start.Select（自动换挡/起步选档）和长维护周期叙事，把外露传动和宽范围低维护问题变成可量产方案。</p>
+          <div class="proof-grid">
+            <div class="proof-item"><span>已解决</span><p>封闭齿轮箱 MGU、9/12 档、568%/600% 范围、Auto.Shift 和长维护周期叙事，已经把集成低维护做成量产参照。</p></div>
+            <div class="proof-item"><span>仍留给 e-CVT</span><p>连续变比、目标踏频、低技能用户友好、扭矩平滑、噪声和控制自然度，是 e-CVT 需要证明的差异化。</p></div>
+            <div class="proof-item claim-limit"><span>不能提前宣称</span><p>不能只用“无级更高级”压过有级 MGU；必须用骑行反馈、效率、NVH、服务策略和支付意愿证明。</p></div>
+          </div>
           <div class="evidence"><code>V001</code><code>V020</code><code>V022</code><code>F001</code><code>F004</code></div>
         </article>
         <article class="solution-card">
           <span class="tag amber">普通中置 + 机械传动</span>
           <h3>成熟供应链的解法</h3>
-          <p>用成熟中置电机、传统外变或机械传动，解决成本、重量、维修网络、开发风险和用户熟悉度问题，是很多价格带和运动细分的稳妥选择。</p>
+          <div class="proof-grid">
+            <div class="proof-item"><span>已解决</span><p>成熟中置电机、传统外变或机械传动解决成本、重量、维修网络、开发风险和用户熟悉度，是很多价格带的稳妥选择。</p></div>
+            <div class="proof-item"><span>仍留给 e-CVT</span><p>低维护外传动、后端简化、误换挡减少、机械锁止、倒车助力、内置速度传感和联网服务仍可组合成整车收益。</p></div>
+            <div class="proof-item claim-limit"><span>不能提前宣称</span><p>不能在重量、体积、效率、成本和维修网络未接近成熟方案前，把 e-CVT 写成普适替代。</p></div>
+          </div>
           <div class="evidence"><code>V002</code><code>V006</code><code>F005</code><code>F015</code></div>
         </article>
       </div>
@@ -1873,7 +2048,7 @@
         <article class="solution-card">
           <span class="tag amber">普通中置的剩余问题</span>
           <h3>不改变外部传动架构</h3>
-          <p>普通中置成熟、轻、便宜，但仍依赖外部传动，难以系统性解决低维护、误换挡、后端约束和整车功能统一。</p>
+          <p>普通中置成熟、轻、便宜，但仍依赖外部传动，难以同时解决低维护、误换挡、后端约束和整车功能统一。</p>
           <p><strong>e-CVT 补法：</strong>把机械锁止、电动倒车助力、内置速度传感、联网服务/安全功能放入中置系统，形成整车级功能组合。</p>
           <div class="evidence"><code>V004</code><code>V032</code><code>F027</code><code>F047</code></div>
         </article>
@@ -1883,69 +2058,94 @@
       <div class="section-head">
         <div>
           <p class="eyebrow">第五层收束</p>
-          <h2 class="section-title" id="fit-title">真正适合 e-CVT MGU 的场景</h2>
+          <h2 class="section-title" id="fit-title">真正适合 e-CVT MGU 的进入策略矩阵</h2>
         </div>
-        <p class="section-note">证据中立口径：不把验证难度写成价值低，也不把可用性写成不可替代性。</p>
+        <p class="section-note">这里把价值和替代压力分开看：验证难不等于价值低，可用也不等于不可替代。所谓“均衡”，只是指低维护、目标踏频、轻越野、载物、长距离混合路况、内置速度传感和整车集成能放在同一台车上验证，不表示 enviolo/Rohloff/3X3、Pinion MGU 或电子外变压力较弱。</p>
       </div>
 
-      <div class="scenario-grid">
-        <article class="scenario-card primary">
-          <span class="tag teal">强痛点 / 高门槛</span>
+      <div class="scenario-matrix">
+        <article class="scenario-card priority">
+          <span class="tag green">第一优先验证 / 组合收益可测</span>
+          <h3>高端多用途车 / 长途通勤 / 全路况通勤</h3>
+          <p>这一类车的痛点不一定最尖锐，但低维护、目标踏频、轻越野、载物、长距离混合路况、内置速度传感和联网/安全功能可以在同一台高端车上同时出现。机会不来自替代压力低，而来自这些需求组合能否撑住整车溢价和售后承诺。</p>
+          <div class="scenario-rank">
+            <div class="metric"><span>当前角色</span><strong>第一优先验证</strong></div>
+            <div class="metric"><span>替代压力</span><strong>强</strong></div>
+            <div class="metric"><span>必须证明</span><strong>溢价 / 效率 / 售后</strong></div>
+          </div>
+          <div class="evidence">证据 <code>V004</code><code>V009</code><code>V020</code><code>V022</code><code>V032</code><code>F026</code><code>F027</code><code>F041</code><code>F046</code><code>F047</code><code>F048</code></div>
+        </article>
+
+        <article class="scenario-card priority">
+          <span class="tag amber">第一优先验证 / 强痛点</span>
+          <h3>载货 / 家庭工具车 / 重载</h3>
+          <p>满载起步、坡道、频繁停启、家庭用户误操作和低维护/全生命周期使用成本是强痛点。e-CVT 的机会在于让载货/载娃场景像自动挡车一样易用，但花鼓 CVT/内变、有级 MGU 都是强替代路线。</p>
+          <div class="scenario-rank">
+            <div class="metric"><span>当前角色</span><strong>第一优先验证</strong></div>
+            <div class="metric"><span>替代压力</span><strong>强</strong></div>
+            <div class="metric"><span>必须证明</span><strong>热 / 寿命 / TCO</strong></div>
+          </div>
+          <div class="evidence">证据 <code>V004</code><code>V009</code><code>V010</code><code>V032</code><code>F020</code><code>F026</code><code>F045</code><code>F047</code></div>
+        </article>
+
+        <article class="scenario-card strategic">
+          <span class="tag teal">高门槛验证场 / 强痛点</span>
           <h3>高端 eMTB / 重力骑行 / 技术爬坡</h3>
-          <p>eMTB 的后拨、飞轮、链条外露易损，泥沙、石击、摔车、跳跃落地和低速高扭矩会放大传动风险。e-CVT MGU 的潜力在于后端简化、非簧载质量降低、扭矩平滑、技术爬坡和旗舰差异化。</p>
-          <div class="metric-row">
-            <div class="metric"><span>痛点</span><strong>很强</strong></div>
-            <div class="metric"><span>战略价值</span><strong>很高</strong></div>
+          <p>eMTB 的后拨、飞轮、链条外露易损，泥沙、石击、摔车、跳跃落地和低速高扭矩会放大传动风险。它有高曝光度和强痛点，但重量、效率、NVH、冲击耐久和骑手控制信任是最高门槛。</p>
+          <div class="scenario-rank">
+            <div class="metric"><span>当前角色</span><strong>高门槛验证</strong></div>
+            <div class="metric"><span>展示价值</span><strong>高</strong></div>
             <div class="metric"><span>验证门槛</span><strong>最高</strong></div>
           </div>
           <div class="evidence">证据 <code>V004</code><code>V008</code><code>V032</code><code>F018</code><code>F026</code><code>F044</code><code>F045</code><code>F046</code></div>
         </article>
 
-        <article class="scenario-card warning">
-          <span class="tag amber">强痛点 / 强替代</span>
-          <h3>载货 / 家庭工具车 / 重载</h3>
-          <p>满载起步、坡道、频繁停启、家庭用户误操作和低维护/全生命周期使用成本是强痛点。e-CVT 的机会在于让载货/载娃场景像自动挡车一样易用，但花鼓 CVT/内变是非常强的替代路线。</p>
-          <div class="metric-row">
-            <div class="metric"><span>痛点</span><strong>很强</strong></div>
-            <div class="metric"><span>替代压力</span><strong>强</strong></div>
-            <div class="metric"><span>必须证明</span><strong>热 / 寿命 / 使用成本</strong></div>
-          </div>
-          <div class="evidence">证据 <code>V004</code><code>V009</code><code>V010</code><code>V032</code><code>F020</code><code>F026</code><code>F045</code><code>F047</code></div>
-        </article>
-
-        <article class="scenario-card balance">
-          <span class="tag green">综合价值均衡</span>
-          <h3>高端多用途车 / 长途通勤 / 全路况通勤</h3>
-          <p>这个场景的痛点不一定最极端，但低维护、目标踏频、轻越野、载物、长距离混合路况和整车联网/安全功能更容易组合成高端一体化驱动体验。</p>
-          <div class="metric-row">
-            <div class="metric"><span>痛点</span><strong>高</strong></div>
-            <div class="metric"><span>可解释性</span><strong>强</strong></div>
-            <div class="metric"><span>替代压力</span><strong>中高</strong></div>
-          </div>
-          <div class="evidence">证据 <code>V004</code><code>V009</code><code>V020</code><code>V022</code><code>V032</code><code>F026</code><code>F027</code><code>F046</code><code>F047</code></div>
-        </article>
-      </div>
-
-      <div class="boundary-grid" style="margin-top:14px">
-        <article class="solution-card">
-          <span class="tag blue">边界场景</span>
-          <h3>高端城市通勤</h3>
-          <p>目标踏频和不用操心换挡的用户体验价值成立，但 enviolo/Owuru/花鼓路线的替代压力很大。</p>
-        </article>
-        <article class="solution-card">
-          <span class="tag violet">可靠性对照</span>
+        <article class="scenario-card reference">
+          <span class="tag violet">强利基 / 可靠性对照</span>
           <h3>长途旅行 / 探险</h3>
-          <p>长途低维护需求真实，但 Rohloff、Pinion 和齿轮箱路线的可靠性叙事强。</p>
+          <p>长途低维护、宽范围和偏远可靠性需求真实，但 Rohloff、Pinion 和齿轮箱路线的可靠性叙事强。e-CVT 只有在自动踏频、整车诊断和故障降级上补出增量，才适合从对照场景进入。</p>
+          <div class="scenario-rank">
+            <div class="metric"><span>当前角色</span><strong>可靠性对照</strong></div>
+            <div class="metric"><span>替代压力</span><strong>强</strong></div>
+            <div class="metric"><span>必须证明</span><strong>长途效率 / 故障降级</strong></div>
+          </div>
+          <div class="evidence">证据 <code>V001</code><code>V010</code><code>V011</code><code>F004</code></div>
         </article>
-        <article class="solution-card">
-          <span class="tag red">不优先</span>
-          <h3>轻量 eMTB / eGravel</h3>
-          <p>轻、自然、低阻和运动控制优先，e-CVT 的重量、效率和体积成本很难被价值覆盖。</p>
+
+        <article class="scenario-card niche">
+          <span class="tag blue">成熟城市替代 / 强替代</span>
+          <h3>高端城市通勤 / 低技能高端出行</h3>
+          <p>E2Drives / OWURU / Decathlon LD 920 E 已经把目标踏频、自动连续变速和官方装车做成城市车链条；官方页、装车页和试骑一起指向成熟替代。e-CVT 真要进这类车，必须在防盗、诊断和后轮维护上拿出更硬的增量。</p>
+          <div class="scenario-rank">
+            <div class="metric"><span>当前角色</span><strong>城市成熟替代</strong></div>
+            <div class="metric"><span>替代压力</span><strong>很高</strong></div>
+            <div class="metric"><span>必须证明</span><strong>防盗 / 诊断 / 维护</strong></div>
+          </div>
+          <div class="evidence">证据 <code>V009</code><code>V031</code><code>V033</code><code>V034</code><code>V035</code><code>V036</code><code>F039</code><code>F041</code><code>F050</code><code>F051</code><code>F052</code><code>F053</code><code>F054</code><code>F058</code></div>
         </article>
-        <article class="solution-card">
-          <span class="tag teal">待数据证明</span>
+
+        <article class="scenario-card tco">
+          <span class="tag amber">潜在 TCO 场景</span>
           <h3>车队 / 配送 / 共享工具车</h3>
-          <p>潜在全生命周期使用成本场景，但必须量化维护频次、停工时间、远程诊断和模块更换效率。</p>
+          <p>运营方关注停工、误用、被盗、诊断和维护频次，e-CVT MGU 可能把传动维护与远程诊断打包。但只有维护和停工时间能量化降低时，这个场景才成立。</p>
+          <div class="scenario-rank">
+            <div class="metric"><span>当前角色</span><strong>待数据证明</strong></div>
+            <div class="metric"><span>价值来源</span><strong>TCO</strong></div>
+            <div class="metric"><span>必须证明</span><strong>停工 / 换件 / 批量价</strong></div>
+          </div>
+          <div class="evidence">证据 <code>V004</code><code>V005</code><code>V009</code><code>V012</code><code>F027</code><code>F041</code></div>
+        </article>
+
+        <article class="scenario-card deprioritized">
+          <span class="tag red">不建议早期主攻</span>
+          <h3>轻量 eMTB / eGravel</h3>
+          <p>轻、自然、低阻和运动控制优先，e-CVT 的重量、效率、体积和复杂度成本很难被价值覆盖。当前判断只是“不适合早期主攻”，不是永久排除。</p>
+          <div class="scenario-rank">
+            <div class="metric"><span>当前角色</span><strong>低优先级</strong></div>
+            <div class="metric"><span>价值条件</span><strong>弱</strong></div>
+            <div class="metric"><span>突破条件</span><strong>重量 / 低阻 / 紧凑</strong></div>
+          </div>
+          <div class="evidence">证据 <code>V002</code><code>V006</code><code>V008</code><code>F015</code><code>F018</code></div>
         </article>
       </div>
     </section>
@@ -1976,28 +2176,29 @@
         summary: "在本调研口径中，e-CVT MGU 指中置电机与连续变比机构集成为单一驱动单元，通过目标踏频、扭矩平滑、连续变比和虚拟档位降低用户换挡负担，并把单速链条/皮带外传动和整车系统功能纳入同一架构。",
         points: [
           "它不是“普通中置电机 + 自动换挡”的同义词，而是把电机、传动、控制和整车诊断放进同一系统边界。",
-          "Gobao X-system 是当前最强官方证据：页面支持电机与传动集成在单一单元、自动连续变比、目标踏频和联网服务/安全功能。",
-          "Avinox MG Concept 已升级为量产方向/准量产目标参照：技术细节图卡可用于内部对标，但最终规格表、内部机械实现和测试基准仍需闭环。"
+          "Gobao X-system 是目前最直接的官方页面证据：页面支持电机与传动集成在单一单元、自动连续变比、目标踏频和联网服务/安全功能。",
+          "Avinox MG Concept 可作为量产方向/准量产目标参照：技术细节图卡可用于内部对标，但最终规格表、内部机械实现和测试基准仍需闭环。"
         ],
         evidence: ["V004", "V032", "F026", "F027", "F043", "F048"]
       },
       {
         kicker: "第 02 层",
         title: "e-CVT 可以用到哪些场景",
-        summary: "e-CVT MGU 理论上可以进入多种高端电助力自行车场景；Avinox 技术细节图卡明确覆盖 eMTB、电助力长途、多用途、eGravel、城市和载货，但可用不等于适合。",
+        summary: "e-CVT MGU 理论上可以进入多种高端电助力自行车场景；Owuru / E2Drives / Decathlon LD 920 E 已经证明城市车目标踏频和 OEM fit，Avinox 技术细节图卡则覆盖 eMTB、电助力长途、多用途、eGravel、城市和载货，但可用不等于适合。",
         points: [
           "高端 eMTB：后拨/飞轮/链条外露、非簧载质量、扭矩平滑、负载换挡和技术爬坡是强痛点，但重量、效率、NVH 和骑手信任门槛最高。",
-          "载货 / 家庭工具车：满载起步、坡道、频繁停启、低技能用户误操作、低维护/全生命周期使用成本、倒车助力和机械锁止是核心痛点。",
-          "高端多用途车 / 长途通勤：低维护、目标踏频、长距离混合路况、轻越野、载物、内置速度传感和整车系统集成可以形成综合价值。"
+          "载货 / 家庭工具车：满载起步、坡道、频繁停启、低技能用户误操作、低维护/全生命周期使用成本、倒车助力和机械锁止是主要痛点。",
+          "高端城市通勤 / 低技能高端出行：E2Drives / OWURU / Decathlon LD 920 E 已经把目标踏频、自动连续变速和官方装车做成城市方案；官方页、装车页和试骑一起指向成熟城市替代。",
+          "高端多用途车 / 长途通勤：低维护、目标踏频、长距离混合路况、轻越野、载物、内置速度传感和整车系统集成可以放在同一台车上验证。"
         ],
-        evidence: ["V004", "V032", "F026", "F041", "F044", "F048"]
+        evidence: ["V004", "V009", "V031", "V032", "V033", "V034", "V035", "V036", "F026", "F027", "F039", "F041", "F043", "F048", "F050", "F051", "F052", "F053", "F054", "F058"]
       },
       {
         kicker: "第 03 层",
         title: "已有方案具体怎么解决",
         summary: "现有方案已经用不同方式解决了自动换挡、低维护、宽范围、封闭传动和量产风险。第三层只讲它们怎么解决问题，不急着评价 e-CVT。",
         points: [
-          "电子外变 + 中置：Bosch、Shimano、SRAM 用传感、电机卸力、自动换挡、滑行换挡、手动覆盖、应用/显示生态解决换挡时机和运动用户熟悉度。",
+          "电子外变 + 中置：Bosch、Shimano、SRAM 用传感、电机卸力、自动换挡、滑行换挡、手动覆盖、应用/显示配套解决换挡时机和运动用户熟悉度。",
           "花鼓 CVT/内变 + 中置：enviolo、Rohloff、3X3 用目标踏频、自动无级、起步档、静止/负载换挡、封闭低维护解决停启、省心和维护问题。",
           "有级齿轮箱 MGU 与普通中置：Pinion 用封闭齿轮箱、宽范围和服务叙事解决外露传动；普通中置用成熟、轻、便宜和维修网络解决量产风险。"
         ],
@@ -2016,14 +2217,14 @@
       },
       {
         kicker: "第 05 层",
-        title: "e-CVT 真正适合的场景",
-        summary: "真正适合的场景，是替代方案难以同时做到低维护、目标踏频、后端简化、低速高扭矩和整车系统收益的场景。",
+        title: "e-CVT 真正适合的进入策略",
+        summary: "真正适合的场景，是替代方案难以同时做到低维护、目标踏频、后端简化、低速高扭矩和可验证整车收益，且值得优先补证的场景。所谓“均衡”，只是指多个需求能放在同一台车上验证，不等于 enviolo/Rohloff/3X3、Pinion MGU 或电子外变压力较弱。",
         points: [
-          "高端 eMTB 是强痛点、高战略价值、高验证门槛场景，Avinox 已补强非簧载质量、扭矩平滑、负载换挡和虚拟档位价值点。",
-          "载货 / 家庭工具车是强痛点场景，但花鼓 CVT/内变替代压力强，必须用高载热、寿命和全生命周期使用成本数据证明。",
-          "高端多用途车 / 长途通勤是综合价值最均衡的场景，最容易把低维护、目标踏频和高端一体化驱动体验讲清楚。"
+          "高端多用途车 / 长途通勤是第一优先验证场景；低维护、目标踏频、轻越野、载物、长距离混合路况、后轮简化、内置速度传感和整车系统集成可以同车验证，但替代压力也强。",
+          "载货 / 家庭工具车是强痛点、强替代的第一优先验证场景，必须用高载热、寿命、故障降级和全生命周期使用成本数据证明。",
+          "高端 eMTB 是强痛点、高曝光度、高验证门槛场景；Avinox 已补上非簧载质量、扭矩平滑、负载换挡和虚拟档，但不能替代重量、效率、NVH 和骑手信任验证。"
         ],
-        evidence: ["V004", "V009", "V020", "V022", "V032", "F026", "F027", "F041", "F044", "F048"]
+        evidence: ["V004", "V009", "V020", "V022", "V032", "F026", "F027", "F041", "F046", "F047", "F048"]
       }
     ];
 
@@ -2067,9 +2268,9 @@
         owner: "Bosch eBike Systems",
         quality: "O / 官方 / 文本",
         sourceFile: "01_evidence/verified_sources.csv",
-        scope: "Bosch eShift 伙伴换挡生态",
-        evidence: "Bosch 官方页验证 eShift 是电助力自行车电动换挡生态，覆盖手动与自动变体，并列出 Rohloff、Shimano、TRP、Classified、3X3、Gearsensor、enviolo 等伙伴系统。",
-        boundary: "不是 MGU；它证明外部电子/自动换挡生态可以成为替代路线。",
+        scope: "Bosch eShift 伙伴换挡系统",
+        evidence: "Bosch 官方页验证 eShift 是电助力自行车电动换挡系统，覆盖手动与自动变体，并列出 Rohloff、Shimano、TRP、Classified、3X3、Gearsensor、enviolo 等伙伴系统。",
+        boundary: "不是 MGU；它证明外部电子/自动换挡系统可以成为替代路线。",
         url: "https://www.bosch-ebike.com/en/products/eshift"
       },
       V006: {
@@ -2100,8 +2301,8 @@
         owner: "SRAM",
         quality: "O / 官方 / 文本",
         sourceFile: "01_evidence/verified_sources.csv",
-        scope: "SRAM Eagle Powertrain 生态",
-        evidence: "SRAM 官方页验证 Eagle Powertrain 与 Eagle Transmission 深度集成，并支持 Auto Shift（自动换挡）、Coast Shift（滑行换挡）、AXS Bridge Display、AXS Pod、AXS 应用、电池和增程器生态。",
+        scope: "SRAM Eagle Powertrain 配套系统",
+        evidence: "SRAM 官方页验证 Eagle Powertrain 与 Eagle Transmission 深度集成，并支持 Auto Shift（自动换挡）、Coast Shift（滑行换挡）、AXS Bridge Display、AXS Pod、AXS 应用、电池和增程器配套。",
         boundary: "不是电机内部变速；抽取文本未覆盖完整驱动单元扭矩/重量。",
         url: "https://www.sram.com/en/sram/mountain/collections/eagle-powertrain"
       },
@@ -2144,9 +2345,9 @@
         owner: "3X3",
         quality: "O / 官方 / 文本",
         sourceFile: "01_evidence/verified_sources.csv",
-        scope: "3X3 NINE/SIX 齿轮花鼓和 Electric Shift 生态",
+        scope: "3X3 NINE/SIX 齿轮花鼓和 Electric Shift 配套",
         evidence: "3X3 官方页验证齿轮花鼓低维护、可静止或负载换挡、兼容链条/皮带、有无电助力均可，并包含 NINE/SIX 和 Electric Shift（电控换挡）控制。",
-        boundary: "抽取页没有给出扭矩/速比表；可作为生态证据，不作为最终性能规格。",
+        boundary: "抽取页没有给出扭矩/速比表；可作为产品路线证据，不作为最终性能规格。",
         url: "https://www.3x3.bike/en/system/"
       },
       V020: {
@@ -2182,6 +2383,17 @@
         boundary: "行业媒体，可能基于发布材料，但不是 Avinox 最终官方规格表。",
         url: "https://www.velobiz.de/news/avinox-stellt-neuen-mg-concept-motor-vor-veloQXJ0aWNsZS8zNDk2MQbiz"
       },
+      V031: {
+        kind: "source",
+        title: "LD 920 E 城市踏频试骑",
+        owner: "Transition Velo",
+        quality: "B / 媒体 / 文本",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "城市车的 Owuru 连续变速试骑",
+        evidence: "评测把 Decathlon Btwin LD 920 E 作为首款搭载 Owuru 连续变速系统的车来写，说明骑手可把目标踏频设在 40 到 90 rpm，系统会跟着调比，不需要后拨或花鼓变速；评测者对城市通勤的顺滑性和响应速度评价也较正面。",
+        boundary: "这是城市车试骑，不是高功率 e-CVT MGU 验证。可用来说明目标踏频和无换挡体验在城市里能成立。",
+        url: "https://www.transitionvelo.com/test/test-decathlon-btwin-ld-920-e-le-velo-de-ville-electrique-ultime/"
+      },
       V032: {
         kind: "source",
         title: "Avinox MG Concept 技术细节展台图卡",
@@ -2192,6 +2404,83 @@
         evidence: "六张技术细节图卡支持扭矩平滑、非簧载质量降低 >1.1 kg、150 kg 以上重载骑行者、45 dB、静止/300 Nm 负载换挡、<0.1 s、100%-520% 连续变比、1-13 虚拟档、单速低维护外传动、机械锁止、倒车助力、内置速度传感、下坡充电和六平台覆盖。",
         boundary: "展台图卡/OCR，不是最终公开规格表；内部机制、测试基准、发布时间和认证仍需官方闭环。",
         url: "https://bikerumor.com/avinox-mg-concept-combined-ebike-motor-and-gearbox-at-eurobike-2026/"
+      },
+      V033: {
+        kind: "source",
+        title: "E2Drives 技术页",
+        owner: "E2Drives",
+        quality: "O / 官方 / 文本",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "E2Drives / Owuru 架构和现有量产例子",
+        evidence: "官方技术页把 Propulsive Module 写成一体式驱动单元，位于中轴附近，带自动传动和两电机；一代公开信息包括 600 W 峰值功率、65-120 Nm 扭矩、265% 变速范围、4.6 kg 模块质量、无后拨、无飞轮、无花鼓变速，并写明 2023 年夏季起装在 Decathlon LD920E 上。",
+        boundary: "这是官方技术页，适合看架构和公开主张；效率图谱、热、耐久、可维修性和高功率版本还没闭环。",
+        url: "https://e2drives.com/technology/"
+      },
+      V034: {
+        kind: "source",
+        title: "E2Drives 公司页",
+        owner: "E2Drives",
+        quality: "O / 官方 / 文本",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "E2Drives company status and Decathlon relationship",
+        evidence: "官方公司页写明 E2Drives 做自动传动一体电机，自 2019 年起和 Decathlon 合作，2020 年合作关系加深，2023 年起有首批电机在店内销售，并以 Decathlon 子公司的身份推进新产品和新用途。",
+        boundary: "这是公司页，适合看合作关系和成熟度，不适合拿来当技术规格。",
+        url: "https://e2drives.com/company/"
+      },
+      V035: {
+        kind: "source",
+        title: "OWURU 官方页",
+        owner: "OWURU / E2Drives",
+        quality: "O / 官方 / 文本",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "OWURU 产品定位和 LD 920 E 装车",
+        evidence: "官方页把 OWURU 写成由 E2 Drives 驱动，强调自动换挡、用户设定踏频、连续变速、无后拨、无花鼓变速、双电机和 gear-change management，并把 Decathlon LD 920 E 标成第一款装车车型。",
+        boundary: "这是产品页，适合看定位和架构边界；服务、效率、热和高功率数据还没闭环。",
+        url: "https://owuru-ebike.com/en/"
+      },
+      V036: {
+        kind: "source",
+        title: "Decathlon LD 920 E 官方商品页",
+        owner: "Decathlon UK",
+        quality: "O / 官方 / 文本",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "Decathlon LD 920 E 的官方零售页",
+        evidence: "官方商品页把 Long-Distance Automatic Owuru Motor Low Frame Electric City Bike LD 920 E 作为零售产品，补上了官方装车页和 OEM fit 证据。",
+        boundary: "这是零售页，地区和库存会变；可用来确认产品存在和 OEM fit，具体规格还要回到 Decathlon 数据核对。",
+        url: "https://www.decathlon.co.uk/p/long-distance-automatic-owuru-motor-low-frame-electric-city-bike-ld-920-e/355444/m8883702"
+      },
+      V037: {
+        kind: "source",
+        title: "Owuru 高功率路线 / Pinion 对照",
+        owner: "E-MOUNTAINBIKE",
+        quality: "B / 媒体 / 文本",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "高功率 Owuru 路线",
+        evidence: "E-MOUNTAINBIKE 把 Owuru 的高功率齿轮箱单元写成面向 eMTB / cargo 的连续变速路线，并拿来和 Pinion MGU 对照。",
+        boundary: "这是媒体首看/试骑，不是官方 datasheet。生产时间、耐久、效率和服务数据还没闭环。",
+        url: "https://ebike-mtb.com/en/owuru-gearbox-unit/"
+      },
+      V038: {
+        kind: "source",
+        title: "跨品牌 eCVT 机制 / 风险",
+        owner: "Pinkbike",
+        quality: "B / 媒体 / 文本",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "跨品牌 eCVT 机制梳理",
+        evidence: "Pinkbike 解释了 Avinox、Gobao 和 Owuru 的 eCVT 逻辑，包括自动 / 虚拟档和踏频控制，也提到效率、低电/断电、法规边界和轻助力适配限制。",
+        boundary: "这是媒体解读，不是单一产品规格源。",
+        url: "https://www.pinkbike.com/news/why-ecvts-could-be-the-future-of-e-bike-drivetrains.html"
+      },
+      V039: {
+        kind: "source",
+        title: "LD 920E 城市试骑",
+        owner: "DOWNTOWN Magazine",
+        quality: "B / 媒体 / 文本",
+        sourceFile: "01_evidence/verified_sources_v6_addendum.csv",
+        scope: "LD 920E 城市试骑",
+        evidence: "DOWNTOWN 独立试骑 Decathlon BTWIN LD 920E Automatic with OWURU motor，并讨论自动连续变速、偏好踏频和城市骑行可用性，可补充另一家媒体对目标踏频 / 无换挡体验的城市证据。",
+        boundary: "这是媒体城市车测评，不用于验证高功率 eMTB / cargo 的热、寿命或效率。",
+        url: "https://downtown-mag.com/en/decathlon-btwin-ld-920e-automatic-city-e-bike-owuru-motor-test/"
       },
       F001: {
         kind: "finding",
@@ -2230,7 +2519,7 @@
         quality: "置信度：高",
         sourceFile: "01_evidence/source_findings.csv",
         scope: "Bosch 官方页面",
-        evidence: "eShift 是有手动和自动变体的电动换挡生态，不是电机内部齿轮箱。",
+        evidence: "eShift 是有手动和自动变体的电动换挡系统，不是电机内部齿轮箱。",
         boundary: "用于说明外部电子/自动换挡替代路线。"
       },
       F015: {
@@ -2261,7 +2550,7 @@
         sourceFile: "01_evidence/source_findings.csv",
         scope: "SRAM 官方页面",
         evidence: "Eagle Powertrain 把 eMTB 驱动系统与 Eagle Transmission、Auto Shift（自动换挡）、Coast Shift（滑行换挡）、AXS Bridge Display、AXS Pod 和 AXS 应用集成。",
-        boundary: "不是电机内部变速；用于说明 eMTB 电子外变生态压力。"
+        boundary: "不是电机内部变速；用于说明 eMTB 电子外变替代压力。"
       },
       F020: {
         kind: "finding",
@@ -2312,6 +2601,16 @@
         scope: "行业媒体发布文章",
         evidence: "Velobiz 报道 Avinox 的主张包括单速链条或皮带下无需后拨/多片飞轮、低维护内部齿轮箱、平台适配，以及 150 kg 以上总运动质量下的自然骑行感。",
         boundary: "行业媒体报道，不是最终官方规格。"
+      },
+      F039: {
+        kind: "finding",
+        title: "LD 920 E 城市踏频试骑",
+        sourceId: "V031",
+        quality: "置信度：中",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "城市车试骑",
+        evidence: "评测写到踏频可设在 40 到 90 rpm，系统会自动跟着调比，不需要后拨或花鼓变速；对城市骑行的顺滑和响应也给了正面评价。",
+        boundary: "这是城市车试骑，不是高功率 e-CVT MGU 验证。可用来说明城市场景里目标踏频和无换挡体验能成立。"
       },
       F041: {
         kind: "finding",
@@ -2382,6 +2681,106 @@
         scope: "展台图片 OCR",
         evidence: "面向全部自行车平台图卡明确覆盖 eMTB、电助力长途、多用途、eGravel、城市和载货，支持把它视作跨平台 MGU 产品定义信号，而不只是 eMTB 展示样件。",
         boundary: "覆盖平台是图卡产品定义信号；各平台真实商业机会仍需分场景验证。"
+      },
+      F049: {
+        kind: "finding",
+        title: "E2Drives / Owuru 架构",
+        sourceId: "V033",
+        quality: "置信度：高",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "E2Drives 官方技术页面",
+        evidence: "官方技术页把 Propulsive Module 写成中轴附近的一体式自动传动单元，带两电机、皮带、行星齿轮、棘轮和共享控制 PCB。",
+        boundary: "这是官方架构说明，不是独立工程测试；用来划清城市车技术链的物理边界。"
+      },
+      F050: {
+        kind: "finding",
+        title: "E2Drives 一代量产信号",
+        sourceId: "V033",
+        quality: "置信度：高",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "E2Drives 官方技术页面",
+        evidence: "官方页面列出一代产品的 600 W 峰值功率、65-120 Nm 扭矩范围、265% 变速范围、4.6 kg 模块质量、无后拨、无飞轮、无花鼓变速，并写明自 2023 年夏季起用于 Decathlon LD920E。",
+        boundary: "这是公开主张，不是工程测试数据；可用来支撑城市成熟链条。"
+      },
+      F051: {
+        kind: "finding",
+        title: "E2Drives / Decathlon 合作关系",
+        sourceId: "V034",
+        quality: "置信度：高",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "E2Drives 官方公司页面",
+        evidence: "官方公司页写明 E2Drives 自 2019 年起与 Decathlon 合作、2020 年合作关系加深、2023 年起有首批电机在店内销售，并以 Decathlon 子公司的身份做新产品和新用途。",
+        boundary: "这是商业关系和成熟度证据，不是技术规格。"
+      },
+      F052: {
+        kind: "finding",
+        title: "OWURU 产品定位",
+        sourceId: "V035",
+        quality: "置信度：高",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "OWURU 官方产品页",
+        evidence: "官方页面把 OWURU 写成由 E2 Drives 驱动，强调自动换挡、用户设定踏频、连续变速、无后拨、无花鼓变速、双电机和 gear-change management。",
+        boundary: "这是官方产品定位和架构边界，不是完整的效率/耐久测试。"
+      },
+      F053: {
+        kind: "finding",
+        title: "OWURU / LD 920 E OEM fit",
+        sourceId: "V035",
+        quality: "置信度：高",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "OWURU 官方产品页",
+        evidence: "官方页面明确把 Decathlon LD 920 E 标为第一款装车车型，说明 OWURU 不只是媒体测评线索，而是有官方 OEM fit。",
+        boundary: "OEM fit 证据；地区、供货和后续车型仍需单独核实。"
+      },
+      F054: {
+        kind: "finding",
+        title: "Decathlon LD 920 E 官方零售页",
+        sourceId: "V036",
+        quality: "置信度：高",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Decathlon UK 官方商品页",
+        evidence: "官方商品页把 Long-Distance Automatic Owuru Motor Low Frame Electric City Bike LD 920 E 作为零售产品，补上了城市车官方装车页证据。",
+        boundary: "这是官方零售页，地区和库存可能变化；用于证明产品存在和 OEM fit。"
+      },
+      F055: {
+        kind: "finding",
+        title: "Owuru 高功率延伸路线",
+        sourceId: "V037",
+        quality: "置信度：中",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "E-MOUNTAINBIKE 高功率 Owuru 路线",
+        evidence: "媒体把 Owuru 的高功率齿轮箱路线写成面向 eMTB/cargo 的连续变速方案，并拿来和 Pinion MGU 对照，适合用作高功率延伸信号。",
+        boundary: "这是媒体首看/试骑，不是官方 datasheet；生产时间、耐久、效率和服务数据未闭环。"
+      },
+      F056: {
+        kind: "finding",
+        title: "跨品牌 eCVT 机制梳理",
+        sourceId: "V038",
+        quality: "置信度：中",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Pinkbike eCVT 技术解读",
+        evidence: "文章横向解释 Avinox、Gobao 和 Owuru 的 eCVT 逻辑，包括自动/虚拟档行为和踏频控制，适合用作共通机制框架。",
+        boundary: "这是媒体技术解读，不是单一产品规格源。"
+      },
+      F057: {
+        kind: "finding",
+        title: "跨品牌 eCVT 风险边界",
+        sourceId: "V038",
+        quality: "置信度：中",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "Pinkbike eCVT 技术解读",
+        evidence: "文章提醒 eCVT 的效率、低电/断电行为、法规边界和轻助力适配限制，这些更适合转成验证任务，而不是直接当成单产品失败结论。",
+        boundary: "这是媒体解读，用于风险框架，不用于替代官方测试。"
+      },
+      F058: {
+        kind: "finding",
+        title: "LD 920E / OWURU 城市试骑",
+        sourceId: "V039",
+        quality: "置信度：中",
+        sourceFile: "01_evidence/ecvt_source_findings.csv",
+        scope: "DOWNTOWN 城市车测评",
+        evidence: "独立测评再次验证 LD 920E / OWURU 的自动连续变速和偏好踏频城市骑行体验，可补强城市试骑证据。",
+        boundary: "这是媒体城市车测评，不用于验证高功率 eMTB/cargo 的热、寿命或效率。"
       }
     };
 

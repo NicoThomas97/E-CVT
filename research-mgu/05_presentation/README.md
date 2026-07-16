@@ -4,6 +4,12 @@
 
 ## 如何打开
 
+新增高级工程产品感试验页：
+
+`research-mgu/05_presentation/ecvt_mgu_premium_engineering_concept_20260716.html`
+
+这是一个独立桌面端离线 HTML 试验页，不替换现有正式展示页。页面不沿用旧版视觉风格，采用 true white / light graphite 背景、精细 SVG 曲线和工程标注，用于测试更克制、更像技术产品发布/内部评审材料的展示方式。所有主视觉、曲线和框图均由内联 SVG/JS 生成，不依赖外网资源、外部字体、图片或第三方图表库。
+
 新增骑手体感可视化正式展示页：
 
 `research-mgu/05_presentation/ecvt_mgu_rider_feel_visualization_20260716.html`
@@ -60,13 +66,21 @@
 4. `换比窗口`：理解曲柄 12 点 / 力矩低谷为什么是更自然的变比时机。
 5. `验证矩阵`：把视觉假设转成后续台架、样车和主观评价任务。
 
+阅读高级工程产品感试验页时，建议重点看：
+
+1. `首屏系统主视觉`：判断这种更克制的工程产品表达是否比旧版更适合正式汇报。
+2. `控制优先级`：看巡航、冲刺、爬坡是否能用更少文字讲清楚。
+3. `平路冲刺` 和 `陡坡爬坡`：检查曲线精度、标注密度和视觉层级是否足够专业。
+4. `曲柄相位`：看机械感相位图是否比普通说明卡更容易解释低谷换比窗口。
+5. `验证矩阵`：确认页面最终仍能落回工程验证，而不是变成宣传页。
+
 ## 证据边界记录
 
 - Gobao X-system 是当前最强官方 e-CVT MGU 证据。
 - Avinox MG Concept 按 e-CVT MGU 方向处理，但量产规格和内部机械实现仍缺官方闭环。
 - Owuru / Decathlon LD 920 E 用于说明目标踏频和用户不用操心换挡的 UX 价值，不能直接外推到高功率 MGU 量产可靠性。
 - Pinion、enviolo、Rohloff、Bosch、Shimano、SRAM 主要作为量产参照或替代方案压力，不是目标技术形态。
-- eMTB 的后拨易损、飞轮/链条外露、簧下质量、技术爬坡和负载换挡痛点已经单独补充到 `03_analysis/emtb_pain_points_and_ecvt_mgu_opportunity.md`。
+- eMTB 的后拨易损、飞轮/链条外露、簧下质量、技术爬坡和负载换挡痛点已经单独补充到 `03_analysis/10_market_and_scenarios/emtb_pain_points_and_ecvt_mgu_opportunity.md`。
 
 这些证据边界保留在内容版本记录和调研文档中，不再作为年轮网页的可见主章节展示。
 
@@ -77,19 +91,19 @@
 - `00_status/PROJECT_STATUS.md`
 - `02_matrices/ecvt_mgu_scenario_matrix.csv`
 - `02_matrices/substitute_solution_segment_matrix.csv`
-- `03_analysis/gobao_x_system_deep_dive.md`
-- `03_analysis/avinox_mg_concept_evidence_pack.md`
-- `03_analysis/historical_ecvt_lessons.md`
-- `03_analysis/go_no_go_criteria_draft.md`
-- `03_analysis/emtb_pain_points_and_ecvt_mgu_opportunity.md`
+- `03_analysis/20_architecture_and_benchmarks/gobao_x_system_deep_dive.md`
+- `03_analysis/20_architecture_and_benchmarks/avinox_mg_concept_evidence_pack.md`
+- `03_analysis/20_architecture_and_benchmarks/historical_ecvt_lessons.md`
+- `03_analysis/40_feasibility_and_validation/go_no_go_criteria_draft.md`
+- `03_analysis/10_market_and_scenarios/emtb_pain_points_and_ecvt_mgu_opportunity.md`
 - `01_evidence/verified_sources*.csv`
 - `01_evidence/ecvt_source_findings.csv`
 
 骑手体感可视化页主要来自：
 
-- `03_analysis/ecvt_mgu_visual_storyboard.md`
-- `03_analysis/ecvt_mgu_product_function_definition.md`
-- `03_analysis/url_key_info_integrated_dedup_summary.md`
+- `03_analysis/30_product_definition/ecvt_mgu_visual_storyboard.md`
+- `03_analysis/30_product_definition/ecvt_mgu_product_function_definition.md`
+- `03_analysis/90_source_materials/url_key_info_integrated_dedup_summary.md`
 
 ## 变更记录
 

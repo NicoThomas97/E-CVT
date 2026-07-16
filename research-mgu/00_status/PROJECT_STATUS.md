@@ -1,6 +1,6 @@
 # MGU 调研项目状态
 
-最后更新：2026-07-15，v7.1
+最后更新：2026-07-16，v8.0
 
 ## 1. 当前目标
 
@@ -32,6 +32,14 @@
 
 ## 4. 本轮新增文件
 
+2026-07-16 新增体感可实现性深度研究文件：
+
+- `03_analysis/40_feasibility_and_validation/ecvt_mgu_rider_feel_feasibility_deep_research.md`：围绕真实 e-CVT MGU 是否能实现巡航看踏频、冲刺看意图、爬坡看脚感力矩和曲柄低谷变比，整合成熟产品、汽车 e-CVT、专利、论文和参数边界。
+- `03_analysis/40_feasibility_and_validation/ecvt_mgu_simulation_model_spec.md`：真实模型仿真规范，明确后续仿真必须输出参数窗口，并把变比速度、热、效率、电机补扭、轮端扭矩连续性和曲柄相位作为 Go/No-Go。
+- `02_matrices/ecvt_mgu_technical_evidence_database.csv`：技术证据库，按官方、论文、专利、媒体、图卡等来源类型标注可信等级和可建模参数。
+- `02_matrices/ecvt_mgu_transmission_architecture_matrix.csv`：传动原理矩阵，对比 belt/pulley CVT、traction CVP、hydrostatic、power-split、two-motor planetary、series/virtual-chain、stepped gearbox + auto shift。
+- `02_matrices/ecvt_mgu_rider_feel_feasibility_matrix.csv`：体感逻辑可实现性矩阵，逐项拆解巡航、冲刺、爬坡、冲刺后高速巡航、曲柄相位、起步、滑行恢复和安全降级。
+
 证据文件：
 
 - `01_evidence/verified_sources_v6_addendum.csv`：新增 Gobao、Avinox、Owuru、LD 920 E 等 e-CVT/连续变速相关证据。
@@ -48,19 +56,19 @@
 
 分析文件：
 
-- `03_analysis/gobao_x_system_deep_dive.md`
-- `03_analysis/avinox_mg_concept_evidence_pack.md`
-- `03_analysis/avinox_mg_concept_deep_research.md`：基于 Bikerumor 文章、Tech Details 六张高清图、The Verge / Transition Velo / Velobiz 等报道，对 Avinox MG Concept 做深度研究；重点补入扭矩平滑、<0.1 s 换挡、300 Nm 负载换挡、100%-520% 可配置虚拟档位、maintenance-free 图卡、mechanical motor lock、electric reverse assist、built-in speed sensor、下坡 charging 图示和六平台覆盖。当前口径：作为 Avinox 量产方向/准量产产品定义和内部对标目标使用。
-- `03_analysis/historical_ecvt_lessons.md`
-- `03_analysis/go_no_go_criteria_draft.md`
-- `03_analysis/ecvt_mgu_validation_plan.md`
-- `03_analysis/emtb_pain_points_and_ecvt_mgu_opportunity.md`
-- `03_analysis/scenario_hypothesis_emtb.md`
-- `03_analysis/scenario_hypothesis_cargo_family.md`
-- `03_analysis/scenario_hypothesis_suv_trekking.md`
-- `03_analysis/scenario_entry_priority_note.md`：把 `ecvt_mgu_scenario_matrix.csv` 和 `scenario_substitutability_matrix.csv` 转成人读的场景进入优先级，强调“优先验证”不等于“确定首发市场”。
-- `03_analysis/substitute_solution_segment_note.md`：把 `substitute_solution_segment_matrix.csv` 转成人读的替代方案分场景判断，说明每个场景中 e-CVT MGU 需要战胜的最强替代路线。
-- `03_analysis/transmission_ratio_range_benchmark_note.md`：解释齿比范围口径、排除无证据示例，并说明为什么不能把最低档默认写成 1。
+- `03_analysis/20_architecture_and_benchmarks/gobao_x_system_deep_dive.md`
+- `03_analysis/20_architecture_and_benchmarks/avinox_mg_concept_evidence_pack.md`
+- `03_analysis/20_architecture_and_benchmarks/avinox_mg_concept_deep_research.md`：基于 Bikerumor 文章、Tech Details 六张高清图、The Verge / Transition Velo / Velobiz 等报道，对 Avinox MG Concept 做深度研究；重点补入扭矩平滑、<0.1 s 换挡、300 Nm 负载换挡、100%-520% 可配置虚拟档位、maintenance-free 图卡、mechanical motor lock、electric reverse assist、built-in speed sensor、下坡 charging 图示和六平台覆盖。当前口径：作为 Avinox 量产方向/准量产产品定义和内部对标目标使用。
+- `03_analysis/20_architecture_and_benchmarks/historical_ecvt_lessons.md`
+- `03_analysis/40_feasibility_and_validation/go_no_go_criteria_draft.md`
+- `03_analysis/40_feasibility_and_validation/ecvt_mgu_validation_plan.md`
+- `03_analysis/10_market_and_scenarios/emtb_pain_points_and_ecvt_mgu_opportunity.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_emtb.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_cargo_family.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_suv_trekking.md`
+- `03_analysis/10_market_and_scenarios/scenario_entry_priority_note.md`：把 `ecvt_mgu_scenario_matrix.csv` 和 `scenario_substitutability_matrix.csv` 转成人读的场景进入优先级，强调“优先验证”不等于“确定首发市场”。
+- `03_analysis/10_market_and_scenarios/substitute_solution_segment_note.md`：把 `substitute_solution_segment_matrix.csv` 转成人读的替代方案分场景判断，说明每个场景中 e-CVT MGU 需要战胜的最强替代路线。
+- `03_analysis/20_architecture_and_benchmarks/transmission_ratio_range_benchmark_note.md`：解释齿比范围口径、排除无证据示例，并说明为什么不能把最低档默认写成 1。
 
 ## 5. 当前证据状态
 

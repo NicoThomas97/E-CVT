@@ -9,37 +9,49 @@
 建议顺序：
 
 1. `00_status/PROJECT_STATUS.md`：当前研究状态、核心判断、最高优先级缺口和下一步。
-2. `03_analysis/ecvt_mgu_research_focus.md`：研究边界，说明为什么主轴是 e-CVT/连续变速 MGU，而不是广义 MGU。
-3. `03_analysis/ecvt_mgu_product_function_definition.md`：e-CVT MGU 整车系统功能定义，整理脚感一致性主线、总功能池、控制方式、变速逻辑、骑行体感、接口和验证方向。
-4. `03_analysis/ecvt_competitive_products_web_index.md`：网页索引，记录官方页、媒体页、展会页、测评页和待复核线索。
-5. `01_evidence/verified_sources*.csv` 和 `01_evidence/*source_findings.csv`：可引用证据和逐条 finding。
-6. `02_matrices/*.csv`：把证据转成竞品、替代方案、场景价值和验证任务。
-7. `03_analysis/*.md`：专题分析、场景假设、验证计划和 go/no-go 草案。
+2. `03_analysis/README.md`：`03_analysis` 分类入口，说明各子目录职责和阅读顺序。
+3. `03_analysis/00_entry_and_index/ecvt_mgu_research_focus.md`：研究边界，说明为什么主轴是 e-CVT/连续变速 MGU，而不是广义 MGU。
+4. `03_analysis/30_product_definition/ecvt_mgu_product_function_definition.md`：e-CVT MGU 整车系统功能定义，整理脚感一致性主线、总功能池、控制方式、变速逻辑、骑行体感、接口和验证方向。
+5. `03_analysis/00_entry_and_index/ecvt_competitive_products_web_index.md`：网页索引，记录官方页、媒体页、展会页、测评页和待复核线索。
+6. `01_evidence/verified_sources*.csv` 和 `01_evidence/*source_findings.csv`：可引用证据和逐条 finding。
+7. `02_matrices/*.csv`：把证据转成竞品、替代方案、场景价值和验证任务。
+8. `03_analysis/*/*.md`：专题分析、场景假设、验证计划和 go/no-go 草案。
 
 新增齿比范围口径时，优先读：
 
 1. `02_matrices/transmission_ratio_range_benchmark.csv`：证据闭合的外变、MGU、内变/CVT/gearbox 齿比范围对比矩阵。
 2. `01_evidence/ratio_source_findings.csv`：逐条齿比范围 finding 和计算口径。
-3. `03_analysis/transmission_ratio_range_benchmark_note.md`：范围定义、排除项和当前最大外变速结论。
+3. `03_analysis/20_architecture_and_benchmarks/transmission_ratio_range_benchmark_note.md`：范围定义、排除项和当前最大外变速结论。
 
 阅读场景和替代方案判断时，优先读：
 
-1. `03_analysis/scenario_entry_priority_note.md`：场景进入优先级阅读版，对应 `02_matrices/ecvt_mgu_scenario_matrix.csv` 和 `02_matrices/scenario_substitutability_matrix.csv`。
-2. `03_analysis/substitute_solution_segment_note.md`：替代方案分场景阅读版，对应 `02_matrices/substitute_solution_segment_matrix.csv`。
-3. `02_matrices/ecvt_mgu_validation_task_matrix.csv` 和 `03_analysis/ecvt_mgu_validation_plan.md`：把上述场景判断转成验证任务。
+1. `03_analysis/10_market_and_scenarios/scenario_entry_priority_note.md`：场景进入优先级阅读版，对应 `02_matrices/ecvt_mgu_scenario_matrix.csv` 和 `02_matrices/scenario_substitutability_matrix.csv`。
+2. `03_analysis/10_market_and_scenarios/substitute_solution_segment_note.md`：替代方案分场景阅读版，对应 `02_matrices/substitute_solution_segment_matrix.csv`。
+3. `02_matrices/ecvt_mgu_validation_task_matrix.csv` 和 `03_analysis/40_feasibility_and_validation/ecvt_mgu_validation_plan.md`：把上述场景判断转成验证任务。
 
 阅读产品功能定义时，优先读：
 
-1. `03_analysis/ecvt_mgu_product_function_definition.md`：当前产品定义入口，说明系统可以做哪些功能、如何控制，并定义巡航看踏频、冲刺看意图、爬坡看脚感力矩的控制优先级。
-2. `03_analysis/ecvt_mgu_visual_storyboard.md`：图文介绍网页视觉故事板，说明如何把控制策略转成曲线图、图解、页面章节和 AI 生成提示词。
-3. `03_analysis/url_key_info_integrated_dedup_summary.md`：从后续 Excel 对比表提取出的整合去重材料，包含红色加粗标注中的个人理解和重点内容。
-4. `03_analysis/technical_architecture.md` 和 `03_analysis/ecvt_mgu_validation_plan.md`：用于把功能定义继续拆成技术架构和验证任务。
+1. `03_analysis/30_product_definition/ecvt_mgu_product_function_definition.md`：当前产品定义入口，说明系统可以做哪些功能、如何控制，并定义巡航看踏频、冲刺看意图、爬坡看脚感力矩的控制优先级。
+2. `03_analysis/40_feasibility_and_validation/ecvt_mgu_rider_feel_feasibility_deep_research.md`：体感逻辑可实现性深度研究，回答真实 e-CVT MGU 是否能实现巡航、冲刺、爬坡和曲柄相位控制逻辑。
+3. `03_analysis/40_feasibility_and_validation/ecvt_mgu_simulation_model_spec.md`：证据参数化仿真规范，说明后续模型必须如何处理变比速度、效率、热、电机补扭、曲柄相位和故障降级。
+4. `03_analysis/30_product_definition/ecvt_mgu_visual_storyboard.md`：图文介绍网页视觉故事板，说明如何把控制策略转成曲线图、图解、页面章节和 AI 生成提示词。
+5. `03_analysis/90_source_materials/url_key_info_integrated_dedup_summary.md`：从后续 Excel 对比表提取出的整合去重材料，包含红色加粗标注中的个人理解和重点内容。
+6. `03_analysis/20_architecture_and_benchmarks/technical_architecture.md` 和 `03_analysis/40_feasibility_and_validation/ecvt_mgu_validation_plan.md`：用于把功能定义继续拆成技术架构和验证任务。
+
+阅读体感可实现性和仿真边界时，优先读：
+
+1. `03_analysis/40_feasibility_and_validation/ecvt_mgu_rider_feel_feasibility_deep_research.md`：主报告，按公开调研、原理分类、成熟产品、汽车类比、专利/论文、参数边界和仿真路径组织。
+2. `02_matrices/ecvt_mgu_technical_evidence_database.csv`：技术证据库，每条证据标注来源类型、可信等级、可建模参数和未闭合问题。
+3. `02_matrices/ecvt_mgu_transmission_architecture_matrix.csv`：传动原理矩阵，对比 belt/pulley CVT、traction CVP、hydrostatic、power-split、two-motor planetary、series/virtual-chain、stepped gearbox + auto shift。
+4. `02_matrices/ecvt_mgu_rider_feel_feasibility_matrix.csv`：体感逻辑可实现性矩阵，逐项拆解巡航、冲刺、爬坡、曲柄相位、起步、滑行恢复和故障降级。
+5. `03_analysis/40_feasibility_and_validation/ecvt_mgu_simulation_model_spec.md`：真实模型仿真规范，后续仿真必须输出参数窗口而不是单条展示曲线。
 
 查看产品方向和骑手体感展示时，优先读：
 
 1. `05_presentation/ecvt_mgu_rider_feel_visualization_20260716.html`：桌面端骑手体感可视化正式展示页，用趋势曲线解释巡航、冲刺、爬坡和曲柄相位换比窗口。
-2. `05_presentation/ecvt_mgu_product_direction.html`：产品方向五层逻辑展示页，用于说明 e-CVT MGU 的价值边界和场景判断。
-3. `05_presentation/README.md` 和 `05_presentation/PRESENTATION_CHANGELOG.md`：展示页入口、阅读方式和变更记录。
+2. `05_presentation/ecvt_mgu_premium_engineering_concept_20260716.html`：高级工程产品感试验页，用于测试更克制、精密、少卡片化的正式展示风格。
+3. `05_presentation/ecvt_mgu_product_direction.html`：产品方向五层逻辑展示页，用于说明 e-CVT MGU 的价值边界和场景判断。
+4. `05_presentation/README.md` 和 `05_presentation/PRESENTATION_CHANGELOG.md`：展示页入口、阅读方式和变更记录。
 
 上述 `05_presentation` 文件只作为汇报展示入口，不作为事实源；其中所有确定性判断仍应回查 `01_evidence`、`02_matrices`、`03_analysis` 和内容版本记录。
 
@@ -52,8 +64,8 @@
 | `01_evidence/*source_findings.csv` | 从来源抽取的逐条事实 | 可以作为事实引用入口 |
 | `01_evidence/source_backlog.csv` | 待查来源和缺口 | 不能当事实 |
 | `02_matrices/*.csv` | 结构化判断和对比 | 只能引用其背后的 source/finding |
-| `03_analysis/ecvt_competitive_products_web_index.md` | 网页索引和复核状态 | `已核验`可作入口；`待复核/搜索命中`只能作线索 |
-| `03_analysis/*deep*` / `*_hypothesis_*` / `*_plan.md` | 专题分析和验证设计 | 结论需追溯 source/finding |
+| `03_analysis/00_entry_and_index/ecvt_competitive_products_web_index.md` | 网页索引和复核状态 | `已核验`可作入口；`待复核/搜索命中`只能作线索 |
+| `03_analysis/*/*deep*` / `03_analysis/*/*_hypothesis_*` / `03_analysis/*/*_plan.md` | 专题分析和验证设计 | 结论需追溯 source/finding |
 | `04_reports/*.md` | 阶段报告草稿 | 不是最新事实源，引用前先看状态页和证据表 |
 | `05_presentation/*` | 汇报展示材料 | 不作为事实源 |
 | `99_legacy/*` | 旧资料和历史草稿 | 默认不能作为当前证据 |

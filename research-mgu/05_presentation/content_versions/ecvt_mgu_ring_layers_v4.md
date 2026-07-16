@@ -102,10 +102,10 @@ e-CVT MGU 理论上可以进入多种高端电助力自行车场景；Avinox 技
 - `02_matrices/ecvt_mgu_scenario_matrix.csv`
 - `02_matrices/substitute_solution_segment_matrix.csv`
 - `02_matrices/feature_pain_matrix.csv`
-- `03_analysis/gobao_x_system_deep_dive.md`
-- `03_analysis/avinox_mg_concept_evidence_pack.md`
-- `03_analysis/emtb_pain_points_and_ecvt_mgu_opportunity.md`
-- `03_analysis/l2_l3_l4_benchmark.md`
+- `03_analysis/20_architecture_and_benchmarks/gobao_x_system_deep_dive.md`
+- `03_analysis/20_architecture_and_benchmarks/avinox_mg_concept_evidence_pack.md`
+- `03_analysis/10_market_and_scenarios/emtb_pain_points_and_ecvt_mgu_opportunity.md`
+- `03_analysis/20_architecture_and_benchmarks/l2_l3_l4_benchmark.md`
 - `01_evidence/verified_sources*.csv`
 - `01_evidence/source_findings.csv`
 - `01_evidence/ecvt_source_findings.csv`

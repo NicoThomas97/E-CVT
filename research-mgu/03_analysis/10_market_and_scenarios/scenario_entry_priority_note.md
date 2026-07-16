@@ -1,4 +1,4 @@
-# 场景进入优先级阅读版
+﻿# 场景进入优先级阅读版
 
 调研日期：2026-07-15
 
@@ -24,9 +24,9 @@
 ## 3. 推荐阅读顺序
 
 1. 先读本文件，快速理解场景分层。
-2. 再读 `03_analysis/substitute_solution_segment_note.md`，确认每个场景里谁是最强替代。
-3. 需要做测试或访谈时，读 `03_analysis/ecvt_mgu_validation_plan.md` 和 `02_matrices/ecvt_mgu_validation_task_matrix.csv`。
-4. 针对单场景展开时，再读 `03_analysis/scenario_hypothesis_emtb.md`、`03_analysis/scenario_hypothesis_cargo_family.md` 和 `03_analysis/scenario_hypothesis_suv_trekking.md`。
+2. 再读 `03_analysis/10_market_and_scenarios/substitute_solution_segment_note.md`，确认每个场景里谁是最强替代。
+3. 需要做测试或访谈时，读 `03_analysis/40_feasibility_and_validation/ecvt_mgu_validation_plan.md` 和 `02_matrices/ecvt_mgu_validation_task_matrix.csv`。
+4. 针对单场景展开时，再读 `03_analysis/10_market_and_scenarios/scenario_hypothesis_emtb.md`、`03_analysis/10_market_and_scenarios/scenario_hypothesis_cargo_family.md` 和 `03_analysis/10_market_and_scenarios/scenario_hypothesis_suv_trekking.md`。
 
 ## 4. 使用边界
 
@@ -45,3 +45,4 @@
 - Urban / accessible / fleet：用用户访谈和运营数据判断是否存在足够高的支付意愿或 TCO 改善。
 
 上述任务应回到 `02_matrices/ecvt_mgu_validation_task_matrix.csv` 维护，不在本文扩写成新的事实。
+

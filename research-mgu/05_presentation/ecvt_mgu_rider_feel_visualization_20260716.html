@@ -618,35 +618,35 @@
   <main>
     <section id="definition" class="hero">
       <div class="hero-copy">
-        <p class="kicker">智能脚感一致性 e-CVT MGU 平台</p>
-        <h1>不是让骑手少换挡而已，而是让系统主动管理脚下感觉。</h1>
+        <p class="kicker">脚感一致性 e-CVT MGU 平台</p>
+        <h1>把踏频、齿比和助力调到同一个脚感目标上。</h1>
         <p class="hero-lead">
-          这是一套面向整车厂的电机集成 e-CVT 系统：以踏频管理为基础，以脚感一致性为目标，结合踏频、踩踏力矩、曲柄位置、车速、坡度和电机状态，动态调整目标踏频、传动比和电机转矩。
+          这是一套面向整车厂的电机集成 e-CVT 系统。控制器读取踏频、踩踏力矩、曲柄位置、车速、坡度和电机状态，实时给出目标踏频、传动比和电机转矩，让骑手在不同路况下获得可预期的脚下负载。
         </p>
         <div class="hero-points" aria-label="核心控制原则">
           <div class="hero-point">
             <strong>巡航看踏频</strong>
-            <span>平路和轻微起伏时，优先让骑手停留在舒适 rpm。</span>
+            <span>平路和缓坡，优先把踏频收在骑手设定的舒适区。</span>
           </div>
           <div class="hero-point">
             <strong>冲刺看意图</strong>
-            <span>突然加力时，先尊重加速意图，允许踏频短时上扬。</span>
+            <span>骑手突然加力，先识别加速请求，真实踏频可以短时上扬。</span>
           </div>
           <div class="hero-point">
             <strong>爬坡看脚感力矩</strong>
-            <span>陡坡时，固定踏频退居二线，优先稳住脚下负载。</span>
+            <span>陡坡上，优先把踩踏力矩拉回中间区，不让脚下过重或过空。</span>
           </div>
         </div>
       </div>
 
       <aside class="hero-system" aria-label="整车系统示意">
         <div class="system-title">
-          <h2>整车系统闭环</h2>
-          <span class="status-chip">概念架构</span>
+          <h2>整车控制回路</h2>
+          <span class="status-chip">概念示意</span>
         </div>
         <svg class="system-svg" viewBox="0 0 430 390" role="img" aria-labelledby="system-title system-desc">
-          <title id="system-title">e-CVT MGU 整车系统示意图</title>
-          <desc id="system-desc">骑手输入和路况输入进入控制器，控制器协调电机转矩与 e-CVT 传动比，并通过 HMI 和整车控制器反馈。</desc>
+              <title id="system-title">e-CVT MGU 整车控制回路示意图</title>
+          <desc id="system-desc">骑手输入和路况输入进入控制器，控制器计算电机转矩与 e-CVT 传动比，并通过 HMI 和整车控制器反馈。</desc>
           <defs>
             <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M 0 0 L 10 5 L 0 10 z" fill="#66736f"></path>
@@ -690,41 +690,41 @@
     <section id="priority">
       <div class="section-head">
         <div>
-          <p class="kicker">为什么单纯恒踏频不够</p>
-          <h2 class="section-title">同一个 e-CVT，要在不同场景切换控制优先级。</h2>
+          <p class="kicker">恒踏频只是基础</p>
+          <h2 class="section-title">不同骑行状态，控制器要换不同的优先级。</h2>
         </div>
-        <p class="section-note">目标踏频仍然重要，但它不是铁律。冲刺时它要给骑手意图让路；陡坡时它要服务于脚下力矩一致性。</p>
+        <p class="section-note">目标踏频仍然重要，但不能当成唯一约束。冲刺时先看骑手是否在要速度；陡坡时先看脚下力矩是否还在可接受范围内。</p>
       </div>
 
       <div class="priority-grid">
         <article class="priority-card">
           <div class="priority-index">01</div>
           <h3>巡航看踏频</h3>
-          <p>平路或缓坡稳定骑行时，系统把目标踏频作为主控制目标，降低频繁变比，让骑手进入稳定节奏。</p>
+          <p>平路或缓坡稳定骑行时，目标踏频是主约束。控制器少做大幅变比，让骑手维持固定节奏。</p>
           <ul class="priority-list">
-            <li>目标踏频可设为约 50 rpm 或用户偏好值。</li>
-            <li>传动比缓慢修正，避免巡航时来回找点。</li>
-            <li>体感目标是安静、平顺、省心。</li>
+            <li>目标踏频可以设在约 50 rpm，也可以按用户偏好调整。</li>
+            <li>传动比做小幅修正，避免巡航时来回找点。</li>
+            <li>体感要求是稳定、安静、没有多余动作。</li>
           </ul>
         </article>
         <article class="priority-card intent">
           <div class="priority-index">02</div>
           <h3>冲刺看意图</h3>
-          <p>骑手突然加力时，系统先判断加速意图，电机快速接住需求，e-CVT 再平滑升齿比。</p>
+          <p>骑手突然加力时，控制器先按加速请求处理。电机先补上转矩，e-CVT 再把齿比平滑抬上去。</p>
           <ul class="priority-list">
-            <li>真实踏频可以短时上扬，不急着压回固定 rpm。</li>
-            <li>冲刺结束后目标踏频回到巡航值。</li>
-            <li>较高齿比保留，让车进入高速巡航。</li>
+            <li>真实踏频允许短时上扬，不马上压回固定 rpm。</li>
+            <li>骑手收力后，目标踏频回到巡航值。</li>
+            <li>齿比保留在较高平台，车速不回落到原来的巡航点。</li>
           </ul>
         </article>
         <article class="priority-card torque">
           <div class="priority-index">03</div>
           <h3>爬坡看脚感力矩</h3>
-          <p>陡坡时，脚下踩踏力矩是否处于舒服中间区，比固定踏频更关键。</p>
+          <p>陡坡时先看脚下负载。踩踏力矩如果偏重或偏空，固定踏频就不应继续排在第一位。</p>
           <ul class="priority-list">
-            <li>目标踏频动态变化，用来调节脚感。</li>
-            <li>齿比和电机转矩共同把力矩拉回舒适区。</li>
-            <li>避免既沉重踩不动，也空、虚、失去支撑。</li>
+            <li>目标踏频可以动态变化，用来调整脚下负载。</li>
+            <li>齿比和电机转矩一起把力矩拉回舒适区。</li>
+            <li>避免脚下过重，也避免助力过多导致踩踏发空。</li>
           </ul>
         </article>
       </div>
@@ -735,8 +735,8 @@
         <div class="chart-top">
           <div class="chart-title-block">
             <p class="kicker">平路巡航中的突然加速</p>
-            <h3>冲刺时允许踏频上扬，电机先接住意图，e-CVT 再整理节奏。</h3>
-            <p>坡度约 3°，骑手踩踏力矩突然上升。系统不把真实踏频强行压在 50 rpm，而是让踏频短时上扬，同时平滑提高传动比；冲刺结束后，目标踏频回到 50 rpm，但高齿比和高车速被保留下来。</p>
+            <h3>冲刺阶段先给响应，再把齿比抬上去。</h3>
+            <p>坡度约 3°，骑手踩踏力矩突然上升。控制器不急着把真实踏频压回 50 rpm，而是允许踏频短时上扬，同时让 e-CVT 平滑升齿比；骑手收力后，目标踏频回到 50 rpm，车辆留在更高齿比和更高车速上巡航。</p>
           </div>
           <span class="data-note">趋势示意，非实测数据</span>
         </div>
@@ -744,10 +744,10 @@
           <svg id="sprint-chart" class="stacked-chart" viewBox="0 0 1274 690" role="img" aria-label="平路巡航突然加速堆叠曲线图"></svg>
         </div>
         <div class="chart-captions">
-          <div class="caption input"><strong>输入</strong><span>骑手力矩突然上升，表达加速 / 冲刺意图。</span></div>
-          <div class="caption judge"><strong>判断</strong><span>状态从舒适巡航切换为冲刺，再进入高速巡航。</span></div>
-          <div class="caption output"><strong>输出</strong><span>电机转矩快速响应，e-CVT 齿比更慢、更平滑地升高。</span></div>
-          <div class="caption feel"><strong>体感结果</strong><span>冲刺不被打断，结束后以舒适踏频维持更高车速。</span></div>
+          <div class="caption input"><strong>输入</strong><span>骑手力矩快速抬高，系统把它读作加速请求。</span></div>
+          <div class="caption judge"><strong>判断</strong><span>状态从巡航切到冲刺，收力后转入高速巡航。</span></div>
+          <div class="caption output"><strong>输出</strong><span>电机转矩先上来，e-CVT 齿比随后平滑升高。</span></div>
+          <div class="caption feel"><strong>体感结果</strong><span>加速动作不被打断，收力后用舒适踏频维持更高车速。</span></div>
         </div>
       </div>
     </section>
@@ -757,8 +757,8 @@
         <div class="chart-top">
           <div class="chart-title-block">
             <p class="kicker">陡坡爬坡中的脚感一致性</p>
-            <h3>爬坡时目标踏频是工具，脚下踩踏力矩舒适区才是主目标。</h3>
-            <p>坡度约 10°，系统不死守固定踏频。它通过动态目标踏频、e-CVT 齿比和电机转矩协同，把踩踏力矩拉回不过重、不过空的中间区，让爬坡支撑感更稳定。</p>
+            <h3>陡坡上，先把踩踏力矩留在可接受区间。</h3>
+            <p>坡度约 10° 时，固定踏频不再是第一约束。控制器通过动态目标踏频、e-CVT 齿比和电机转矩，把踩踏力矩拉回不过重、不过空的中间区，让爬坡时脚下还有稳定支撑。</p>
           </div>
           <span class="data-note">趋势示意，非实测数据</span>
         </div>
@@ -766,10 +766,10 @@
           <svg id="climb-chart" class="stacked-chart" viewBox="0 0 1274 690" role="img" aria-label="陡坡爬坡脚感一致性堆叠曲线图"></svg>
         </div>
         <div class="chart-captions">
-          <div class="caption input"><strong>输入</strong><span>坡度和脚下负载升高，力矩偏离舒适中间区。</span></div>
-          <div class="caption judge"><strong>判断</strong><span>进入陡坡脚感控制，固定踏频优先级降低。</span></div>
-          <div class="caption output"><strong>输出</strong><span>目标踏频、传动比和电机转矩共同修正脚感。</span></div>
-          <div class="caption feel"><strong>体感结果</strong><span>骑手不需要硬踩，也不会觉得系统把脚下变空。</span></div>
+          <div class="caption input"><strong>输入</strong><span>坡度上来后，脚下力矩开始偏离舒适区。</span></div>
+          <div class="caption judge"><strong>判断</strong><span>进入陡坡脚感控制，固定踏频降为次级约束。</span></div>
+          <div class="caption output"><strong>输出</strong><span>目标踏频、齿比和电机转矩一起修正脚下负载。</span></div>
+          <div class="caption feel"><strong>体感结果</strong><span>不用硬踩，也不会因为助力过多而觉得脚下发空。</span></div>
         </div>
       </div>
     </section>
@@ -778,19 +778,19 @@
       <div class="section-head">
         <div>
           <p class="kicker">曲柄相位决定变比窗口</p>
-          <h2 class="section-title">变比时机不只看时间，也看脚踩力矩波形。</h2>
+          <h2 class="section-title">变比窗口要落在脚下最不敏感的位置。</h2>
         </div>
-        <p class="section-note">曲柄 12 点位置附近，踩踏力矩通常处于低谷。把 e-CVT 变比动作安排在这个窗口，脚下突兀感会更低。</p>
+        <p class="section-note">曲柄 12 点位置附近，踩踏力矩通常处于低谷。把 e-CVT 变比安排在这个窗口，骑手更不容易察觉到齿比变化。</p>
       </div>
 
       <div class="phase-layout">
         <div class="phase-copy">
           <h3>低力矩窗口，适合做细微变比。</h3>
-          <p>这个图不是说每次都必须在固定角度换比，而是强调曲柄相位应作为脚感控制的重要输入。</p>
+          <p>这张图表达的是标定方向：变比时机要参考曲柄相位和力矩波形，而不是只看时间。</p>
           <ul>
-            <li>高力矩区变比：骑手更容易感到顿挫、拖拽或脚下支撑变化。</li>
-            <li>低力矩区变比：变比动作更容易被踏频波动自然吸收。</li>
-            <li>工程标定：需要结合力矩波形、变比幅度、电机转矩和传动机构响应速度。</li>
+            <li>高力矩区变比：更容易出现顿挫、拖拽或支撑突变。</li>
+            <li>低力矩区变比：变比动作更容易被踏频波动吸收。</li>
+            <li>工程标定：还要叠加变比幅度、电机转矩和机构响应速度。</li>
           </ul>
         </div>
         <div class="phase-card">
@@ -803,14 +803,14 @@
       <div class="section-head">
         <div>
           <p class="kicker">多传感器意图识别</p>
-          <h2 class="section-title">系统不是替骑手做决定，而是读懂骑手已经表达出的意图。</h2>
+          <h2 class="section-title">控制器要判断骑手当下到底在要什么。</h2>
         </div>
-        <p class="section-note">同一套控制器要把输入、判断、目标选择和输出串起来，才能让电机和 e-CVT 不互相打架。</p>
+        <p class="section-note">同一套控制器要把输入、状态判断、目标选择和输出串起来，电机和 e-CVT 才会朝同一个体感方向工作。</p>
       </div>
 
       <article class="diagram-card">
         <h3>输入 -> 判断 -> 输出</h3>
-        <p>传感器包越完整，系统越有机会区分巡航、冲刺、爬坡、滑行恢复和起步。</p>
+        <p>传感器包越完整，控制器越能区分巡航、冲刺、爬坡、滑行恢复和起步。</p>
         <svg id="intent-flow" class="flow-svg" viewBox="0 0 610 390" role="img" aria-label="多传感器意图识别框图"></svg>
       </article>
     </section>
@@ -819,14 +819,14 @@
       <div class="section-head">
         <div>
           <p class="kicker">电机转矩与 e-CVT 协同</p>
-          <h2 class="section-title">电机先接住意图，e-CVT 再整理节奏。</h2>
+          <h2 class="section-title">电机负责快响应，e-CVT 负责把节奏收回来。</h2>
         </div>
-        <p class="section-note">冲刺时允许踏频上扬，爬坡时稳住脚下力矩。真正决定体感的不是单个输出，而是电机转矩和目标传动比的协同。</p>
+        <p class="section-note">冲刺时允许踏频上扬，爬坡时稳住脚下力矩。体感是否自然，取决于电机转矩和目标传动比是不是按同一套判断在动作。</p>
       </div>
 
       <article class="diagram-card">
         <h3>快响应与慢整理</h3>
-        <p>电机负责快速响应骑手意图，e-CVT 负责中慢速整理节奏和脚感，两者共同决定真实踏频、车速和脚下力矩。</p>
+        <p>电机先处理瞬时需求，e-CVT 再处理齿比和节奏。最后落到骑手脚下的，是两者共同决定的真实踏频、车速和踩踏力矩。</p>
         <svg id="coord-flow" class="coord-svg" viewBox="0 0 610 390" role="img" aria-label="电机转矩与 e-CVT 协同图"></svg>
       </article>
     </section>
@@ -835,35 +835,35 @@
       <div class="section-head">
         <div>
           <p class="kicker">如何验证这套体验</p>
-          <h2 class="section-title">验证重点不是只看变速速度，而是看脚感是否被管理住。</h2>
+          <h2 class="section-title">验证重点要落到脚感，而不是只看变速速度。</h2>
         </div>
-        <p class="section-note">后续台架、样车和主观评价要围绕自然、平顺、响应、控制感和噪音边界展开。</p>
+        <p class="section-note">后续台架、样车和主观评价，需要同时看自然感、平顺性、响应速度、控制感和噪音边界。</p>
       </div>
 
       <div class="matrix-grid">
         <article class="matrix-card" data-index="01">
           <h3>巡航稳定</h3>
-          <p>平路和轻微起伏中，目标 rpm 设定后踏频是否稳定，系统是否避免频繁找点。</p>
+          <p>目标 rpm 设定后，平路和轻微起伏中踏频是否稳定，传动比是否避免频繁找点。</p>
           <span class="metric">踏频偏差</span>
         </article>
         <article class="matrix-card" data-index="02">
           <h3>冲刺恢复</h3>
-          <p>突然加力后是否允许踏频上扬，并在力矩下降后进入高齿比高速巡航。</p>
+          <p>骑手突然加力后，真实踏频是否允许上扬；收力后，车辆是否留在高齿比高速巡航。</p>
           <span class="metric">意图识别</span>
         </article>
         <article class="matrix-card" data-index="03">
           <h3>爬坡脚感</h3>
-          <p>陡坡时是否优先把踩踏力矩拉回舒适区，而不是死守固定踏频。</p>
+          <p>陡坡时是否优先把踩踏力矩拉回舒适区，固定踏频是否降为次级约束。</p>
           <span class="metric">力矩舒适区</span>
         </article>
         <article class="matrix-card" data-index="04">
           <h3>换比窗口</h3>
-          <p>变比动作是否落在力矩低谷附近，脚下是否减少顿挫、拖拽或突兀支撑变化。</p>
+          <p>变比动作是否落在力矩低谷附近，脚下顿挫、拖拽和支撑突变是否减少。</p>
           <span class="metric">曲柄相位</span>
         </article>
         <article class="matrix-card" data-index="05">
           <h3>安全降级</h3>
-          <p>IMU、力矩、轮速、曲柄位置异常时，系统是否能进入可骑行安全模式。</p>
+          <p>IMU、力矩、轮速、曲柄位置异常时，车辆是否还能进入可骑行的安全模式。</p>
           <span class="metric">故障策略</span>
         </article>
       </div>
@@ -875,7 +875,7 @@
     </section>
 
     <footer class="footer">
-      <span>来源：`03_analysis/ecvt_mgu_visual_storyboard.md` 与产品功能定义讨论。</span>
+      <span>来源：`03_analysis/30_product_definition/ecvt_mgu_visual_storyboard.md` 与产品功能定义讨论。</span>
       <span>本页为概念可视化说明，不作为控制算法、实测数据或量产规格承诺。</span>
     </footer>
   </main>
@@ -1104,7 +1104,7 @@
         {
           label: "真实踏频", subLabel: "短时上扬", min: 40, max: 95,
           series: [{ points: [[0,50],[28,51],[36,68],[47,86],[58,78],[70,55],[100,50]], color: colors.deepBlue, label: "真实" }],
-          annotations: [{ x: 48, y: 91, text: "不急着压回 50 rpm", color: colors.deepBlue }]
+          annotations: [{ x: 48, y: 91, text: "先保留加速踏频", color: colors.deepBlue }]
         },
         {
           label: "e-CVT 齿比", subLabel: "平滑升高并保持", min: 0, max: 100,
@@ -1146,10 +1146,10 @@
         },
         {
           label: "目标踏频", subLabel: "动态变化", min: 40, max: 95,
-          series: [{ points: [[0,58],[16,56],[30,66],[43,61],[56,54],[70,60],[100,58]], color: colors.blue, dash: "6 5", label: "服务脚感" }]
+          series: [{ points: [[0,58],[16,56],[30,66],[43,61],[56,54],[70,60],[100,58]], color: colors.blue, dash: "6 5", label: "调脚下负载" }]
         },
         {
-          label: "真实踏频", subLabel: "跟随但非唯一核心", min: 40, max: 95,
+          label: "真实踏频", subLabel: "跟随目标变化", min: 40, max: 95,
           series: [{ points: [[0,56],[18,55],[32,63],[44,60],[58,53],[72,58],[100,57]], color: colors.deepBlue, label: "真实" }]
         },
         {
@@ -1157,7 +1157,7 @@
           series: [{ points: [[0,62],[20,60],[34,42],[48,50],[60,64],[74,57],[100,60]], color: colors.violet, label: "调脚感" }]
         },
         {
-          label: "电机转矩", subLabel: "支撑而不掏空", min: 0, max: 100,
+          label: "电机转矩", subLabel: "提供支撑感", min: 0, max: 100,
           series: [{ points: [[0,58],[20,62],[32,76],[46,68],[60,56],[76,66],[100,62]], color: "#4d5fa8", label: "支撑" }]
         },
         {
@@ -1251,7 +1251,7 @@
           svg.appendChild(svgEl("path", { d: `M ${columns[index + 1].x - 10} 176 L ${columns[index + 1].x} 184 L ${columns[index + 1].x - 10} 192 Z`, fill: colors.muted }));
         }
       });
-      addText(svg, "多输入融合后，控制目标不是单一 rpm，而是随场景切换。", 305, 368, {
+      addText(svg, "多输入融合后，控制目标会随场景切换，不只看单一 rpm。", 305, 368, {
         "text-anchor": "middle", fill: colors.muted, "font-size": 12
       });
     }
@@ -1264,7 +1264,7 @@
       const nodes = [
         { x: 60, y: 82, w: 150, h: 72, title: "骑手意图", text: "力矩变化 / 踏频变化", color: colors.orange },
         { x: 230, y: 70, w: 150, h: 96, title: "电机转矩", text: "快速响应，先接住请求", color: colors.blue },
-        { x: 400, y: 70, w: 150, h: 96, title: "e-CVT 齿比", text: "中慢速整理节奏", color: colors.violet },
+        { x: 400, y: 70, w: 150, h: 96, title: "e-CVT 齿比", text: "中慢速调整节奏", color: colors.violet },
         { x: 230, y: 230, w: 150, h: 72, title: "真实踏频", text: "允许上扬或动态跟随", color: colors.deepBlue },
         { x: 400, y: 230, w: 150, h: 72, title: "脚下力矩", text: "回到舒适中间区", color: colors.green }
       ];

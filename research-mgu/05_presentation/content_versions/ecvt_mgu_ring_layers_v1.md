@@ -16,11 +16,11 @@
 - `00_status/PROJECT_STATUS.md`
 - `02_matrices/ecvt_mgu_scenario_matrix.csv`
 - `02_matrices/substitute_solution_segment_matrix.csv`
-- `03_analysis/scenario_hypothesis_emtb.md`
-- `03_analysis/scenario_hypothesis_cargo_family.md`
-- `03_analysis/scenario_hypothesis_suv_trekking.md`
-- `03_analysis/gobao_x_system_deep_dive.md`
-- `03_analysis/pain_point_opportunity_map.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_emtb.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_cargo_family.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_suv_trekking.md`
+- `03_analysis/20_architecture_and_benchmarks/gobao_x_system_deep_dive.md`
+- `03_analysis/10_market_and_scenarios/pain_point_opportunity_map.md`
 
 ## 3. 五层完整正文
 

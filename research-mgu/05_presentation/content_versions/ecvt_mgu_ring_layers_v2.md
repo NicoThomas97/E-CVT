@@ -19,14 +19,14 @@
 - `02_matrices/ecvt_mgu_scenario_matrix.csv`
 - `02_matrices/substitute_solution_segment_matrix.csv`
 - `02_matrices/feature_pain_matrix.csv`
-- `03_analysis/avinox_mg_concept_deep_research.md`
-- `03_analysis/avinox_mg_concept_evidence_pack.md`
-- `03_analysis/emtb_pain_points_and_ecvt_mgu_opportunity.md`
-- `03_analysis/scenario_hypothesis_emtb.md`
-- `03_analysis/scenario_hypothesis_cargo_family.md`
-- `03_analysis/scenario_hypothesis_suv_trekking.md`
-- `03_analysis/l2_l3_l4_benchmark.md`
-- `03_analysis/go_no_go_criteria_draft.md`
+- `03_analysis/20_architecture_and_benchmarks/avinox_mg_concept_deep_research.md`
+- `03_analysis/20_architecture_and_benchmarks/avinox_mg_concept_evidence_pack.md`
+- `03_analysis/10_market_and_scenarios/emtb_pain_points_and_ecvt_mgu_opportunity.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_emtb.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_cargo_family.md`
+- `03_analysis/10_market_and_scenarios/scenario_hypothesis_suv_trekking.md`
+- `03_analysis/20_architecture_and_benchmarks/l2_l3_l4_benchmark.md`
+- `03_analysis/40_feasibility_and_validation/go_no_go_criteria_draft.md`
 
 ## 3. 五层完整正文
 
